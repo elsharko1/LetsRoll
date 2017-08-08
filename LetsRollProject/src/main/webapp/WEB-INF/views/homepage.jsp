@@ -17,10 +17,12 @@
     location from eventful<br>
     create and event button<br>
     link to profile page<br>
+    link to your events page<br>
 </p>
 <a href="/profile">Make profile</a><br>
 <a href="/createevent">create event</a><br>
 <a href="/searchresults">search results</a><br>
-<a href="/feedbackpage">feeb back</a>
+<a href="/feedbackpage">feeb back</a><br>
+<a href="/yourevents">See your events</a><br>
 </body>
 </html>

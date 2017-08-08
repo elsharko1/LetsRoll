@@ -153,4 +153,11 @@ public class HomeController {
 
         return "confirmationpage";
     }
+
+    @RequestMapping("/yourevents")
+    public String yourEventsPage(Model model) {
+
+        return "yourevents";
+    }
+
 }

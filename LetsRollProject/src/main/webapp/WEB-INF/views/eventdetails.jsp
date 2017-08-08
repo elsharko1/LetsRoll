@@ -11,6 +11,7 @@
 </head>
 <body>
 <p>this will be our event details page</p>
+<a href="/attendorvolunteer">attend or volunteer</a><br>
 <a href="/page3">Home page</a>
 </body>
 </html>

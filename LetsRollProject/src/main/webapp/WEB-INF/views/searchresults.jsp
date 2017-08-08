@@ -16,6 +16,6 @@
 <p>a link back to our home page</p>
 <a href="/page3">Home page</a><br>
 <a href="/eventdetails">look at event detials</a>
-<a href="/attendorvolunteer">attend or volunteer</a>
+
 </body>
 </html>
