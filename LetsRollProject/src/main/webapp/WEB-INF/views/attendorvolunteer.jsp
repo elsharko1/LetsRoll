@@ -14,7 +14,7 @@
 <p>put a choice menu for the link to the confirmation page</p>
 
 <a href="/confirmationpage">confirmation page</a><br><br>
-<a href="/page3">Home page</a><br>
+<a href="/homepage">Home page</a><br>
 
 
 </body>

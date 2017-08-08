@@ -16,6 +16,6 @@ ${message}
     <a href="http://eventful.com/signin?goto=http%3A%2F%2Feventful.com%2Fannarbor%2Fevents">eventful</a>
 </p>
 
-<a href="/page3">Login</a>
+<a href="/homepage">Login</a>
 </body>
 </html>

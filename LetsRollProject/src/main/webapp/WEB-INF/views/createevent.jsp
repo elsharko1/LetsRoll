@@ -13,6 +13,6 @@
 <p>
     this is our create an event page
 </p>
-<a href="/page3">Home page</a>
+<a href="/homepage">Home page</a>
 </body>
 </html>

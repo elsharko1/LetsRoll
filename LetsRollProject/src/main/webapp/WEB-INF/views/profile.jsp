@@ -14,6 +14,6 @@
 <p>
     this is our profile form
 </p>
-<a href="/page3">Home page</a>
+<a href="/homepage">Home page</a>
 </body>
 </html>

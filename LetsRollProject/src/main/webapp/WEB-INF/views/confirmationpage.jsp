@@ -13,6 +13,6 @@
 <p> this is your confirmation. Thank you for helping us out.</p>
 <br>
 <br>
-<a href="/page3">Home page</a>
+<a href="/homepage">Home page</a>
 </body>
 </html>

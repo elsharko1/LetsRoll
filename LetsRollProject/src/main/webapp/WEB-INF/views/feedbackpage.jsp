@@ -12,6 +12,6 @@
 <body>
 <p>this is our feedback page</p>
 <p> feedback from recently attended events from our customers</p>
-<a href="/page3">Home page</a>
+<a href="/homepage">Home page</a>
 </body>
 </html>

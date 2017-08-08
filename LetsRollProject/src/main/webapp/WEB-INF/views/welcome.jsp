@@ -23,7 +23,7 @@
 </p>
 ${message}
 <br>
-<a href="/page2">Login</a>
+<a href="/login">Login</a>
 
 <br>
 <a href="getjson">JSON Data</a>
