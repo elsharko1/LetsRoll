@@ -1,9 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Mark
+  User: JRMN8
   Date: 7/21/2017
   Time: 11:04 AM
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -25,5 +24,10 @@
 ${message}
 <br>
 <a href="/page2">Login</a>
+
+<br>
+<a href="getjson">JSON Data</a>
+<br>
+
 </body>
 </html>

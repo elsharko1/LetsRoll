@@ -1,7 +1,7 @@
 package com.jrmn8.util;
 
 /**
- * Created by Mark on 7/21/2017.
+ * Created by JRMN8 on 7/21/2017.
  */
 
 import org.springframework.context.annotation.Bean;
