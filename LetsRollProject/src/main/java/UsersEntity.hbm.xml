@@ -5,8 +5,8 @@
 <hibernate-mapping>
 
     <class name="com.jrmn8.UsersEntity" table="users" schema="letsrolldb">
-        <id name="eventfulUser">
-            <column name="eventfulUser" sql-type="varchar(16)" length="16"/>
+        <id name="eventfulUserName">
+            <column name="eventfulUserName" sql-type="varchar(16)" length="16"/>
         </id>
         <property name="email">
             <column name="email" sql-type="varchar(255)"/>
