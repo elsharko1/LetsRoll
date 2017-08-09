@@ -26,7 +26,7 @@ ${message}
 <a href="/login">Login</a>
 
 <br>
-<a href="getjson">JSON Data</a>
+<a href="searchresults">JSON Data</a>
 <br>
 
 </body>
