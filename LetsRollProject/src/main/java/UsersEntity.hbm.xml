@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.jrmn8.UsersEntity" table="users" schema="letsrolldb">
+        <id name="eventfulUser">
+            <column name="eventfulUser" sql-type="varchar(16)" length="16"/>
+        </id>
+        <property name="email">
+            <column name="email" sql-type="varchar(255)"/>
+        </property>
+        <property name="location">
+            <column name="location" sql-type="varchar(255)"/>
+        </property>
+        <property name="skills">
+            <column name="skills" sql-type="varchar(255)"/>
+        </property>
+        <property name="fullName">
+            <column name="fullName" sql-type="varchar(255)"/>
+        </property>
+    </class>
+</hibernate-mapping>
