@@ -2,26 +2,23 @@ package com.jrmn8;
 
 import javax.persistence.*;
 
-/**
- * Created by Ny Derry on 8/9/2017.
- */
 @Entity
 @Table(name = "users", schema = "letsrolldb", catalog = "")
 public class UsersEntity {
-    private String eventfulUser;
+    private String eventfulUserName;
     private String email;
     private String location;
     private String skills;
     private String fullName;
 
     @Id
-    @Column(name = "eventfulUser", nullable = false, length = 16)
-    public String getEventfulUser() {
-        return eventfulUser;
+    @Column(name = "eventfulUserName", nullable = false, length = 16)
+    public String getEventfulUserName() {
+        return eventfulUserName;
     }
 
-    public void setEventfulUser(String eventfulUser) {
-        this.eventfulUser = eventfulUser;
+    public void setEventfulUserName(String eventfulUserName) {
+        this.eventfulUserName = eventfulUserName;
     }
 
     @Basic
@@ -71,7 +68,8 @@ public class UsersEntity {
 
         UsersEntity that = (UsersEntity) o;
 
-        if (eventfulUser != null ? !eventfulUser.equals(that.eventfulUser) : that.eventfulUser != null) return false;
+        if (eventfulUserName != null ? !eventfulUserName.equals(that.eventfulUserName) : that.eventfulUserName != null)
+            return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (location != null ? !location.equals(that.location) : that.location != null) return false;
         if (skills != null ? !skills.equals(that.skills) : that.skills != null) return false;
@@ -82,7 +80,7 @@ public class UsersEntity {
 
     @Override
     public int hashCode() {
-        int result = eventfulUser != null ? eventfulUser.hashCode() : 0;
+        int result = eventfulUserName != null ? eventfulUserName.hashCode() : 0;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (skills != null ? skills.hashCode() : 0);
