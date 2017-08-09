@@ -117,7 +117,7 @@ public class HomeController {
         return "createevent";
     }
 
-    @RequestMapping(value = {"/searchResults"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/searchresults"}, method = RequestMethod.GET)
     public ModelAndView searchResultsPage(Model model) {
         // we should utilize the criteria we are passed in from the homepage
         // in here [so we'll need to use @RequestParam] and then search through
