@@ -5,6 +5,7 @@ package com.jrmn8.controller;
  */
 
 import com.jrmn8.dao.Dao;
+import com.jrmn8.dao.EventDao;
 import com.jrmn8.dto.Event;
 import com.jrmn8.factory.DaoFactory;
 import org.apache.http.HttpHost;
@@ -118,6 +119,13 @@ public class HomeController {
         // all Eventful fields AND [Skills required, Accommodations].
         // Passing into the database will be userID and all the fields above.
         // as a Post-MVP milestone, maybe pass back to Eventful?
+
+/*        EventDao eventDao = DaoFactory.getInstance(EventDao);
+        boolean status = eventDao.addEvent(event);
+
+        //return createevent or confirmation?
+        return new ModelAndView("createevent", "status", status);*/
+
         return "createevent";
     }
 
