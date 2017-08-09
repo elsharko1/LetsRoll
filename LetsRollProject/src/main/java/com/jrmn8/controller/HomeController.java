@@ -34,6 +34,8 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.hibernate.*;
+import org.hibernate.cfg.Configuration;
 
 @Controller
 public class HomeController {
@@ -146,7 +148,9 @@ public class HomeController {
 
             for (int i = 0; i < array.length(); i++) {
                 Event event = new Event();
-
+                // venue name
+                // description,title, city name, venue address, venueid, owner, going_null, created, venue_url,
+                // start_time, postal_code
                 event.setPostal_code(array.getJSONObject(i).getString("postal_code"));
                 event.setGoing_count(array.getJSONObject(i).getString("going_count"));
                 event.setUrl(array.getJSONObject(i).getString("url"));
