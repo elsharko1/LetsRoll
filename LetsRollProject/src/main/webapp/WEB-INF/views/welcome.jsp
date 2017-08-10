@@ -24,10 +24,14 @@
 ${message}
 <br>
 <a href="/login">Login</a>
-
+<br>
 <!-- this is to register a new user -->
 
 <a href="/adduser">Register</a>
-
+<br>
+<form action="/test" method="get">
+    <input type="text" name="userName" required/>
+    <input type="submit" value="Search">
+</form>
 </body>
 </html>

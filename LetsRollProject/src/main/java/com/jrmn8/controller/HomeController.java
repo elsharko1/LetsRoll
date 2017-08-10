@@ -14,6 +14,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.hibernate.criterion.Restrictions;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -253,7 +254,7 @@ public class HomeController {
     // testing database information pull.
 
     @RequestMapping("/test")
-    public String test(Model model) {
+    public String test(Model model, @RequestParam("userName") String username) {
         Session selectUsers = sessionFact.openSession();
 
         selectUsers.beginTransaction();
@@ -262,6 +263,8 @@ public class HomeController {
         Criteria c = selectUsers.createCriteria(UsersEntity.class);
 
         // results are returned as list and cast to an ArrayList
+
+        c.add(Restrictions.like("eventfulUserName", "%" + username + "%"));
         ArrayList<UsersEntity> users = (ArrayList<UsersEntity>) c.list();
         ArrayList<String> userstostring = new ArrayList<String>();
         for (int i = 0; i < users.size(); i++) {
