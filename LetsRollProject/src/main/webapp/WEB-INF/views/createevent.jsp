@@ -15,10 +15,8 @@
     <br>
     Creator: <input type="text" name="creator">
     <br>
-    <%--Month (mm): <input type="text" name="month">--%>
-    <%--Day (dd): <input type="text" name="day">--%>
-    <%--Year (yyyy): <input type="text" name="year">--%>
-    <%--<br>--%>
+    Date: ("MM/DD/YYYY"): <input type="text" name="date">
+    <br>
     <%--<select name="repeat">--%>
         <%--<option value="doesnotrepeat "> -- does not repeat -- </option>--%>
         <%--<option value="daily">Repeats Daily</option>--%>
@@ -28,13 +26,13 @@
     <%--<br>--%>
     Where: <input type="text" name="where">
     <br>
-    Description: <textarea rows = "5" cols = "50" name = "description">
-            Enter description here...
-         </textarea>
+    Description: <br>
+    <textarea rows = "5" cols = "50" name = "description">
+    </textarea>
     <br>
-    Skills Needed: <textarea rows = "5" cols = "50" name = "skillsneeded">
-            Enter description here...
-         </textarea>
+    Skills Needed: <br>
+    <textarea rows = "5" cols = "50" name = "skillsneeded">
+    </textarea>
     <br>
     <%--<select name="choice">--%>
         <%--<option value= "concerts">Concerts and Tour Dates</option>--%>

@@ -21,7 +21,7 @@
             <column name="description" sql-type="varchar(2000)" length="2000"/>
         </property>
         <property name="date">
-            <column name="date" sql-type="datetime"/>
+            <column name="date" sql-type="varchar(50)" length="50"/>
         </property>
         <property name="skillsneeded">
             <column name="skillsneeded" sql-type="varchar(450)" length="450" not-null="true"/>
