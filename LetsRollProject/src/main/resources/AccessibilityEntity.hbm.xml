@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.jrmn8.AccessibilityEntity" table="accessibility" schema="letsrolldb">
+        <id name="eventId">
+            <column name="eventID" sql-type="varchar(99)" length="99"/>
+        </id>
+        <property name="wheelchair">
+            <column name="wheelchair" sql-type="tinyint(3) unsigned"/>
+        </property>
+        <property name="family">
+            <column name="family" sql-type="tinyint(3) unsigned"/>
+        </property>
+        <property name="servicedog">
+            <column name="servicedog" sql-type="tinyint(3) unsigned"/>
+        </property>
+        <property name="blind">
+            <column name="blind" sql-type="tinyint(3) unsigned"/>
+        </property>
+    </class>
+</hibernate-mapping>

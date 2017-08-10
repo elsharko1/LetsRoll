@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.jrmn8.UserattendingEntity" table="userattending" schema="letsrolldb">
+        <id name="eventfulUserName">
+            <column name="eventfulUserName" sql-type="varchar(16)" length="16"/>
+        </id>
+        <property name="eventId">
+            <column name="eventID" sql-type="varchar(99)" length="99"/>
+        </property>
+        <property name="isVolunteer">
+            <column name="isVolunteer" sql-type="tinyint(1)"/>
+        </property>
+        <property name="feedback">
+            <column name="feedback" sql-type="varchar(2000)" length="2000" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
