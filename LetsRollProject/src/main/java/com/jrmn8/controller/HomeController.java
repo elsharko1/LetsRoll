@@ -318,4 +318,48 @@ public class HomeController {
         model.addAttribute("newStuff", newUser);
         return "addUserSuccess";
     }
+
+    @RequestMapping("/eventcreated")
+    public String addNewEvent(@RequestParam("title") String title,
+//                             @RequestParam("month") String month,
+//                             @RequestParam("day") String day,
+//                             @RequestParam("year") String year,
+                             //@RequestParam("repeat") String repeat,
+                             @RequestParam("where") String location,
+                             //@RequestParam("choice") String choice,
+                              @RequestParam("creator") String creator,
+                             @RequestParam("description") String description,
+                             @RequestParam("skillsneeded") String skills,
+                             Model model) {
+
+
+        Session session = sessionFact.openSession();
+
+        Transaction tx = session.beginTransaction();
+
+        EventsEntity newEvent = new EventsEntity();
+        int ID = (int) (Math.random() * 10000000);
+        String eventID = String.valueOf(ID);
+
+        newEvent.setEventId(eventID);
+        newEvent.setTitle(title);
+        newEvent.setCreator(creator);
+        //newEvent.setDate();
+        //newEvent.setRepeat(repeat);
+        newEvent.setLocation(location);
+        newEvent.setDescription(description);
+        newEvent.setSkillsneeded(skills);
+        //newEvent.setChoice(choice);
+
+
+        session.save(newEvent);
+        tx.commit();
+        session.close();
+
+//        model.addAttribute("eventID", eventID);
+//        model.addAttribute("title", title);
+//        model.addAttribute("where", location);
+        model.addAttribute("newEvent", newEvent);
+        return "eventcreated";
+    }
 }
