@@ -7,8 +7,6 @@ package com.jrmn8.controller;
 import com.jrmn8.EventsEntity;
 import com.jrmn8.UsersEntity;
 import com.jrmn8.dao.Dao;
-import com.jrmn8.dao.EventDao;
-import com.jrmn8.dto.Event;
 import com.jrmn8.factory.DaoFactory;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -19,33 +17,20 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONString;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
-
-import java.sql.*;
-import java.util.ArrayList;
 
 @Controller
 public class HomeController {
@@ -321,9 +306,7 @@ public class HomeController {
 
     @RequestMapping("/eventcreated")
     public String addNewEvent(@RequestParam("title") String title,
-//                             @RequestParam("month") String month,
-//                             @RequestParam("day") String day,
-//                             @RequestParam("year") String year,
+                             @RequestParam("date") String date,
                              //@RequestParam("repeat") String repeat,
                              @RequestParam("where") String location,
                              //@RequestParam("choice") String choice,
@@ -344,7 +327,7 @@ public class HomeController {
         newEvent.setEventId(eventID);
         newEvent.setTitle(title);
         newEvent.setCreator(creator);
-        //newEvent.setDate();
+        newEvent.setDate(date);
         //newEvent.setRepeat(repeat);
         newEvent.setLocation(location);
         newEvent.setDescription(description);

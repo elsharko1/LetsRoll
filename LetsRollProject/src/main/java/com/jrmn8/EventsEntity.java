@@ -1,17 +1,19 @@
 package com.jrmn8;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
+/**
+ * Created by Mark on 8/10/2017.
+ */
 @Entity
-@Table(name = "events", schema = "letsrolldb")
+@Table(name = "events", schema = "letsrolldb", catalog = "")
 public class EventsEntity {
     private String eventId;
     private String title;
     private String creator;
     private String location;
     private String description;
-    private Timestamp date;
+    private String date;
     private String skillsneeded;
 
     @Id
@@ -25,7 +27,7 @@ public class EventsEntity {
     }
 
     @Basic
-    @Column(name = "title", nullable = false, length = 200)
+    @Column(name = "title", nullable = true, length = 200)
     public String getTitle() {
         return title;
     }
@@ -35,7 +37,7 @@ public class EventsEntity {
     }
 
     @Basic
-    @Column(name = "creator", nullable = false, length = 16)
+    @Column(name = "creator", nullable = true, length = 16)
     public String getCreator() {
         return creator;
     }
@@ -45,7 +47,7 @@ public class EventsEntity {
     }
 
     @Basic
-    @Column(name = "location", nullable = false, length = 99)
+    @Column(name = "location", nullable = true, length = 99)
     public String getLocation() {
         return location;
     }
@@ -55,7 +57,7 @@ public class EventsEntity {
     }
 
     @Basic
-    @Column(name = "description", nullable = false, length = 2000)
+    @Column(name = "description", nullable = true, length = 2000)
     public String getDescription() {
         return description;
     }
@@ -65,12 +67,12 @@ public class EventsEntity {
     }
 
     @Basic
-    @Column(name = "date", nullable = false)
-    public Timestamp getDate() {
+    @Column(name = "date", nullable = true, length = 50)
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -113,9 +115,12 @@ public class EventsEntity {
         result = 31 * result + (skillsneeded != null ? skillsneeded.hashCode() : 0);
         return result;
     }
+
     @Override
     public String toString(){
         return (getTitle() + "<br>" + getCreator() + "<br> " + getLocation()
-                + "<br>" + getDescription() + "<br>" + getSkillsneeded());
+                + "<br>" + getDescription() + "<br>" + getDate()
+                + "<br>" + getSkillsneeded());
     }
+
 }
