@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "events", schema = "letsrolldb", catalog = "")
+@Table(name = "events", schema = "letsrolldb")
 public class EventsEntity {
     private String eventId;
     private String title;
@@ -112,5 +112,10 @@ public class EventsEntity {
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (skillsneeded != null ? skillsneeded.hashCode() : 0);
         return result;
+    }
+    @Override
+    public String toString(){
+        return (getTitle() + "<br>" + getCreator() + "<br> " + getLocation()
+                + "<br>" + getDescription() + "<br>" + getSkillsneeded());
     }
 }

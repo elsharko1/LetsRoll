@@ -16,7 +16,7 @@
     Email: <input type="text" name="email" required> <br>
     Location: <input type="text" name="location" required> <br>
     Skills: <input type="text" name="skills"> <br>
-    Full Name: <input type="text" name="fullName"> <br>
+    Full Name: <input type="text" name="fullName" required> <br>
     <input type="submit" value="Add User">
 </form>
 </body>
