@@ -15,7 +15,6 @@
 </p>
 <p>a link back to our home page</p>
 <a href="/homepage">Home page</a><br>
-<a href="/eventdetails">look at event detials</a>
-
+<a href="/eventdetails">look at event details</a>
 </body>
 </html>

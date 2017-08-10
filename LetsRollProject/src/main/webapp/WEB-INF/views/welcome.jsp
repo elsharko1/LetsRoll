@@ -24,10 +24,5 @@
 ${message}
 <br>
 <a href="/login">Login</a>
-
-<br>
-<a href="searchresults">JSON Data</a>
-<br>
-
 </body>
 </html>

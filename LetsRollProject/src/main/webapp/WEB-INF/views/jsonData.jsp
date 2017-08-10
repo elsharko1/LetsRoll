@@ -17,31 +17,26 @@
 <%--${type.key} : ${type.value} <br>--%>
 <table border="1">
     <tr>
-        <%--<th>Image</th>--%>
-<%--
-        <th>Image</th>
---%>
-        <th>ID</th>
+        <th>Event ID</th>
         <th>Title</th>
-        <th>Venue Name / Address</th>
+        <th>Creator</th>
+        <th>Location (Venue Name / Address)</th>
         <th>Description</th>
-        <th>Going Count</th>
-        <th>Start Time</th>
+        <th>Date (Start Time)</th>
+        <th>Skills Needed</th>
     </tr>
     <c:forEach var="type" items="${jsonPageData}">
         <tr>
-            <%--<td><img src="${type.image}" width="128" height="128"></td>--%>
-<%--
-            <td>${type.image}</td>
---%>
-            <td>${type.id}</td>
+            <td>${type.eventId}</td>
             <td>${type.title}</td>
-            <td>${type.venue_name} / ${type.venue_address}</td>
+            <td>${type.creator}</td>
+            <td>${type.location}</td>
             <td>${type.description}</td>
-            <td>${type.going_count}</td>
-            <td>${type.start_time}</td>
+            <td>${date}</td>
+            <td>${type.skillsneeded}</td>
         </tr>
     </c:forEach>
 </table>
+<a href="/homepage">Home page</a>
 </body>
 </html>

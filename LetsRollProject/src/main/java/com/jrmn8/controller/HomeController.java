@@ -4,6 +4,7 @@ package com.jrmn8.controller;
  * Created by JRMN8 on 7/21/2017.
  */
 
+import com.jrmn8.EventsEntity;
 import com.jrmn8.dao.Dao;
 import com.jrmn8.dao.EventDao;
 import com.jrmn8.dto.Event;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -33,6 +35,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.hibernate.*;
@@ -130,7 +134,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = {"/searchresults"}, method = RequestMethod.GET)
-    public ModelAndView searchResultsPage(Model model) {
+    public ModelAndView searchResultsPage(Model model, @RequestParam("keywords") String keywords) {
         // we should utilize the criteria we are passed in from the homepage
         // in here [so we'll need to use @RequestParam] and then search through
         // the API database to return certain events
@@ -142,9 +146,7 @@ public class HomeController {
             // keywords field below will be the parameter the user inputs;
             // use JDBC to call user details and GET THEIR CITY LOCATION.
             // will prepopulate the location field of the search bar with that information.
-            String keywords = "Detroit";
-            String text = "";
-            ArrayList<Event> eventList = new ArrayList<Event>();
+            ArrayList<EventsEntity> eventList = new ArrayList<EventsEntity>();
 
             HttpHost host = new HttpHost("api.eventful.com", 80, "http");
             HttpGet getPage = new HttpGet("/json/events/search?app_key=" + apiKey + "&keywords=" + keywords);
@@ -156,26 +158,25 @@ public class HomeController {
             JSONObject object = json.getJSONObject("events");
             JSONArray array = object.getJSONArray("event");
 
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd-kk.mm.ss.SSS");
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+
             for (int i = 0; i < array.length(); i++) {
-                Event event = new Event();
+                EventsEntity event = new EventsEntity();
                 // venue name
                 // description,title, city name, venue address, venueid, owner, going_null, created, venue_url,
                 // start_time, postal_code
-                event.setPostal_code(array.getJSONObject(i).getString("postal_code"));
-                event.setGoing_count(array.getJSONObject(i).getString("going_count"));
-                event.setUrl(array.getJSONObject(i).getString("url"));
-                event.setId(array.getJSONObject(i).getString("id"));
-                event.setCity_name(array.getJSONObject(i).getString("city_name"));
-                event.setRegion_name(array.getJSONObject(i).getString("region_name"));
-                event.setStart_time(array.getJSONObject(i).getString("start_time"));
-                event.setDescription(array.getJSONObject(i).getString("description"));
-                event.setVenue_display(array.getJSONObject(i).getString("venue_display"));
-                event.setPerformers(array.getJSONObject(i).getString("performers"));
+
+                event.setEventId(array.getJSONObject(i).getString("id"));
                 event.setTitle(array.getJSONObject(i).getString("title"));
-                event.setVenue_address(array.getJSONObject(i).getString("venue_address"));
-                event.setVenue_id(array.getJSONObject(i).getString("venue_id"));
-                event.setVenue_name(array.getJSONObject(i).getString("venue_name"));
-                event.setVenue_url(array.getJSONObject(i).getString("venue_url"));
+                event.setCreator(array.getJSONObject(i).getString("owner"));
+                event.setLocation(array.getJSONObject(i).getString("venue_name") + array.getJSONObject(i).getString("venue_address"));
+                event.setDescription(array.getJSONObject(i).getString("description"));
+                /*event.setDate((Timestamp) df.parse(array.getJSONObject(i).getString("start_time")));*/
+                model.addAttribute("date", (array.getJSONObject(i).getString("start_time")));
+                /*model.addAttribute("date", (Timestamp) dateFormat.parse(array.getJSONObject(i).getString("start_time")));*/
+                event.setSkillsneeded("skill" + i);
 
                 eventList.add(event);
             }
@@ -185,6 +186,8 @@ public class HomeController {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
+        /*} catch (ParseException e) {
+            e.printStackTrace();*/
         }
         // should go to searchresults.jsp, but at the moment that isn't set up for our JSON yet.
         // let's get that done later.

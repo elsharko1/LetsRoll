@@ -21,8 +21,13 @@
 </p>
 <a href="/profile">Make profile</a><br>
 <a href="/createevent">create event</a><br>
-<a href="/searchresults">search results</a><br>
-<a href="/feedbackpage">feeb back</a><br>
+
+<form action="/searchresults" method="get">
+    <input type="text" name = "keywords" required>
+    <input type="submit" value="Search By Keywords">
+</form>
+<%--<a href="/searchresults">search results</a><br>--%>
+<a href="/feedbackpage">feedback</a><br>
 <a href="/yourevents">See your events</a><br>
 </body>
 </html>
