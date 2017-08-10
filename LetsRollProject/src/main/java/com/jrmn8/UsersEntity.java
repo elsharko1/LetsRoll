@@ -87,4 +87,9 @@ public class UsersEntity {
         result = 31 * result + (fullName != null ? fullName.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return (getEventfulUserName() + ", " + getFullName());
+    }
 }

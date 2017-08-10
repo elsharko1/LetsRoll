@@ -24,5 +24,10 @@
 ${message}
 <br>
 <a href="/login">Login</a>
+
+<!-- this is to register a new user -->
+
+<a href="/adduser">Register</a>
+
 </body>
 </html>

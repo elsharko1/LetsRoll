@@ -5,6 +5,7 @@ package com.jrmn8.controller;
  */
 
 import com.jrmn8.EventsEntity;
+import com.jrmn8.UsersEntity;
 import com.jrmn8.dao.Dao;
 import com.jrmn8.dao.EventDao;
 import com.jrmn8.dto.Event;
@@ -39,8 +40,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -49,6 +52,10 @@ public class HomeController {
 
     Dao dao = DaoFactory.getInstance(DaoFactory.HIBERNATE);
     HttpClient http = HttpClientBuilder.create().build();
+    // creating the hibernate configuration and sessionfactory from that config.
+    Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+    SessionFactory sessionFact = cfg.buildSessionFactory();
+
 
     @RequestMapping("/")
 
@@ -149,6 +156,7 @@ public class HomeController {
             ArrayList<EventsEntity> eventList = new ArrayList<EventsEntity>();
 
             HttpHost host = new HttpHost("api.eventful.com", 80, "http");
+            // maybe remove all spaces inside keywords before searching
             HttpGet getPage = new HttpGet("/json/events/search?app_key=" + apiKey + "&keywords=" + keywords);
             HttpResponse response = http.execute(host, getPage);
             String jsonString = EntityUtils.toString(response.getEntity());
@@ -256,4 +264,58 @@ public class HomeController {
 
     //SpringTiles -> Omnipresent header -> Logout button if we learn how to use it.
     // if not, leave logout button on Home Page.
+
+    // testing database information pull.
+
+    @RequestMapping("/test")
+    public String test(Model model) {
+        Session selectUsers = sessionFact.openSession();
+
+        selectUsers.beginTransaction();
+
+        // Criteria is used to create the query
+        Criteria c = selectUsers.createCriteria(UsersEntity.class);
+
+        // results are returned as list and cast to an ArrayList
+        ArrayList<UsersEntity> users = (ArrayList<UsersEntity>) c.list();
+        ArrayList<String> userstostring = new ArrayList<String>();
+        for (int i = 0; i < users.size(); i++) {
+            userstostring.add(users.get(i).toString());
+        }
+        model.addAttribute("users", userstostring);
+        return "test";
+    }
+
+    @RequestMapping("/adduser")
+    public String newUser() {
+        return "adduser";
+    }
+
+    @RequestMapping("/addinguser")
+    public String addNewUser(@RequestParam("eventfulUserName") String username,
+                                 @RequestParam("email") String email,
+                                 @RequestParam("location") String location,
+                                 @RequestParam("skills") String skills,
+                                 @RequestParam("fullName") String fullname, Model model) {
+
+
+        Session session = sessionFact.openSession();
+
+        Transaction tx = session.beginTransaction();
+
+        UsersEntity newUser = new UsersEntity();
+
+        newUser.setEventfulUserName(username);
+        newUser.setEmail(email);
+        newUser.setLocation(location);
+        newUser.setSkills(skills);
+        newUser.setFullName(fullname);
+
+        session.save(newUser);
+        tx.commit();
+        session.close();
+
+        model.addAttribute("newStuff", newUser);
+        return "addUserSuccess";
+    }
 }
