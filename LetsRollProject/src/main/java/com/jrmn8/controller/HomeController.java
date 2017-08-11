@@ -348,4 +348,40 @@ public class HomeController {
         model.addAttribute("newEvent", newEvent);
         return "eventcreated";
     }
+
+    @RequestMapping("/adduser")
+
+    public ModelAndView adduser(@RequestParam("fullName") String fullName,
+                                @RequestParam("location") String location,
+                                Model model) {
+
+
+        model.addAttribute("fullName",fullName);
+        model.addAttribute("location",location);
+
+
+        return new ModelAndView("/WEB-INF/views/registrationComplete.jsp", "message" , model);
+    }
+
+    @RequestMapping("signup")
+
+    public String register() {
+        return "/signup";
+    }
+
+    @RequestMapping("/welcome")
+
+    public ModelAndView welcome() {
+        return new
+                ModelAndView("/loginpage", "message", "Welcome!");
+
+    }
+
+    @RequestMapping("log")
+
+    public String welcomeGreeting() {
+        return "/loginpage";
+
+    }
+
 }
