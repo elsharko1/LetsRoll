@@ -14,5 +14,7 @@
 ${newEvent}
 <br>
 ${newAccess}
+<br>
+<a href="/homepage">Home page</a>
 </body>
 </html>

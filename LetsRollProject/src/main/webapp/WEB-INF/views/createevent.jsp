@@ -8,6 +8,9 @@
 <html>
 <head>
     <title>create event page</title>
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" media="screen"
+              href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
 </head>
 <body>
 <form method="post" action = "/eventcreated">
@@ -15,7 +18,27 @@
     <br>
     Creator: <input type="text" name="creator">
     <br>
-    Date: ("MM/DD/YYYY"): <input type="text" name="date">
+    <div id="datetimepicker" class="input-append date">
+        <input type="text" name="date">Date: </input>
+        <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+    </div>
+    <script type="text/javascript"
+            src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script>
+    <script type="text/javascript"
+            src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+    </script>
+    <script type="text/javascript"
+            src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript"
+            src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+    </script>
+    <script type="text/javascript">
+        $('#datetimepicker').datetimepicker({ pickSeconds: false, pick12HourFormat: true, format: "MM/dd/yyyy HH:mm PP" }).val();
+    </script>
     <br>
     <%--<select name="repeat">--%>
         <%--<option value="doesnotrepeat "> -- does not repeat -- </option>--%>
@@ -67,8 +90,6 @@
     <%--<input type="checkbox" name="accessB" value="1">Blind Friendly<br>--%>
     <input type="submit" value="Register">
 </form>
-
-
 <br>
 <a href="/homepage">Home page</a>
 </body>
