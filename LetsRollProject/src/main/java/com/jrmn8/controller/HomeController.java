@@ -126,6 +126,8 @@ public class HomeController {
         // the API database to return certain events
 
         try {
+            keywords = keywords.replaceAll(" ", "%20");
+
             String apiKey = "9jgSrPMqWvRQm37Q";
             String oAuthConsumerKey = "b0a69fd8c5696e3c7221";
             String oAuthConsumerSecret = "161e1240e25025e9619e";
