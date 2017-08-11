@@ -73,7 +73,7 @@
     <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
     </script>
     <script type="text/javascript">
-        $('#datetimepicker').datetimepicker({ pickSeconds: false, pick12HourFormat: true, format: "MM/dd/yyyy HH:mm PP" }).val();
+        $('#datetimepicker').datetimepicker({setDate: new Date(), startDate: new Date(), pickSeconds: false, pick12HourFormat: true, format: "MM/dd/yyyy HH:mm PP" }).val();
     </script>
     <br>
     <%--<select name="repeat">--%>
@@ -98,11 +98,11 @@
 
     <script>
         function initMap() {
+
             var map = new google.maps.Map(document.getElementById('map'), {center: {lat: 42.3293, lng: -83.0398}, zoom: 13});
             var card = document.getElementById('pac-card');
             var input = document.getElementById('pac-input');
             var types = document.getElementById('type-selector');
-            /*var strictBounds = document.getElementById('strict-bounds-selector');*/
 
             map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
@@ -168,68 +168,6 @@
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvA4Qjj6E2adhJsz-WlmViKWKhs6HQ68M&libraries=places&callback=initMap"></script>
-
-
-
-
-
-    <%--<button onclick="getLocation()">Your Current Location</button>
-
-    <p id="currentLocation"></p>
-
-    <script>
-        var x = document.getElementById("currentLocation");
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-        function showPosition(position) {
-            x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-        }
-    </script>
-
-    <p id="mapLocation"></p>
-
-    <button onclick="getLocation()">Try It</button>
-
-    <div id="mapholder"></div>
-
-    <script>
-        var x = document.getElementById("mapLocation");
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-        function showPosition(position) {
-            var latlon = position.coords.latitude + "," + position.coords.longitude;
-            var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="
-                +latlon+"&zoom=14&size=400x300&key=AIzaSyDvA4Qjj6E2adhJsz-WlmViKWKhs6HQ68M";
-            document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
-        }
-        function showError(error) {
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    x.innerHTML = "User denied the request for Geolocation."
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    x.innerHTML = "Location information is unavailable."
-                    break;
-                case error.TIMEOUT:
-                    x.innerHTML = "The request to get user location timed out."
-                    break;
-                case error.UNKNOWN_ERROR:
-                    x.innerHTML = "An unknown error occurred."
-                    break;
-            }
-        }
-    </script>--%>
-
 
     <br>
     Description: <br>
