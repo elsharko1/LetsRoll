@@ -4,6 +4,7 @@ package com.jrmn8.controller;
  * Created by JRMN8 on 7/21/2017.
  */
 
+import com.jrmn8.AccessibilityEntity;
 import com.jrmn8.EventsEntity;
 import com.jrmn8.UsersEntity;
 import com.jrmn8.dao.Dao;
@@ -32,6 +33,8 @@ import java.util.ArrayList;
 
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
+
+import static java.lang.Byte.valueOf;
 
 @Controller
 public class HomeController {
@@ -311,6 +314,10 @@ public class HomeController {
                               @RequestParam("creator") String creator,
                              @RequestParam("description") String description,
                              @RequestParam("skillsneeded") String skills,
+                             @RequestParam("wheelchair") String choiceW,
+                            @RequestParam("family") String choiceF,
+                             @RequestParam("servicedog") byte choiceS,
+                             @RequestParam("blind") byte choiceB,
                              Model model) {
 
 
@@ -321,6 +328,7 @@ public class HomeController {
         EventsEntity newEvent = new EventsEntity();
         int ID = (int) (Math.random() * 10000000);
         String eventID = String.valueOf(ID);
+        AccessibilityEntity newAccess = new AccessibilityEntity();
 
         newEvent.setEventId(eventID);
         newEvent.setTitle(title);
@@ -331,9 +339,22 @@ public class HomeController {
         newEvent.setDescription(description);
         newEvent.setSkillsneeded(skills);
         //newEvent.setChoice(choice);
+        newAccess.setEventId(eventID);
+        byte wheelchair = valueOf(choiceW);
+        newAccess.setWheelchair(wheelchair);
+        byte family = valueOf(choiceF);
+        newAccess.setFamily(family);
+        byte servicedog = valueOf(choiceS);
+        newAccess.setServicedog(servicedog);
+        byte blind = valueOf(choiceB);
+        newAccess.setBlind(blind);
+//        newAccess.setFamily(accessF);
+//        newAccess.setServicedog(accessS);
+//        newAccess.setBlind(accessB);
 
 
         session.save(newEvent);
+        session.save(newAccess);
         tx.commit();
         session.close();
 
@@ -341,6 +362,7 @@ public class HomeController {
 //        model.addAttribute("title", title);
 //        model.addAttribute("where", location);
         model.addAttribute("newEvent", newEvent);
+        model.addAttribute("newAccess", newAccess);
         return "eventcreated";
     }
 

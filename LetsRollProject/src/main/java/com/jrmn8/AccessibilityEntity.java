@@ -1,6 +1,7 @@
 package com.jrmn8;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "accessibility", schema = "letsrolldb", catalog = "")
@@ -85,5 +86,29 @@ public class AccessibilityEntity {
         result = 31 * result + (int) servicedog;
         result = 31 * result + (int) blind;
         return result;
+    }
+
+    public ArrayList<String> accessResults() {
+        ArrayList<String> s = new ArrayList<String>();
+        s.add(getEventId());
+        // buncha if elses
+
+        if (getWheelchair() == 1) s.add("true");
+        else s.add("false");
+        if (getFamily() == 1) s.add("true");
+        else s.add("false");
+        if (getServicedog() == 1)  s.add("true");
+        else s.add("false");
+        if (getBlind() == 1) s.add("true");
+        else s.add("false");
+
+        return s;
+    }
+
+    @Override
+    public String toString() {
+        ArrayList<String> s = accessResults();
+        return ("Event ID: " + s.get(0) +  "<br>Wheelchair Friendly: "  + s.get(1) + "<br>Family Friendly: " + s.get(2) +
+                "<br>Service Dog Friendly: " + s.get(3) + "<br>Blind Friendly:" + s.get(4));
     }
 }

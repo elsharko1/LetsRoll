@@ -12,5 +12,7 @@
 </head>
 <body>
 ${newEvent}
+<br>
+${newAccess}
 </body>
 </html>
