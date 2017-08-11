@@ -5,33 +5,31 @@
   Time: 11:04 AM
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
-    <title>Spring Demo</title>
+    <title>Let's Roll!</title>
 </head>
-<body>
-<p>
-    Need logo
-    <br>
-    about us section
-    <br>
-    Our company name
-    <br>
-    Our team logo
-    <br>
-    Our App name and logo
-</p>
-${message}
-<br>
-<a href="/login">Login</a>
-<br>
-<!-- this is to register a new user -->
 
-<a href="/adduser">Register</a>
+<body style="background-color:powderblue;">
+
+<h1>Welcome to Let's Roll</h1><br>
+<p>Meet our TEAM, JRMN8!</p>
+
+<ul style="list-style-type:square">
+    <li>Jenny</li> <br>
+    <li>Richard</li> <br>
+    <li>Mark</li> <br>
+    <li>Ny</li>
+</ul>
+
+<a href="http://eventful.com/signin?goto=http%3A%2F%2Fdetroit.eventful.com%2Fevents">Sign In</a><br>
+
+(If the system could not pull an existing user from our Database after they signed in with Evenful's API)<br>
+<a href="/registration">Sign Up</a> <br>
+If they are an existing user, then we lead them to the homepage.
 <br>
-<form action="/test" method="get">
-    <input type="text" name="userName" required/>
-    <input type="submit" value="Search">
-</form>
+<a href="/homepage">Homepage</a>
+
 </body>
 </html>

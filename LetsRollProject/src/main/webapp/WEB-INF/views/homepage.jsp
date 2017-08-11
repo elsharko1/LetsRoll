@@ -29,5 +29,14 @@
 <%--<a href="/searchresults">search results</a><br>--%>
 <a href="/feedbackpage">feedback</a><br>
 <a href="/yourevents">See your events</a><br>
+
+<!-- this is to register a new user -->
+
+<a href="/adduser">Register</a>
+<br>
+<form action="/test" method="get">
+    <input type="text" name="userName" required/>
+    <input type="submit" value="Search">
+</form>
 </body>
 </html>

@@ -31,7 +31,8 @@
    Phone: <input type="text" name="phone"> <br>
    Fax: <input type="text" name="fax"> <br> -->
 
-    <input type="submit" value="Home">
+<form action="/homepage">
+    <input type="submit" value="Home" >
 
 </form>
 

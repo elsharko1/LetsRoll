@@ -91,13 +91,6 @@ public class HomeController {
         return profilePage(model);
     }
 
-    @RequestMapping("/login")
-    public String hello(Model model) {
-        model.addAttribute("message", "Please Login");
-        //this is a test comment
-        return "loginpage";
-    }
-
     @RequestMapping("/homepage")
     public String homePage(Model model) {
         // just a buncha links
@@ -348,8 +341,8 @@ public class HomeController {
         model.addAttribute("newEvent", newEvent);
         return "eventcreated";
     }
-    /*
-    @RequestMapping("/adduser")
+
+    @RequestMapping("/registered")
 
     public ModelAndView adduser(@RequestParam("fullName") String fullName,
                                 @RequestParam("location") String location,
@@ -360,13 +353,13 @@ public class HomeController {
         model.addAttribute("location",location);
 
 
-        return new ModelAndView("/WEB-INF/views/registrationComplete.jsp", "message" , model);
+        return new ModelAndView("registrationComplete", "message" , model);
     }
 
-    @RequestMapping("signup")
+    @RequestMapping("/registration")
 
     public String register() {
-        return "/signup";
+        return "registration";
     }
 
     @RequestMapping("/welcome")
@@ -383,5 +376,5 @@ public class HomeController {
         return "/loginpage";
 
     }
-*/
+
 }

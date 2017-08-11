@@ -11,6 +11,8 @@
     <title>Login Page</title>
 </head>
 
+<!-- this page is not in use -->
+<!-- utilized portions in our welcome page -->
 
 <body style="background-color:powderblue;">
 
@@ -24,12 +26,10 @@
     <li>Ny</li>
 </ul>
 
-
-
-
-
-<a href="signup">Sign Up</a> <br>
 <a href="http://eventful.com/signin?goto=http%3A%2F%2Fdetroit.eventful.com%2Fevents">Sign In</a><br>
+
+(If the system could not pull an existing user from our Database after they signed in with Evenful's API)
+<a href="signup">Sign Up</a> <br>
 
 <a href="/homepage">Login</a>
 </body>

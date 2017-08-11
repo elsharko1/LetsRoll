@@ -17,7 +17,7 @@
 
 User Name: ${eventfulUserName} <br>
 
-<form action="/adduser" method="post">
+<form action="/registered" method="post">
 
     Location:<br> <input type="text" name="location" required><br>
 
@@ -32,7 +32,7 @@ User Name: ${eventfulUserName} <br>
         <option value="5">Adminstrative</option>
         <option value="6">Technical</option>
         <option value="6">Other</option> <br>
-
+    </select>
 <!-- from eventful examaple
 
         <input type="radio" name="gender" value="male" checked> Male<br>
@@ -122,14 +122,6 @@ User Name: ${eventfulUserName} <br>
     </select>
 -->
     <br><input type="submit" value="SUBMIT"> <br>
-
-
-
-
-
-
-
-
 
 </form>
 
