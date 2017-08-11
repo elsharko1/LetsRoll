@@ -348,7 +348,7 @@ public class HomeController {
         model.addAttribute("newEvent", newEvent);
         return "eventcreated";
     }
-
+    /*
     @RequestMapping("/adduser")
 
     public ModelAndView adduser(@RequestParam("fullName") String fullName,
@@ -383,5 +383,5 @@ public class HomeController {
         return "/loginpage";
 
     }
-
+*/
 }
