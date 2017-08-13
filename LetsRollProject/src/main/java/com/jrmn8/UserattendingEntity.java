@@ -5,19 +5,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "userattending", schema = "letsrolldb", catalog = "")
 public class UserattendingEntity {
-    private String eventfulUserName;
+    private String userID;
     private String eventId;
     private byte isVolunteer;
     private String feedback;
 
     @Id
-    @Column(name = "eventfulUserName", nullable = false, length = 16)
-    public String getEventfulUserName() {
-        return eventfulUserName;
+    @Column(name = "userID", nullable = false, length = 50)
+    public String getUserID() {
+        return userID;
     }
 
-    public void setEventfulUserName(String eventfulUserName) {
-        this.eventfulUserName = eventfulUserName;
+    public void setUserID(String eventfulUserName) {
+        this.userID = eventfulUserName;
     }
 
     @Basic
@@ -58,7 +58,7 @@ public class UserattendingEntity {
         UserattendingEntity that = (UserattendingEntity) o;
 
         if (isVolunteer != that.isVolunteer) return false;
-        if (eventfulUserName != null ? !eventfulUserName.equals(that.eventfulUserName) : that.eventfulUserName != null)
+        if (userID != null ? !userID.equals(that.userID) : that.userID != null)
             return false;
         if (eventId != null ? !eventId.equals(that.eventId) : that.eventId != null) return false;
         if (feedback != null ? !feedback.equals(that.feedback) : that.feedback != null) return false;
@@ -68,7 +68,7 @@ public class UserattendingEntity {
 
     @Override
     public int hashCode() {
-        int result = eventfulUserName != null ? eventfulUserName.hashCode() : 0;
+        int result = userID != null ? userID.hashCode() : 0;
         result = 31 * result + (eventId != null ? eventId.hashCode() : 0);
         result = 31 * result + (int) isVolunteer;
         result = 31 * result + (feedback != null ? feedback.hashCode() : 0);

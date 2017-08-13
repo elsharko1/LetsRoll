@@ -16,6 +16,20 @@ public class EventsEntity {
     private String date;
     private String skillsneeded;
 
+    public EventsEntity(String eventId, String title, String creator, String location, String description, String date, String skillsneeded) {
+        this.eventId = eventId;
+        this.title = title;
+        this.creator = creator;
+        this.location = location;
+        this.description = description;
+        this.date = date;
+        this.skillsneeded = skillsneeded;
+    }
+
+    public EventsEntity() {
+        // need a blank constructor!
+    }
+
     @Id
     @Column(name = "eventID", nullable = false, length = 99)
     public String getEventId() {

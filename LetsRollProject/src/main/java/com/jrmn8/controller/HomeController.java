@@ -7,8 +7,7 @@ package com.jrmn8.controller;
 import com.jrmn8.AccessibilityEntity;
 import com.jrmn8.EventsEntity;
 import com.jrmn8.UsersEntity;
-import com.jrmn8.dao.Dao;
-import com.jrmn8.factory.DaoFactory;
+import com.jrmn8.dao.EventDao;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -39,12 +38,10 @@ import static java.lang.Byte.valueOf;
 @Controller
 public class HomeController {
 
-    Dao dao = DaoFactory.getInstance(DaoFactory.HIBERNATE);
+    //Dao dao = DaoFactory.getInstance(DaoFactory.HIBERNATE);
     HttpClient http = HttpClientBuilder.create().build();
-    // creating the hibernate configuration and sessionfactory from that config.
     Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
     SessionFactory sessionFact = cfg.buildSessionFactory();
-
 
     @RequestMapping("/")
 
@@ -262,7 +259,7 @@ public class HomeController {
 
         // results are returned as list and cast to an ArrayList
 
-        c.add(Restrictions.like("eventfulUserName", "%" + username + "%"));
+        c.add(Restrictions.like("userID", "%" + username + "%"));
         ArrayList<UsersEntity> users = (ArrayList<UsersEntity>) c.list();
         ArrayList<String> userstostring = new ArrayList<String>();
         for (int i = 0; i < users.size(); i++) {
@@ -291,7 +288,7 @@ public class HomeController {
 
         UsersEntity newUser = new UsersEntity();
 
-        newUser.setEventfulUserName(username);
+        newUser.setUserID(username);
         newUser.setEmail(email);
         newUser.setLocation(location);
         newUser.setSkills(skills);
@@ -321,9 +318,6 @@ public class HomeController {
                              Model model) {
 
 
-        Session session = sessionFact.openSession();
-
-        Transaction tx = session.beginTransaction();
 
         EventsEntity newEvent = new EventsEntity();
         int ID = (int) (Math.random() * 10000000);
@@ -353,10 +347,11 @@ public class HomeController {
 //        newAccess.setBlind(accessB);
 
 
-        session.save(newEvent);
+        Session session = sessionFact.openSession();
+        Transaction tx = session.beginTransaction();
+        EventDao.add(newEvent);
         session.save(newAccess);
-        tx.commit();
-        session.close();
+
 
 //        model.addAttribute("eventID", eventID);
 //        model.addAttribute("title", title);
@@ -399,6 +394,18 @@ public class HomeController {
     public String welcomeGreeting() {
         return "/loginpage";
 
+    }
+
+    @RequestMapping("daotest")
+
+    public String daoTest(Model model) {
+        EventsEntity e = new EventsEntity();
+        e.setEventId("723543");
+        e.setCreator("Mark");
+        e.setLocation("Comerica Perk");
+        EventDao.update(e);
+        model.addAttribute("dao", EventDao.getExact("Mark", "creator"));
+        return "daotest";
     }
 
 }

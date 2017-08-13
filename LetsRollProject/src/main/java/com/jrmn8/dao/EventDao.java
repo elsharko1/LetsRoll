@@ -1,4 +1,100 @@
 package com.jrmn8.dao;
 
+import com.jrmn8.EventsEntity;
+import com.jrmn8.dto.Event;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
+
+import java.util.ArrayList;
+
 public class EventDao implements Dao {
+
+    static Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+    static SessionFactory sessionFact = cfg.buildSessionFactory();
+
+    //CRUD -> Add, Get, Update, Delete
+
+    /*  So this method will add a new Event to the events table. Because the eventID is randomly generated,
+        we do not need to worry about duplicates in the Primary Key.
+     */
+    public static void add(EventsEntity e) {
+
+
+        // creating the hibernate configuration and sessionfactory.
+        Session session = sessionFact.openSession();
+        Transaction tx = session.beginTransaction();
+
+        session.saveOrUpdate(e);
+
+        tx.commit();
+        session.close();
+    }
+
+    // When would we need to get an entire event? Parsing through the database with a keyword... Probably.
+    public static ArrayList<EventsEntity> getLike(String searchTerm, String column) {
+
+        switch (column) {
+            case "title":
+            case "description":
+            case "location":
+                break;
+            // If the column string isn't a list of predefined columns, bad inquiry.
+            default:
+                return null;
+        }
+        Session selectUsers = sessionFact.openSession();
+
+        selectUsers.beginTransaction();
+
+        // Criteria is used to create the query
+        Criteria c = selectUsers.createCriteria(EventsEntity.class);
+
+        // results are returned as list and cast to an ArrayList
+
+        c.add(Restrictions.like(column, "%" + searchTerm + "%"));
+        ArrayList<EventsEntity> ev = (ArrayList<EventsEntity>) c.list();
+
+        return ev;
+    }
+    // When we search
+    public static ArrayList<EventsEntity> getExact(String searchTerm, String column) {
+
+        switch (column) {
+            case "eventID":
+            case "creator":
+                break;
+            // If the column string isn't a list of predefined columns, bad inquiry.
+            default:
+                return null;
+        }
+        Session selectUsers = sessionFact.openSession();
+
+        selectUsers.beginTransaction();
+
+        // Criteria is used to create the query
+        Criteria c = selectUsers.createCriteria(EventsEntity.class);
+
+        // results are returned as list and cast to an ArrayList
+
+        c.add(Restrictions.like(column, searchTerm));
+        ArrayList<EventsEntity> ev = (ArrayList<EventsEntity>) c.list();
+
+        return ev;
+    }
+
+    public static void update(EventsEntity e) {
+        Session session = sessionFact.openSession();
+        Transaction tx = session.beginTransaction();
+
+        session.update(e);
+
+        tx.commit();
+        session.close();
+
+    }
+
 }

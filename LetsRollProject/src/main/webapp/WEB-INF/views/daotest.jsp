@@ -1,18 +1,20 @@
 <%--
   Created by IntelliJ IDEA.
-  User: jenny
-  Date: 8/3/2017
-  Time: 1:42 PM
+  User: RIchard
+  Date: 8/12/2017
+  Time: 9:16 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
-    <title>JSON Data</title>
+    <title>Daoing</title>
 </head>
 <body>
-<h1>This is the JSON Data</h1>
+<h1>Here's a Dao Test.</h1>
 <%--<img src="${imageData}" width="128" height="128"><br>--%>
 <%--${type.key} : ${type.value} <br>--%>
 <table border="1">
@@ -25,15 +27,15 @@
         <th>Date (Start Time)</th>
         <th>Skills Needed</th>
     </tr>
-    <c:forEach var="data" items="${jsonPageData}">
+    <c:forEach var="dao" items="${dao}">
         <tr>
-            <td>${data.eventId}</td>
-            <td>${data.title}</td>
-            <td>${data.creator}</td>
-            <td>${data.location}</td>
-            <td>${data.description}</td>
-            <td>${date}</td>
-            <td>${data.skillsneeded}</td>
+            <td>${dao.eventId}</td>
+            <td>${dao.title}</td>
+            <td>${dao.creator}</td>
+            <td>${dao.location}</td>
+            <td>${dao.description}</td>
+            <td>${dao.date}</td>
+            <td>${dao.skillsneeded}</td>
         </tr>
     </c:forEach>
 </table>

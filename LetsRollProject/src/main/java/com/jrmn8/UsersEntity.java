@@ -5,20 +5,20 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users", schema = "letsrolldb", catalog = "")
 public class UsersEntity {
-    private String eventfulUserName;
+    private String userID;
     private String email;
     private String location;
     private String skills;
     private String fullName;
 
     @Id
-    @Column(name = "eventfulUserName", nullable = false, length = 16)
-    public String getEventfulUserName() {
-        return eventfulUserName;
+    @Column(name = "userID", nullable = false, length = 50)
+    public String getUserID() {
+        return userID;
     }
 
-    public void setEventfulUserName(String eventfulUserName) {
-        this.eventfulUserName = eventfulUserName;
+    public void setUserID(String eventfulUserName) {
+        this.userID = eventfulUserName;
     }
 
     @Basic
@@ -68,7 +68,7 @@ public class UsersEntity {
 
         UsersEntity that = (UsersEntity) o;
 
-        if (eventfulUserName != null ? !eventfulUserName.equals(that.eventfulUserName) : that.eventfulUserName != null)
+        if (userID != null ? !userID.equals(that.userID) : that.userID != null)
             return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (location != null ? !location.equals(that.location) : that.location != null) return false;
@@ -80,7 +80,7 @@ public class UsersEntity {
 
     @Override
     public int hashCode() {
-        int result = eventfulUserName != null ? eventfulUserName.hashCode() : 0;
+        int result = userID != null ? userID.hashCode() : 0;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (skills != null ? skills.hashCode() : 0);
@@ -90,6 +90,6 @@ public class UsersEntity {
 
     @Override
     public String toString() {
-        return (getEventfulUserName() + ", " + getFullName());
+        return (getUserID() + ", " + getFullName());
     }
 }
