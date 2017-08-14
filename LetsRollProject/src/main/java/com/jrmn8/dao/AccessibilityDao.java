@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 
@@ -39,17 +40,26 @@ public class AccessibilityDao {
     // additionally, because only the events made on our end will have accessibilityentity aspects, we really shouldn't need
     // to worry about Eventful's events.
 
-    // Returns an ArrayList of events. If it returned an arraylist of AccessibilityEntities,wouldn't that be a bit useless? =]
+    // Returns an ArrayList of events. If it returned an arraylist of AccessibilityEntities, wouldn't that be a bit useless? =]
+    // Need pre-validation for this though. If a user does not click any accessibility options, don't use this method, lol.
 
     public static ArrayList<EventsEntity> get(String keyword, byte iswWheelchair, byte isBlind,
                                               byte isServiceDog, byte isFamily) {
+
+        if (iswWheelchair+isBlind+isServiceDog+isFamily == 0) return EventDao.getLike(keyword);
 
         Session selectUsers = sessionFact.openSession();
 
         selectUsers.beginTransaction();
 
-        // Criteria is used to create the query
+        // find list of valid events, pull a list, parse through the list and search through it?
+
+         String hql = "FROM AccessibilityEntity E WHERE E.isWheelchair LIKE '%" + searchTerm +
+                "%' OR E.description LIKE '%" + searchTerm + "%' OR E.location LIKE '%" + searchTerm +
+                "%'";
+        Query query = selectEvents.createQuery(hql);
         Criteria c = selectUsers.createCriteria(AccessibilityEntity.class);
+
 
         // results are returned as list and cast to an ArrayList
         return null;
