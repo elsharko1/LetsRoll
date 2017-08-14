@@ -12,7 +12,7 @@
 </head>
 <body>
 <p>
-    this is our profile form
+
 </p>
 <a href="/homepage">Home page</a>
 </body>
