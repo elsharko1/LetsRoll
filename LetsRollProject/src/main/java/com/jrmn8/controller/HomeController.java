@@ -59,7 +59,14 @@ public class HomeController {
         // Upon clicking login, user is sent to Eventful
         // We should have perhaps a separate page for receiving the Eventful Login once a user has logged in
         request.setAttribute("userid", "106510268289960979214");
-        return new ModelAndView("welcome", "message", "Hello World");
+//        return new ModelAndView("welcome", "message", "Hello World");
+//    }
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("homepage", "status", "You are now welcome to creat an event!");
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
     }
 
     @RequestMapping("/loginLanding")
