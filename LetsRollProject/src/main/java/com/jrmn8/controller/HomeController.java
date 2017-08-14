@@ -10,6 +10,7 @@ import com.jrmn8.GoogleOAUTH;
 import com.jrmn8.UsersEntity;
 import com.jrmn8.dao.AccessibilityDao;
 import com.jrmn8.dao.EventDao;
+import com.jrmn8.dao.UsersDao;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -45,7 +46,6 @@ public class HomeController {
     HttpClient http = HttpClientBuilder.create().build();
     Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
     SessionFactory sessionFact = cfg.buildSessionFactory();
-    GoogleOAUTH goog = new GoogleOAUTH();
 
     @RequestMapping("/")
 
@@ -97,9 +97,24 @@ public class HomeController {
     }
 
     @RequestMapping("/homepage")
-    public String homePage(Model model, HttpServletRequest request) {
+
+    public String homePage(Model model,HttpServletRequest request, @RequestParam("code") String code) {
+
         // just a buncha links
-        request.getSession().setAttribute("userID", "tester");
+        final GoogleOAUTH google = new GoogleOAUTH();
+
+        org.json.simple.JSONObject userInfo = google.getUserInfoJson(code);
+        UsersEntity currentUser = new UsersEntity();
+        currentUser.setUserID((String)userInfo.get("id"));
+        currentUser.setFullName((String)userInfo.get("name"));
+        currentUser.setEmail((String)userInfo.get("email"));
+        currentUser.setSkills("");
+        currentUser.setLocation("");
+
+        model.addAttribute("currentuser", currentUser);
+
+        UsersDao.add(currentUser);
+
         return "homepage";
     }
 
