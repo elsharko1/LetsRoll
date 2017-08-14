@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "userattending", schema = "letsrolldb", catalog = "")
 public class UserattendingEntity {
     private String userID;
-    private String eventId;
+    private String eventID;
     private byte isVolunteer;
     private String feedback;
 
@@ -22,12 +22,12 @@ public class UserattendingEntity {
 
     @Basic
     @Column(name = "eventID", nullable = false, length = 99)
-    public String getEventId() {
-        return eventId;
+    public String getEventID() {
+        return eventID;
     }
 
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
+    public void setEventID(String eventId) {
+        this.eventID = eventId;
     }
 
     @Basic
@@ -60,7 +60,7 @@ public class UserattendingEntity {
         if (isVolunteer != that.isVolunteer) return false;
         if (userID != null ? !userID.equals(that.userID) : that.userID != null)
             return false;
-        if (eventId != null ? !eventId.equals(that.eventId) : that.eventId != null) return false;
+        if (eventID != null ? !eventID.equals(that.eventID) : that.eventID != null) return false;
         if (feedback != null ? !feedback.equals(that.feedback) : that.feedback != null) return false;
 
         return true;
@@ -69,7 +69,7 @@ public class UserattendingEntity {
     @Override
     public int hashCode() {
         int result = userID != null ? userID.hashCode() : 0;
-        result = 31 * result + (eventId != null ? eventId.hashCode() : 0);
+        result = 31 * result + (eventID != null ? eventID.hashCode() : 0);
         result = 31 * result + (int) isVolunteer;
         result = 31 * result + (feedback != null ? feedback.hashCode() : 0);
         return result;

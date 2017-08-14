@@ -5,14 +5,14 @@
 <hibernate-mapping>
 
     <class name="com.jrmn8.EventsEntity" table="events" schema="letsrolldb">
-        <id name="eventId">
+        <id name="eventID">
             <column name="eventID" sql-type="varchar(99)" length="99"/>
         </id>
         <property name="title">
             <column name="title" sql-type="varchar(200)" length="200"/>
         </property>
         <property name="creator">
-            <column name="creator" sql-type="varchar(16)" length="16"/>
+            <column name="creator" sql-type="varchar(50)" length="50"/>
         </property>
         <property name="location">
             <column name="location" sql-type="varchar(99)" length="99"/>

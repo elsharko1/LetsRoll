@@ -5,7 +5,7 @@
 <hibernate-mapping>
 
     <class name="com.jrmn8.AccessibilityEntity" table="accessibility" schema="letsrolldb">
-        <id name="eventId">
+        <id name="eventID">
             <column name="eventID" sql-type="varchar(99)" length="99"/>
         </id>
         <property name="wheelchair">

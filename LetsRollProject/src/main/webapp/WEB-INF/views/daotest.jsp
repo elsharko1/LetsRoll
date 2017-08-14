@@ -32,7 +32,7 @@
     </tr>
     <c:forEach var="dao" items="${dao}">
         <tr>
-            <td>${dao.eventId}</td>
+            <td>${dao.eventID}</td>
             <td>${dao.title}</td>
             <td>${dao.creator}</td>
             <td>${dao.location}</td>

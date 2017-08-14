@@ -42,6 +42,10 @@ public final class GoogleOAUTH {
         return url.setRedirectUri(CALLBACK_URI).setState(stateToken).build();
     }
 
+    public String buildLogoutUrl() {
+        return CALLBACK_URI;
+    }
+
     private void generateStateToken() {
         SecureRandom sr1 = new SecureRandom();
         stateToken = "google;" + sr1.nextInt();

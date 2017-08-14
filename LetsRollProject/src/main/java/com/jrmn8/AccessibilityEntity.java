@@ -6,7 +6,7 @@ import java.util.ArrayList;
 @Entity
 @Table(name = "accessibility", schema = "letsrolldb", catalog = "")
 public class AccessibilityEntity {
-    private String eventId;
+    private String eventID;
     private byte wheelchair;
     private byte family;
     private byte servicedog;
@@ -14,12 +14,12 @@ public class AccessibilityEntity {
 
     @Id
     @Column(name = "eventID", nullable = false, length = 99)
-    public String getEventId() {
-        return eventId;
+    public String getEventID() {
+        return eventID;
     }
 
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
+    public void setEventID(String eventId) {
+        this.eventID = eventId;
     }
 
     @Basic
@@ -73,14 +73,14 @@ public class AccessibilityEntity {
         if (family != that.family) return false;
         if (servicedog != that.servicedog) return false;
         if (blind != that.blind) return false;
-        if (eventId != null ? !eventId.equals(that.eventId) : that.eventId != null) return false;
+        if (eventID != null ? !eventID.equals(that.eventID) : that.eventID != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = eventId != null ? eventId.hashCode() : 0;
+        int result = eventID != null ? eventID.hashCode() : 0;
         result = 31 * result + (int) wheelchair;
         result = 31 * result + (int) family;
         result = 31 * result + (int) servicedog;
@@ -90,7 +90,7 @@ public class AccessibilityEntity {
 
     public ArrayList<String> accessResults() {
         ArrayList<String> s = new ArrayList<String>();
-        s.add(getEventId());
+        s.add(getEventID());
         // buncha if elses
 
         if (getWheelchair() == 1) s.add("true");

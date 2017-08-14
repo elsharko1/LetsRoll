@@ -6,9 +6,10 @@ package com.jrmn8.controller;
 
 import com.jrmn8.AccessibilityEntity;
 import com.jrmn8.EventsEntity;
+import com.jrmn8.GoogleOAUTH;
 import com.jrmn8.UsersEntity;
+import com.jrmn8.dao.AccessibilityDao;
 import com.jrmn8.dao.EventDao;
-import com.jrmn8.dao.UserattendingDao;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -43,7 +44,7 @@ public class HomeController {
     HttpClient http = HttpClientBuilder.create().build();
     Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
     SessionFactory sessionFact = cfg.buildSessionFactory();
-
+    GoogleOAUTH goog = new GoogleOAUTH();
     @RequestMapping("/")
 
     public ModelAndView helloWorld() {
@@ -160,7 +161,7 @@ public class HomeController {
                 // description,title, city name, venue address, venueid, owner, going_null, created, venue_url,
                 // start_time, postal_code
 
-                event.setEventId(array.getJSONObject(i).getString("id"));
+                event.setEventID(array.getJSONObject(i).getString("id"));
                 event.setTitle(array.getJSONObject(i).getString("title"));
                 event.setCreator(array.getJSONObject(i).getString("owner"));
                 event.setLocation(array.getJSONObject(i).getString("venue_name") + array.getJSONObject(i).getString("venue_address"));
@@ -327,7 +328,7 @@ public class HomeController {
         String eventID = String.valueOf(ID);
         AccessibilityEntity newAccess = new AccessibilityEntity();
 
-        newEvent.setEventId(eventID);
+        newEvent.setEventID(eventID);
         newEvent.setTitle(title);
         newEvent.setCreator(creator);
         newEvent.setDate(date);
@@ -337,7 +338,7 @@ public class HomeController {
         newEvent.setSkillsneeded(skills);
         //newEvent.setCreator(creator);
         //newEvent.setChoice(choice);
-        newAccess.setEventId(eventID);
+        newAccess.setEventID(eventID);
         byte wheelchair = valueOf(choiceW);
         newAccess.setWheelchair(wheelchair);
         byte family = valueOf(choiceF);
@@ -354,6 +355,7 @@ public class HomeController {
         Session session = sessionFact.openSession();
         Transaction tx = session.beginTransaction();
         EventDao.add(newEvent);
+        AccessibilityDao.add(newAccess);
         session.save(newAccess);
 
 
@@ -407,8 +409,11 @@ public class HomeController {
 
     @RequestMapping("daotest")
 
-    public String daoTest(Model model, @RequestParam("daofield") String daofield) {
-        model.addAttribute("dao", EventDao.getLike(daofield));
+    public String daoTest(Model model, @RequestParam("daofield") String daofield, @RequestParam("wheelchair") byte choiceW,
+                          @RequestParam("family") byte choiceF,
+                          @RequestParam("servicedog") byte choiceS,
+                          @RequestParam("blind") byte choiceB) {
+        model.addAttribute("dao", AccessibilityDao.get(daofield, choiceW, choiceB, choiceS, choiceF));
         return "daotest";
     }
 

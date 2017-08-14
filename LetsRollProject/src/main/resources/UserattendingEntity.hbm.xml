@@ -8,7 +8,7 @@
         <id name="userID">
             <column name="userID" sql-type="varchar(50)" length="50"/>
         </id>
-        <property name="eventId">
+        <property name="eventID">
             <column name="eventID" sql-type="varchar(99)" length="99"/>
         </property>
         <property name="isVolunteer">

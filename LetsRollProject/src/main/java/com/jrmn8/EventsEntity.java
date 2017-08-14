@@ -6,9 +6,9 @@ import javax.persistence.*;
  * Created by Mark on 8/10/2017.
  */
 @Entity
-@Table(name = "events", schema = "letsrolldb", catalog = "")
+@Table(name = "events", schema = "letsrolldb")
 public class EventsEntity {
-    private String eventId;
+    private String eventID;
     private String title;
     private String creator;
     private String location;
@@ -17,7 +17,7 @@ public class EventsEntity {
     private String skillsneeded;
 
     public EventsEntity(String eventId, String title, String creator, String location, String description, String date, String skillsneeded) {
-        this.eventId = eventId;
+        this.eventID = eventId;
         this.title = title;
         this.creator = creator;
         this.location = location;
@@ -32,12 +32,12 @@ public class EventsEntity {
 
     @Id
     @Column(name = "eventID", nullable = false, length = 99)
-    public String getEventId() {
-        return eventId;
+    public String getEventID() {
+        return eventID;
     }
 
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
+    public void setEventID(String eventId) {
+        this.eventID = eventId;
     }
 
     @Basic
@@ -51,7 +51,7 @@ public class EventsEntity {
     }
 
     @Basic
-    @Column(name = "creator", nullable = true, length = 16)
+    @Column(name = "creator", nullable = true, length = 50)
     public String getCreator() {
         return creator;
     }
@@ -107,7 +107,7 @@ public class EventsEntity {
 
         EventsEntity that = (EventsEntity) o;
 
-        if (eventId != null ? !eventId.equals(that.eventId) : that.eventId != null) return false;
+        if (eventID != null ? !eventID.equals(that.eventID) : that.eventID != null) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (creator != null ? !creator.equals(that.creator) : that.creator != null) return false;
         if (location != null ? !location.equals(that.location) : that.location != null) return false;
@@ -120,7 +120,7 @@ public class EventsEntity {
 
     @Override
     public int hashCode() {
-        int result = eventId != null ? eventId.hashCode() : 0;
+        int result = eventID != null ? eventID.hashCode() : 0;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (creator != null ? creator.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
