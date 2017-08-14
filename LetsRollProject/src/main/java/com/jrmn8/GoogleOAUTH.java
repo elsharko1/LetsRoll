@@ -23,7 +23,7 @@ public final class GoogleOAUTH {
 
     private static final String CLIENT_ID = "608802918864-3qu5pqf1siefm8vpmq0n7t789boj3g7d.apps.googleusercontent.com";
     private static final String CLIENT_SECRET = "aF7_kFTqcKVGj9_3d_h55ICs";
-    private static final String CALLBACK_URI = "http://localhost:8080/index.jsp";
+    private static final String CALLBACK_URI = "http://localhost:8080/homepage";
     //private static final String CALLBACK_URI = "http://localhost:8080/WEB-INF/views/homepage.jsp";
     private static final Iterable<String> SCOPE = Arrays.asList("https://www.googleapis.com/auth/userinfo.profile;https://www.googleapis.com/auth/userinfo.email".split(";"));
     private static final String USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
@@ -56,8 +56,8 @@ public final class GoogleOAUTH {
     }
 
     /*public String getUserInfoJson(final String authCode) throws IOException {*/
-    public JSONObject getUserInfoJson(final String authCode) {
-        JSONObject jsonObject = new JSONObject();
+    public org.json.simple.JSONObject getUserInfoJson(final String authCode) {
+        org.json.simple.JSONObject jsonObject = new org.json.simple.JSONObject();
         try {
             final GoogleTokenResponse response = flow.newTokenRequest(authCode).setRedirectUri(CALLBACK_URI).execute();
             final Credential credential = flow.createAndStoreCredential(response, null);
@@ -69,7 +69,7 @@ public final class GoogleOAUTH {
             /*return jsonIdentity;*/
             final String jsonIdentity = request.execute().parseAsString();
             JSONParser parser = new JSONParser();
-            jsonObject = (JSONObject) parser.parse(jsonIdentity);
+            jsonObject = (org.json.simple.JSONObject) parser.parse(jsonIdentity);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
