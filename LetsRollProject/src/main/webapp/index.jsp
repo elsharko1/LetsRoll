@@ -1,5 +1,4 @@
 <%@page import="com.jrmn8.GoogleOAUTH" %>
-<%@ page import="org.json.simple.JSONObject" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -21,9 +20,9 @@
 		} else if (request.getParameter("code") != null && request.getParameter("state") != null && request.getParameter("state").equals(session.getAttribute("state"))) {
 			session.removeAttribute("state");
 
-				/* Executes after google redirects to the callback url.*/
+			/*	*//* Executes after google redirects to the callback url.*//*
 			JSONObject userInfo = helper.getUserInfoJson(request.getParameter("code"));
-				/*out.println(helper.getUserInfoJson(request.getParameter("code")));*/
+				*//*out.println(helper.getUserInfoJson(request.getParameter("code")));*//*
 			session.setAttribute("userinfo", userInfo);
 			session.setAttribute("name",userInfo.get("name"));
 			session.setAttribute("id", userInfo.get("id"));
@@ -34,7 +33,7 @@
 			out.println(userInfo.get("locale") + "<br>");
 			out.println(userInfo.get("family_name") + "<br>");
 			out.println(userInfo.get("email") + "<br>");
-			out.println(userInfo.get("picture") + "<br>");
+			out.println(userInfo.get("picture") + "<br>");*/
 			out.println("<a href='" + helper.buildLogoutUrl() + "'>log out with google</a>");
 
 		}
