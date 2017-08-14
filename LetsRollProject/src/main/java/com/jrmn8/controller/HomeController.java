@@ -472,6 +472,6 @@ public class HomeController {
                 response.addCookie(cookie);
             }
         }
-        return "homepage";
+        return "welcome";
     }
 }
