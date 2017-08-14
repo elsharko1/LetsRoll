@@ -46,7 +46,6 @@ public class HomeController {
     HttpClient http = HttpClientBuilder.create().build();
     Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
     SessionFactory sessionFact = cfg.buildSessionFactory();
-    GoogleOAUTH goog = new GoogleOAUTH();
 
     @RequestMapping("/")
 
