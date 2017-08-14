@@ -51,14 +51,13 @@ public class HomeController {
     HttpClient http = HttpClientBuilder.create().build();
     Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
     SessionFactory sessionFact = cfg.buildSessionFactory();
-    GoogleOAUTH goog = new GoogleOAUTH();
 
     @RequestMapping("/")
 
-    public ModelAndView helloWorld() {
+    public ModelAndView helloWorld(HttpServletRequest request) {
         // Upon clicking login, user is sent to Eventful
         // We should have perhaps a separate page for receiving the Eventful Login once a user has logged in
-
+        request.setAttribute("userid", "RRen");
         return new ModelAndView("welcome", "message", "Hello World");
     }
 
@@ -99,7 +98,7 @@ public class HomeController {
         // add attributes to the model [likely]
         // model.addattribute.
 
-        return profilePage(model);
+        return "profileReg";
     }
 
     @RequestMapping("/homepage")
@@ -107,9 +106,6 @@ public class HomeController {
                            @RequestParam("code") String code, HttpServletResponse response) {
 
         // just a buncha links
-        request.getSession().setAttribute("test", "tester");
-        model.addAttribute("named", "RRen");
-
         final GoogleOAUTH google = new GoogleOAUTH();
 
         org.json.simple.JSONObject userInfo = google.getUserInfoJson(code);
@@ -152,8 +148,7 @@ public class HomeController {
     }
 
     @RequestMapping("/profile")
-    public String profilePage(Model model) {
-
+    public String profilePage(Model model, HttpServletRequest request) {
         return "profile";
     }
 

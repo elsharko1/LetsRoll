@@ -7,11 +7,12 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
 </head>
 <body>
 <div class="oauthDemo">
+<<<<<<< HEAD
 	<%
 		final GoogleOAUTH helper = new GoogleOAUTH();
 
@@ -22,24 +23,37 @@
 			session.removeAttribute("state");
 		}
 	%>
+=======
+    <%
+        final GoogleOAUTH helper = new GoogleOAUTH();
+
+        if (request.getParameter("code") == null || request.getParameter("state") == null) {
+            out.println("<a href='" + helper.buildLoginUrl() + "'>log in with google</a>");
+            session.setAttribute("state", helper.getStateToken());
+        } else if (request.getParameter("code") != null && request.getParameter("state") != null && request.getParameter("state").equals(session.getAttribute("state"))) {
+            session.removeAttribute("state");
+            out.println("<a href='" + helper.buildLogoutUrl() + "'>log out with google</a>");
+        }
+    %>
+>>>>>>> 544e175382ae3c610b99831bcf65b3adf1338dba
 </div>
 <br/>
 
 <p>
-	this is our home page<br>
-	Search bar<br>
-	Search results page<br>
-	location from eventful<br>
-	create and event button<br>
-	link to profile page<br>
-	link to your events page<br>
+    this is our home page<br>
+    Search bar<br>
+    Search results page<br>
+    location from eventful<br>
+    create and event button<br>
+    link to profile page<br>
+    link to your events page<br>
 </p>
 <a href="/profile">Make profile</a><br>
 <a href="/createevent">create event</a><br>
 
 <form action="/searchresults" method="get">
-	<input type="text" name="keywords" required>
-	<input type="submit" value="Search By Keywords">
+    <input type="text" name="keywords" required>
+    <input type="submit" value="Search By Keywords">
 </form>
 &lt;%&ndash;<a href="/searchresults">search results</a><br>&ndash;%&gt;
 <a href="/feedbackpage">feedback</a><br>
@@ -50,8 +64,8 @@
 <a href="/adduser">Register</a>
 <br>
 <form action="/test" method="get" hidden>
-	<input type="text" name="userName" value/>
-	<input type="html" value="Search">
+    <input type="text" name="userName" value/>
+    <input type="html" value="Search">
 </form>
 ${sessionScope.get('id')}
 ${sessionScope.get('name')}

@@ -24,7 +24,6 @@ public final class GoogleOAUTH {
     private static final String CLIENT_ID = "608802918864-3qu5pqf1siefm8vpmq0n7t789boj3g7d.apps.googleusercontent.com";
     private static final String CLIENT_SECRET = "aF7_kFTqcKVGj9_3d_h55ICs";
     private static final String CALLBACK_URI = "http://localhost:8080/homepage";
-    //private static final String CALLBACK_URI = "http://localhost:8080/WEB-INF/views/homepage.jsp";
     private static final Iterable<String> SCOPE = Arrays.asList("https://www.googleapis.com/auth/userinfo.profile;https://www.googleapis.com/auth/userinfo.email".split(";"));
     private static final String USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
     private static final JsonFactory JSON_FACTORY = new JacksonFactory();
