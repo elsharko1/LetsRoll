@@ -1,3 +1,4 @@
+<%--
 <%@page import="com.jrmn8.GoogleOAUTH" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -11,6 +12,18 @@
 </head>
 <body>
 <div class="oauthDemo">
+<<<<<<< HEAD
+	<%
+		final GoogleOAUTH helper = new GoogleOAUTH();
+
+		if (request.getParameter("code") == null || request.getParameter("state") == null) {
+			out.println("<a href='" + helper.buildLoginUrl() + "'>log in with google</a>");
+			session.setAttribute("state", helper.getStateToken());
+		} else if (request.getParameter("code") != null && request.getParameter("state") != null && request.getParameter("state").equals(session.getAttribute("state"))) {
+			session.removeAttribute("state");
+		}
+	%>
+=======
     <%
         final GoogleOAUTH helper = new GoogleOAUTH();
 
@@ -22,6 +35,7 @@
             out.println("<a href='" + helper.buildLogoutUrl() + "'>log out with google</a>");
         }
     %>
+>>>>>>> 544e175382ae3c610b99831bcf65b3adf1338dba
 </div>
 <br/>
 
@@ -41,7 +55,7 @@
     <input type="text" name="keywords" required>
     <input type="submit" value="Search By Keywords">
 </form>
-<%--<a href="/searchresults">search results</a><br>--%>
+&lt;%&ndash;<a href="/searchresults">search results</a><br>&ndash;%&gt;
 <a href="/feedbackpage">feedback</a><br>
 <a href="/yourevents">See your events</a><br>
 
@@ -58,3 +72,4 @@
 <br>
 </body>
 </html>
+--%>

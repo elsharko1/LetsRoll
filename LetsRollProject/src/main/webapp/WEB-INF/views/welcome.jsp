@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.jrmn8.GoogleOAUTH" %><%--
   Created by IntelliJ IDEA.
   User: JRMN8
   Date: 7/21/2017
@@ -12,6 +12,19 @@
 </head>
 
 <body style="background-color:powderblue;">
+
+<div class="oauthDemo">
+    <%
+        final GoogleOAUTH helper = new GoogleOAUTH();
+
+        if (request.getParameter("code") == null || request.getParameter("state") == null) {
+            out.println("<a href='" + helper.buildLoginUrl() + "'>log in with google</a>");
+            session.setAttribute("state", helper.getStateToken());
+        } else if (request.getParameter("code") != null && request.getParameter("state") != null && request.getParameter("state").equals(session.getAttribute("state"))) {
+            session.removeAttribute("state");
+        }
+    %>
+</div>
 
 <%session.setAttribute("name", "Richard");%>
 
