@@ -27,7 +27,7 @@
     </tr>
     <c:forEach var="data" items="${jsonPageData}">
         <tr>
-            <td>${data.eventId}</td>
+            <td>${data.eventID}</td>
             <td>${data.title}</td>
             <td>${data.creator}</td>
             <td>${data.location}</td>

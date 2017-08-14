@@ -62,25 +62,6 @@ public class HomeController {
         return new ModelAndView("welcome", "message", "Hello World");
     }
 
-    @RequestMapping("/loginLanding")
-    public String loginLanding(Model model) {
-
-        // this page should receive a user once they have gone through with a facebook login.
-        // this page as well should run back end operations to see if they exist in our Database
-        // if they do not, we should redirect them to a Registration Profile page so they can save their information
-        // that they alter into our database. We will henceforth pull that information using their userID
-        // on subsequent logins after they've registered for the first time.
-        // If they already exist in our database, we will send them to the HOME page.
-
-        // So what we'll need to do then is in this page, return two different views based on the condition of if they
-        // exist or not in our database.
-        boolean exists = false;
-        // if (exists) return homepage(model);
-        // else (They don't exist, so we return registration) -> return profileReg(model);
-        return "";
-    }
-
-
     @RequestMapping("/homepage")
 
     public String homePage(Model model, HttpServletRequest request,
@@ -134,6 +115,14 @@ public class HomeController {
             }
         }
         return isLoggedIn;
+    }
+
+    private Cookie userCookie(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("userID")) return cookies[i];
+        }
+        return new Cookie("userID", "");
     }
 
     @RequestMapping("/profile")
