@@ -53,8 +53,7 @@
     <input type="text" name="userName" value/>
     <input type="html" value="Search">
 </form>
-${sessionScope.get('id')}
-${sessionScope.get('name')}
+
 
 <br>
 </body>

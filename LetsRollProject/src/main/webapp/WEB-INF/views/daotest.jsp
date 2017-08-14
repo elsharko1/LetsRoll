@@ -42,6 +42,8 @@
         </tr>
     </c:forEach>
 </table>
+
+${sessionScope.get("code")}
 <a href="/homepage">Home page</a>
 </body>
 </html>

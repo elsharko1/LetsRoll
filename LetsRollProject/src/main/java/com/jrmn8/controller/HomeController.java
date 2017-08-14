@@ -18,6 +18,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.id.IdentifierGenerationException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +53,7 @@ public class HomeController {
     public ModelAndView helloWorld(HttpServletRequest request) {
         // Upon clicking login, user is sent to Eventful
         // We should have perhaps a separate page for receiving the Eventful Login once a user has logged in
-        request.setAttribute("userid", "RRen");
+        request.setAttribute("userid", "106510268289960979214");
         return new ModelAndView("welcome", "message", "Hello World");
     }
 
@@ -74,52 +75,37 @@ public class HomeController {
         return "";
     }
 
-    @RequestMapping("/profileReg")
-    public String profileRegistration(Model model) {
-        // this page is redirected from our "LoginLanding" page.
-        // only shows up if user needs to register
-        // Most fields will already be pre-populated
-        // such as Name, email address, and location
-        // the only input we need from the user is Skills.
-
-        return "profileReg";
-    }
-
-    @RequestMapping("/profileAdd")
-    public String profileAdd(Model model) {
-        // we do some JDBC query work here and pass back our User + Skills to the database.
-        // then display all user fields similar to our Profile.jsp
-
-        // add attributes to the model [likely]
-        // model.addattribute.
-
-        return "profileReg";
-    }
 
     @RequestMapping("/homepage")
 
-    public String homePage(Model model,HttpServletRequest request, @RequestParam("code") String code) {
-
+    public String homePage(Model model,HttpServletRequest request) {
         // just a buncha links
         final GoogleOAUTH google = new GoogleOAUTH();
+        String code = request.getParameter("code");
+        if (code != null)
+            {
+                try {
+                    org.json.simple.JSONObject userInfo = google.getUserInfoJson(code);
+                    UsersEntity currentUser = new UsersEntity();
+                    currentUser.setUserID((String) userInfo.get("id"));
+                    currentUser.setFullName((String) userInfo.get("name"));
+                    currentUser.setEmail((String) userInfo.get("email"));
+                    currentUser.setSkills("");
+                    currentUser.setLocation("");
+                    UsersDao.add(currentUser);
 
-        org.json.simple.JSONObject userInfo = google.getUserInfoJson(code);
-        UsersEntity currentUser = new UsersEntity();
-        currentUser.setUserID((String)userInfo.get("id"));
-        currentUser.setFullName((String)userInfo.get("name"));
-        currentUser.setEmail((String)userInfo.get("email"));
-        currentUser.setSkills("");
-        currentUser.setLocation("");
-
-        model.addAttribute("currentuser", currentUser);
-
-        UsersDao.add(currentUser);
+                    if (currentUser.getUserID() != null) model.addAttribute("currentuser", currentUser);
+                } catch (IdentifierGenerationException E) {
+                    System.out.println("YOU REFRESHED THE PAGE!!!");
+                }
+        }
 
         return "homepage";
     }
 
     @RequestMapping("/profile")
     public String profilePage(Model model, HttpServletRequest request) {
+        String userid = (String) request.getAttribute("userid");
         return "profile";
     }
 
