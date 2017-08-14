@@ -15,11 +15,11 @@
 
 <div class="oauthDemo">
     <%
-        final GoogleOAUTH helper = new GoogleOAUTH();
+        final GoogleOAUTH google = new GoogleOAUTH();
 
         if (request.getParameter("code") == null || request.getParameter("state") == null) {
-            out.println("<a href='" + helper.buildLoginUrl() + "'>log in with google</a>");
-            session.setAttribute("state", helper.getStateToken());
+            out.println("<a href='" + google.buildLoginUrl() + "'>log in with google</a>");
+            session.setAttribute("state", google.getStateToken());
         } else if (request.getParameter("code") != null && request.getParameter("state") != null && request.getParameter("state").equals(session.getAttribute("state"))) {
             session.removeAttribute("state");
         }
