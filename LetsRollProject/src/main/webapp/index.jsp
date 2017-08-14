@@ -1,3 +1,4 @@
+<%--
 <%@page import="com.jrmn8.GoogleOAUTH" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -19,23 +20,6 @@
 			session.setAttribute("state", helper.getStateToken());
 		} else if (request.getParameter("code") != null && request.getParameter("state") != null && request.getParameter("state").equals(session.getAttribute("state"))) {
 			session.removeAttribute("state");
-
-			/*	*//* Executes after google redirects to the callback url.*//*
-			JSONObject userInfo = helper.getUserInfoJson(request.getParameter("code"));
-				*//*out.println(helper.getUserInfoJson(request.getParameter("code")));*//*
-			session.setAttribute("userinfo", userInfo);
-			session.setAttribute("name",userInfo.get("name"));
-			session.setAttribute("id", userInfo.get("id"));
-			out.println(userInfo.get("name") + "<br>");
-			out.println(userInfo.get("id") + "<br>");
-			out.println(userInfo.get("verified_email") + "<br>");
-			out.println(userInfo.get("given_name") + "<br>");
-			out.println(userInfo.get("locale") + "<br>");
-			out.println(userInfo.get("family_name") + "<br>");
-			out.println(userInfo.get("email") + "<br>");
-			out.println(userInfo.get("picture") + "<br>");*/
-			out.println("<a href='" + helper.buildLogoutUrl() + "'>log out with google</a>");
-
 		}
 	%>
 </div>
@@ -57,7 +41,7 @@
 	<input type="text" name="keywords" required>
 	<input type="submit" value="Search By Keywords">
 </form>
-<%--<a href="/searchresults">search results</a><br>--%>
+&lt;%&ndash;<a href="/searchresults">search results</a><br>&ndash;%&gt;
 <a href="/feedbackpage">feedback</a><br>
 <a href="/yourevents">See your events</a><br>
 
@@ -75,3 +59,4 @@ ${sessionScope.get('name')}
 <br>
 </body>
 </html>
+--%>

@@ -10,7 +10,7 @@ import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
 
-@SuppressWarnings("Duplicates")
+//@SuppressWarnings("Duplicates")
 public class UsersDao {
 
         static Configuration cfg = new Configuration().configure("hibernate.cfg.xml");

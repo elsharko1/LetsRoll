@@ -6,7 +6,8 @@ package com.jrmn8.controller;
 
 import com.jrmn8.AccessibilityEntity;
 import com.jrmn8.EventsEntity;
-import com.jrmn8.*;
+//import com.jrmn8.*;
+import com.jrmn8.GoogleOAUTH;
 import com.jrmn8.UsersEntity;
 import com.jrmn8.dao.AccessibilityDao;
 import com.jrmn8.dao.EventDao;
@@ -23,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +37,10 @@ import java.util.ArrayList;
 
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import static java.lang.Byte.valueOf;
 
@@ -98,7 +103,8 @@ public class HomeController {
     }
 
     @RequestMapping("/homepage")
-    public String homePage(Model model,HttpServletRequest request, @RequestParam("code") String code) {
+    public String homePage(Model model, HttpServletRequest request,
+                           @RequestParam("code") String code, HttpServletResponse response) {
 
         // just a buncha links
         request.getSession().setAttribute("test", "tester");
@@ -116,9 +122,33 @@ public class HomeController {
 
         model.addAttribute("currentuser", currentUser);
 
-        UsersDao.add(currentUser);
+        //get user login cookie
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        //System.out.println(userCookie);
+
+        //if cookie exists we send them to the home page
+        if (isLoggedIn){
+            return "homepage";
+        }else {
+            //if no cookie exists (they are not logged in) we call usersDoa.add
+            UsersDao.add(currentUser);
+            //set the cookie to the google number
+            response.addCookie(new Cookie("userID", currentUser.getUserID()));
+        }
+
 
         return "homepage";
+    }
+
+    private boolean isLoggedIn(Cookie[] cookies) {
+        boolean isLoggedIn = false;
+        for (Cookie cookie: cookies){
+            if (cookie.getName().equals("userID") && cookie.getValue().isEmpty() == false){
+                isLoggedIn = true;
+            }
+        }
+        return isLoggedIn;
     }
 
     @RequestMapping("/profile")
@@ -128,7 +158,7 @@ public class HomeController {
     }
 
     @RequestMapping("/createevent")
-    public String createEventPage(Model model) {
+    public String createEventPage(Model model, HttpServletRequest request) {
         // in this page, we will create an event with the following fields:
         // all Eventful fields AND [Skills required, Accommodations].
         // Passing into the database will be userID and all the fields above.
@@ -140,7 +170,16 @@ public class HomeController {
         //return createevent or confirmation?
         return new ModelAndView("createevent", "status", status);*/
 
-        return "createevent";
+
+//get user login cookie
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return "createevent";
+        }
+        return "welcome";
+
+
     }
 
     @RequestMapping(value = {"/searchresults"}, method = RequestMethod.GET)
@@ -437,4 +476,17 @@ public class HomeController {
         return "daotest";
     }
 
+    @RequestMapping("/logout")
+    public String logOut(HttpServletRequest request, HttpServletResponse response){
+
+        //get user login cookie
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie: cookies){
+            if (cookie.getName().equals("userID") && cookie.getValue().isEmpty() == false){
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
+        }
+        return "homepage";
+    }
 }

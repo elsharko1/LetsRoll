@@ -41,5 +41,7 @@
 ${sessionScope.get("test")}
 <br>
 ${currentuser}
+<br>
+<a href="/logout">Log Out</a><br>
 </body>
 </html>
