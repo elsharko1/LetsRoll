@@ -49,10 +49,10 @@ public class HomeController {
 
     @RequestMapping("/")
 
-    public ModelAndView helloWorld() {
+    public ModelAndView helloWorld(HttpServletRequest request) {
         // Upon clicking login, user is sent to Eventful
         // We should have perhaps a separate page for receiving the Eventful Login once a user has logged in
-
+        request.setAttribute("userid", "RRen");
         return new ModelAndView("welcome", "message", "Hello World");
     }
 
@@ -93,20 +93,18 @@ public class HomeController {
         // add attributes to the model [likely]
         // model.addattribute.
 
-        return profilePage(model);
+        return "profileReg";
     }
 
     @RequestMapping("/homepage")
-    public String homePage(Model model,HttpServletRequest request) {
+    public String homePage(Model model, HttpServletRequest request) {
         // just a buncha links
-        request.getSession().setAttribute("test", "tester");
-        model.addAttribute("named", "RRen");
+        request.getSession().setAttribute("userID", "tester");
         return "homepage";
     }
 
     @RequestMapping("/profile")
-    public String profilePage(Model model) {
-
+    public String profilePage(Model model, HttpServletRequest request) {
         return "profile";
     }
 
