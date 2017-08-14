@@ -53,6 +53,8 @@
     </style>
 </head>
 <body>
+<h1>${status}</h1>
+<br>
 <form method="post" action = "/eventcreated">
     Title: <input type="text" name="title">
     <br>

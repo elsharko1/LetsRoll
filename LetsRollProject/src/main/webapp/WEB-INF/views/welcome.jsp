@@ -31,6 +31,9 @@
 <h1>Welcome to Let's Roll</h1><br>
 <p>Meet our TEAM, JRMN8!</p>
 
+<br>
+<h1>${status}</h1>
+<br>
 <ul style="list-style-type:square">
     <li>Jenny</li> <br>
     <li>Richard</li> <br>

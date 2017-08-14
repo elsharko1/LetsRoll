@@ -137,13 +137,21 @@ public class HomeController {
     }
 
     @RequestMapping("/profile")
-    public String profilePage(Model model, HttpServletRequest request) {
+    public ModelAndView profilePage(Model model, HttpServletRequest request) {
         String userid = (String) request.getAttribute("userid");
-        return "profile";
+
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("profile", "status", "You are now welcome to creat an event!");
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
+
+
     }
 
     @RequestMapping("/createevent")
-    public String createEventPage(Model model, HttpServletRequest request) {
+    public ModelAndView createEventPage(Model model, HttpServletRequest request) {
         // in this page, we will create an event with the following fields:
         // all Eventful fields AND [Skills required, Accommodations].
         // Passing into the database will be userID and all the fields above.
@@ -160,15 +168,15 @@ public class HomeController {
         Cookie[] cookies = request.getCookies();
         boolean isLoggedIn = isLoggedIn(cookies);
         if (isLoggedIn) {
-            return "createevent";
+            return new ModelAndView("createevent", "status", "You are now welcome to creat an event!");
         }
-        return "welcome";
+        return new ModelAndView("welcome", "status","Please Login First");
 
 
     }
 
     @RequestMapping(value = {"/searchresults"}, method = RequestMethod.GET)
-    public ModelAndView searchResultsPage(Model model, @RequestParam("keywords") String keywords) {
+    public ModelAndView searchResultsPage(Model model, @RequestParam("keywords") String keywords, HttpServletRequest request) {
         // we should utilize the criteria we are passed in from the homepage
         // in here [so we'll need to use @RequestParam] and then search through
         // the API database to return certain events
@@ -228,11 +236,19 @@ public class HomeController {
         }
         // should go to searchresults.jsp, but at the moment that isn't set up for our JSON yet.
         // let's get that done later.
-        return new ModelAndView("jsonData", "message", model);
+
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("jsonData", "message", model);
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
+
+
     }
 
     @RequestMapping("/feedbackpage")
-    public String feedbackPage(Model model) {
+    public ModelAndView feedbackPage(Model model, HttpServletRequest request) {
         // so in our database we have a userevents table
         // this links userid with eventid that they are participating in
         // additionally there is a field for feedback
@@ -244,40 +260,66 @@ public class HomeController {
         // Other comments. God this is gonna be a potato to code. SQL fun! How to set up table later?
 
 
-        return "feedbackpage";
+
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("feedbackpage", "status", "You are now welcome to creat an event!");
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
     }
 
     @RequestMapping("/eventdetails")
-    public String eventDetails(Model model) {
+    public ModelAndView eventDetails(Model model, HttpServletRequest request) {
         // takes in a EVENT OBJECT (@REQUESTPARAM (EventID) -> Event object?)
         // SCREW IT I'M MAKING AN EVENT OBJECT CLASS
 
         // ToString? and format on JSP page.
         // ability to attend or volunteer will be on this page
 
-        return "eventdetails";
+
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("eventdetails", "status", "You are now welcome to creat an event!");
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
     }
 
     @RequestMapping("/attendorvolunteer")
-    public String attendOrVolunteer(Model model) {
+    public ModelAndView attendOrVolunteer(Model model, HttpServletRequest request) {
 
         // click attend to attend! Database will be updated and event will be added
         // to users events attending. Otherwise, as a volunteer, confirmation page
         // and event coordinator SHOULD receive volunteer list + emails.
         // however, I have no idea how I'd implement that right now
         // but we should have it work as so.
-        return "attendorvolunteer";
+
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("attendorvolunteer", "status", "You are now welcome to creat an event!");
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
+
+
     }
 
     @RequestMapping("/confirmationpage")
-    public String confirmation(Model model) {
+    public ModelAndView confirmation(Model model, HttpServletRequest request) {
         // confirms you're attending or volunteering.
         // return event details on the page so user knows what event they just registered for.
-        return "confirmationpage";
+
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("confirmationpage", "status", "You are now welcome to creat an event!");
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
     }
 
     @RequestMapping("/yourevents")
-    public String yourEventsPage(Model model) {
+    public ModelAndView yourEventsPage(Model model, HttpServletRequest request) {
         // this should show the events you're attending
         // whether you're just an attendee, a volunteer, or the coordinator!
         // does some queries to pull out events that possess the userID.
@@ -288,7 +330,12 @@ public class HomeController {
         // Should also display feedback once date has passed.
         // display everything
 
-        return "yourevents";
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("yourevents", "status", "You are now welcome to creat an event!");
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
     }
 
     //SpringTiles -> Omnipresent header -> Logout button if we learn how to use it.
@@ -297,7 +344,8 @@ public class HomeController {
     // testing database information pull.
 
     @RequestMapping("/test")
-    public String test(Model model, @RequestParam("userName") String username) {
+    public ModelAndView test(Model model, @RequestParam("userName") String username,
+                             HttpServletRequest request) {
         Session selectUsers = sessionFact.openSession();
 
         selectUsers.beginTransaction();
@@ -314,20 +362,34 @@ public class HomeController {
             userstostring.add(users.get(i).toString());
         }
         model.addAttribute("users", userstostring);
-        return "test";
+
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("test", "status", "You are now welcome to creat an event!");
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
     }
 
+
     @RequestMapping("/adduser")
-    public String newUser() {
-        return "adduser";
+    public ModelAndView newUser(HttpServletRequest request) {
+
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("adduser", "status", "You are now welcome to creat an event!");
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
     }
 
     @RequestMapping("/addinguser")
-    public String addNewUser(@RequestParam("eventfulUserName") String username,
+    public ModelAndView addNewUser(@RequestParam("eventfulUserName") String username,
                                  @RequestParam("email") String email,
                                  @RequestParam("location") String location,
                                  @RequestParam("skills") String skills,
-                                 @RequestParam("fullName") String fullname, Model model) {
+                                 @RequestParam("fullName") String fullname, Model model,
+                                   HttpServletRequest request) {
 
 
         Session session = sessionFact.openSession();
@@ -347,11 +409,18 @@ public class HomeController {
         session.close();
 
         model.addAttribute("newStuff", newUser);
-        return "addUserSuccess";
+
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("addUserSuccess", "status", "You are now welcome to creat an event!");
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
+
     }
 
     @RequestMapping("/eventcreated")
-    public String addNewEvent(@RequestParam("title") String title,
+    public ModelAndView addNewEvent(@RequestParam("title") String title,
                              @RequestParam("date") String date,
                              //@RequestParam("repeat") String repeat,
                              @RequestParam("where") String location,
@@ -363,7 +432,7 @@ public class HomeController {
                             @RequestParam("family") String choiceF,
                              @RequestParam("servicedog") byte choiceS,
                              @RequestParam("blind") byte choiceB,
-                             Model model) {
+                             Model model, HttpServletRequest request) {
 
 
 
@@ -408,28 +477,51 @@ public class HomeController {
 //        model.addAttribute("where", location);
         model.addAttribute("newEvent", newEvent);
         model.addAttribute("newAccess", newAccess);
-        return "eventcreated";
+//        return "eventcreated";
+//    }
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("eventcreated", "status", "You are now welcome to creat an event!");
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
     }
 
     @RequestMapping("/registered")
 
     public ModelAndView adduser(@RequestParam("fullName") String fullName,
                                 @RequestParam("location") String location,
-                                Model model) {
+                                Model model, HttpServletRequest request) {
 
 
         model.addAttribute("fullName",fullName);
         model.addAttribute("location",location);
 
 
-        return new ModelAndView("registrationComplete", "message" , model);
+//        return new ModelAndView("registrationComplete", "message" , model);
+//    }
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("registrationComplete", "message" , model);
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
     }
 
     @RequestMapping("/registration")
 
-    public String register() {
-        return "registration";
+    public ModelAndView register(HttpServletRequest request) {
+
+//        return "registration";
+//    }
+        Cookie[] cookies = request.getCookies();
+        boolean isLoggedIn = isLoggedIn(cookies);
+        if (isLoggedIn) {
+            return new ModelAndView("registration", "status", "You are now welcome to creat an event!");
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
     }
+
 
     @RequestMapping("/welcome")
 
