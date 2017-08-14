@@ -8,6 +8,7 @@ import com.jrmn8.AccessibilityEntity;
 import com.jrmn8.EventsEntity;
 import com.jrmn8.UsersEntity;
 import com.jrmn8.dao.EventDao;
+import com.jrmn8.dao.UserattendingDao;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -54,10 +55,11 @@ public class HomeController {
 
     @RequestMapping("/loginLanding")
     public String loginLanding(Model model) {
-        // this page should receive a user once they have gone through with an eventful login.
+
+        // this page should receive a user once they have gone through with a facebook login.
         // this page as well should run back end operations to see if they exist in our Database
         // if they do not, we should redirect them to a Registration Profile page so they can save their information
-        // that they alter into our database. We will henceforth pull that information using their Eventful ID
+        // that they alter into our database. We will henceforth pull that information using their userID
         // on subsequent logins after they've registered for the first time.
         // If they already exist in our database, we will send them to the HOME page.
 
@@ -94,6 +96,7 @@ public class HomeController {
     @RequestMapping("/homepage")
     public String homePage(Model model) {
         // just a buncha links
+        model.addAttribute("named", "RRen");
         return "homepage";
     }
 
@@ -332,6 +335,7 @@ public class HomeController {
         newEvent.setLocation(location);
         newEvent.setDescription(description);
         newEvent.setSkillsneeded(skills);
+        //newEvent.setCreator(creator);
         //newEvent.setChoice(choice);
         newAccess.setEventId(eventID);
         byte wheelchair = valueOf(choiceW);
@@ -396,15 +400,15 @@ public class HomeController {
 
     }
 
+    @RequestMapping("daofield")
+    public String daoField() {
+        return "daofield";
+    }
+
     @RequestMapping("daotest")
 
-    public String daoTest(Model model) {
-        EventsEntity e = new EventsEntity();
-        e.setEventId("723543");
-        e.setCreator("Mark");
-        e.setLocation("Comerica Perk");
-        EventDao.update(e);
-        model.addAttribute("dao", EventDao.getExact("Mark", "creator"));
+    public String daoTest(Model model, @RequestParam("daofield") String daofield) {
+        model.addAttribute("dao", EventDao.getLike(daofield));
         return "daotest";
     }
 

@@ -13,6 +13,8 @@
 
 <body style="background-color:powderblue;">
 
+<%session.setAttribute("name", "Richard");%>
+
 <h1>Welcome to Let's Roll</h1><br>
 <p>Meet our TEAM, JRMN8!</p>
 

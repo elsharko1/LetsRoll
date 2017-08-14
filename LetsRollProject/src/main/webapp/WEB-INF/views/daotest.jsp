@@ -14,7 +14,10 @@
     <title>Daoing</title>
 </head>
 <body>
-<h1>Here's a Dao Test.</h1>
+<h1>Here's a Dao Test. </h1>
+
+<!-- ${sessionScope.get("name")}<br> -->
+
 <%--<img src="${imageData}" width="128" height="128"><br>--%>
 <%--${type.key} : ${type.value} <br>--%>
 <table border="1">
