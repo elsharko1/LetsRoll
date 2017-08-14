@@ -6,7 +6,7 @@ package com.jrmn8.controller;
 
 import com.jrmn8.AccessibilityEntity;
 import com.jrmn8.EventsEntity;
-import com.jrmn8.GoogleOAUTH;
+import com.jrmn8.*;
 import com.jrmn8.UsersEntity;
 import com.jrmn8.dao.AccessibilityDao;
 import com.jrmn8.dao.EventDao;
