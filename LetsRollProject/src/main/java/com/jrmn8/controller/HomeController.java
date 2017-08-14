@@ -34,6 +34,7 @@ import java.util.ArrayList;
 
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
+import javax.servlet.http.HttpServletRequest;
 
 import static java.lang.Byte.valueOf;
 
@@ -45,6 +46,7 @@ public class HomeController {
     Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
     SessionFactory sessionFact = cfg.buildSessionFactory();
     GoogleOAUTH goog = new GoogleOAUTH();
+
     @RequestMapping("/")
 
     public ModelAndView helloWorld() {
@@ -95,8 +97,9 @@ public class HomeController {
     }
 
     @RequestMapping("/homepage")
-    public String homePage(Model model) {
+    public String homePage(Model model,HttpServletRequest request) {
         // just a buncha links
+        request.getSession().setAttribute("test", "tester");
         model.addAttribute("named", "RRen");
         return "homepage";
     }

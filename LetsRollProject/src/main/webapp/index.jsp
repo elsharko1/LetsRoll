@@ -1,6 +1,8 @@
 <%@page import="com.jrmn8.GoogleOAUTH" %>
 <%@ page import="org.json.simple.JSONObject" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -22,6 +24,9 @@
 				/* Executes after google redirects to the callback url.*/
 			JSONObject userInfo = helper.getUserInfoJson(request.getParameter("code"));
 				/*out.println(helper.getUserInfoJson(request.getParameter("code")));*/
+			session.setAttribute("userinfo", userInfo);
+			session.setAttribute("name",userInfo.get("name"));
+			session.setAttribute("id", userInfo.get("id"));
 			out.println(userInfo.get("name") + "<br>");
 			out.println(userInfo.get("id") + "<br>");
 			out.println(userInfo.get("verified_email") + "<br>");
@@ -61,10 +66,13 @@
 
 <a href="/adduser">Register</a>
 <br>
-<form action="/test" method="get">
-	<input type="text" name="userName" required/>
-	<input type="submit" value="Search">
+<form action="/test" method="get" hidden>
+	<input type="text" name="userName" value/>
+	<input type="html" value="Search">
 </form>
+${sessionScope.get('id')}
+${sessionScope.get('name')}
 
+<br>
 </body>
 </html>

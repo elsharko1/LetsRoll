@@ -38,5 +38,6 @@
     <input type="text" name="userName" required/>
     <input type="submit" value="Search">
 </form>
+${sessionScope.get("test")}
 </body>
 </html>
