@@ -346,13 +346,16 @@ public class HomeController {
         }
 
         for (EventsEntity e: volunteer) {
-            e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
-
+            if(!e.getCreator().equals("evdb")) {
+                e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
+            }
         }
 
         for (EventsEntity e: attendee) {
-            e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
+            if(!e.getCreator().equals("evdb")) {
 
+                e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
+            }
         }
         model.addAttribute("created", created);
         model.addAttribute("attendee", attendee);
