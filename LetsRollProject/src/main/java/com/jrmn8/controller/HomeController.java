@@ -70,7 +70,7 @@ public class HomeController {
         if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("homepage", "status", "You are now welcome to create an event!");
         }
-        return new ModelAndView("welcome", "status", "Please Login First");
+        return new ModelAndView("welcome", "", "");
     }
 
     /**
@@ -85,7 +85,7 @@ public class HomeController {
      * - Search events with a keyword.
      */
     @RequestMapping("/homepage")
-    public String homePage(Model model, HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView homePage(Model model, HttpServletRequest request, HttpServletResponse response) {
 
         // Check GoogleOAUTH class for information.
         GoogleOAUTH.buildGoogleOAUTH();
@@ -119,7 +119,13 @@ public class HomeController {
             //set the cookie to the google number
             response.addCookie(new Cookie("userID", currentUser.getUserID()));
         }
-        return "homepage";
+
+        if (isLoggedIn(request.getCookies())) {
+            return new ModelAndView("homepage", "status", "");
+        }
+        return new ModelAndView("welcome", "status", "Please Login First");
+
+
     }
     /* *
      * Method to check whether a user is logged in. We check all cookies that the session has,

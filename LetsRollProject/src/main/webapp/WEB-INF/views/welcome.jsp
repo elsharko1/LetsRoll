@@ -40,13 +40,5 @@
     <li>Ny</li>
 </ul>
 
-<a href="http://eventful.com/signin?goto=http%3A%2F%2Fdetroit.eventful.com%2Fevents">Sign In</a><br>
-
-(If the system could not pull an existing user from our Database after they signed in with Evenful's API)<br>
-<a href="/registration">Sign Up</a> <br>
-If they are an existing user, then we lead them to the homepage.
-<br>
-<a href="/homepage">Homepage</a>
-
 </body>
 </html>
