@@ -371,24 +371,30 @@ public class HomeController {
 
         ArrayList<EventsEntity> created = EventDao.getExact(userCookie(request).getValue(), "creator");
         ArrayList<UserattendingEntity> attending = UserattendingDao.getExact(userCookie(request).getValue(), "userID");
+        // replaces creator field(having ID number) with their full name
         for (EventsEntity e : created) {
+            //get(0) because our DAO's return us a list but the list only has one true entity which
+            //is the creator
             e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
 
         }
         ArrayList<EventsEntity> attendee = new ArrayList<EventsEntity>();
         ArrayList<EventsEntity> volunteer = new ArrayList<EventsEntity>();
 
+        // Splits all of the events a user is attending based on whether they are violunteering or just attending
         for (UserattendingEntity u : attending) {
             if (u.getIsVolunteer() == 1) volunteer.add(EventDao.getExact(u.getEventID(), "eventID").get(0));
             if (u.getIsVolunteer() == 0) attendee.add(EventDao.getExact(u.getEventID(), "eventID").get(0));
         }
 
+        // replaces userID field(having ID number) with their full name
         for (EventsEntity e : volunteer) {
             if (!e.getCreator().equals("evdb")) {
                 e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
             }
         }
 
+        // replaces userID field(having ID number) with their full name
         for (EventsEntity e : attendee) {
             if (!e.getCreator().equals("evdb")) {
                 e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
@@ -405,80 +411,6 @@ public class HomeController {
         return new ModelAndView("welcome", "status", "Please Login First");
     }
 
-    //SpringTiles -> Omnipresent header -> Logout button if we learn how to use it.
-    // if not, leave logout button on Home Page.
-
-    // testing database information pull.
-
-    @RequestMapping("/test")
-    public ModelAndView test(Model model, @RequestParam("userName") String username,
-                             HttpServletRequest request) {
-        Session selectUsers = sessionFact.openSession();
-
-        selectUsers.beginTransaction();
-
-        // Criteria is used to create the query
-        Criteria c = selectUsers.createCriteria(UsersEntity.class);
-
-        // results are returned as list and cast to an ArrayList
-
-        c.add(Restrictions.like("userID", "%" + username + "%"));
-        ArrayList<UsersEntity> users = (ArrayList<UsersEntity>) c.list();
-        ArrayList<String> userstostring = new ArrayList<String>();
-        for (int i = 0; i < users.size(); i++) {
-            userstostring.add(users.get(i).toString());
-        }
-        model.addAttribute("users", userstostring);
-
-        if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("test", "status", "You are now welcome to creat an event!");
-        }
-        return new ModelAndView("welcome", "status", "Please Login First");
-    }
-
-
-    @RequestMapping("/adduser")
-    public ModelAndView newUser(HttpServletRequest request) {
-
-        if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("adduser", "status", "You are now welcome to creat an event!");
-        }
-        return new ModelAndView("welcome", "status", "Please Login First");
-    }
-
-    @RequestMapping("/addinguser")
-    public ModelAndView addNewUser(@RequestParam("eventfulUserName") String username,
-                                   @RequestParam("email") String email,
-                                   @RequestParam("location") String location,
-                                   @RequestParam("skills") String skills,
-                                   @RequestParam("fullName") String fullname, Model model,
-                                   HttpServletRequest request) {
-
-
-        Session session = sessionFact.openSession();
-
-        Transaction tx = session.beginTransaction();
-
-        UsersEntity newUser = new UsersEntity();
-
-        newUser.setUserID(username);
-        newUser.setEmail(email);
-        newUser.setLocation(location);
-        newUser.setSkills(skills);
-        newUser.setFullName(fullname);
-
-        session.save(newUser);
-        tx.commit();
-        session.close();
-
-        model.addAttribute("newStuff", newUser);
-
-        if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("addUserSuccess", "status", "You are now welcome to creat an event!");
-        }
-        return new ModelAndView("welcome", "status", "Please Login First");
-
-    }
 
     @RequestMapping("/eventcreated")
     public ModelAndView addNewEvent(@RequestParam("title") String title,
@@ -486,8 +418,8 @@ public class HomeController {
                                     @RequestParam("where") String location,
                                     @RequestParam("description") String description,
                                     @RequestParam("skillsneeded") String skills,
-                                    @RequestParam("wheelchair") String choiceW,
-                                    @RequestParam("family") String choiceF,
+                                    @RequestParam("wheelchair") byte choiceW,
+                                    @RequestParam("family") byte choiceF,
                                     @RequestParam("servicedog") byte choiceS,
                                     @RequestParam("blind") byte choiceB,
                                     Model model, HttpServletRequest request) {
@@ -502,12 +434,10 @@ public class HomeController {
         newEvent.setTitle(title);
         newEvent.setCreator(userCookie(request).getValue());
         newEvent.setDate(date);
-        //newEvent.setRepeat(repeat);
         newEvent.setLocation(location);
         newEvent.setDescription(description);
         newEvent.setSkillsneeded(skills);
-        //newEvent.setCreator(creator);
-        //newEvent.setChoice(choice);
+
         newAccess.setEventID(eventID);
         byte wheelchair = valueOf(choiceW);
         newAccess.setWheelchair(wheelchair);
@@ -517,25 +447,13 @@ public class HomeController {
         newAccess.setServicedog(servicedog);
         byte blind = valueOf(choiceB);
         newAccess.setBlind(blind);
-//        newAccess.setFamily(accessF);
-//        newAccess.setServicedog(accessS);
-//        newAccess.setBlind(accessB);
 
-
-        Session session = sessionFact.openSession();
-        Transaction tx = session.beginTransaction();
         EventDao.add(newEvent);
         AccessibilityDao.add(newAccess);
-        session.save(newAccess);
 
-
-//        model.addAttribute("eventID", eventID);
-//        model.addAttribute("title", title);
-//        model.addAttribute("where", location);
         model.addAttribute("newEvent", newEvent);
         model.addAttribute("newAccess", newAccess);
-//        return "eventcreated";
-//    }
+
         if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("eventcreated", "status", "You are now welcome to creat an event!");
         }
@@ -543,7 +461,7 @@ public class HomeController {
     }
 
     /**
-     * confirms you're attending.
+     * confirms you're attending after you click 'attend' on an event in searchresults.
      * return event details on the page so user knows what event they just registered for.
      * @param model - model to add userattending stuff to display in the confirmationpage.
      * @param eventID - eventID to match up with in Database.
@@ -558,6 +476,9 @@ public class HomeController {
         UsersEntity currentUser = UsersDao.getExact(userCookie(request).getValue(), "userID").get(0);
         EventsEntity event = EventDao.getExact(eventID, "eventID").get(0);
         AccessibilityEntity accessibility = new AccessibilityEntity();
+
+        //a check to confirm that the event is in the accessibility table which means that accessibility
+        //has been previously defined
         if (AccessibilityDao.getExact(eventID, "eventID").size() > 0) {
             accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
         }
@@ -570,12 +491,13 @@ public class HomeController {
             }
         }
 
-
+        //this is putting the user down for attending the event
         attendee.setEventID(eventID);
         attendee.setUserID(userCookie(request).getValue());
         attendee.setIsVolunteer((byte) 0);
         UserattendingDao.add(attendee);
 
+        //this actually prints the conversation
         model.addAttribute("event", event);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("attendee", attendee);
@@ -583,7 +505,7 @@ public class HomeController {
         return "confirmationpage";
     }
     /**
-     * confirms you're volunteering.
+     * confirms you're volunteering after clicking 'volunteer' on an event in searchresults.
      * return event details on the page so user knows what event they just registered for.
      * @param model - model to add userattending stuff to display in the confirmationpage.
      * @param eventID - eventID to match up with in Database.
@@ -631,6 +553,9 @@ public class HomeController {
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("userID") && cookie.getValue().isEmpty() == false) {
+
+                //this sets the life span of the cookie to 0, so now it expires immediately and
+                //therefore logs you out of the system
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
             }
