@@ -70,7 +70,9 @@ public class HomeController {
         if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("homepage", "status", "You are now welcome to create an event!");
         }
+
         return new ModelAndView("welcome", "", "");
+
     }
 
     /**
@@ -118,14 +120,13 @@ public class HomeController {
             UsersDao.add(currentUser);
             //set the cookie to the google number
             response.addCookie(new Cookie("userID", currentUser.getUserID()));
+            return new ModelAndView("homepage", "status", "");
         }
 
         if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("homepage", "status", "");
         }
         return new ModelAndView("welcome", "status", "Please Login First");
-
-
     }
     /* *
      * Method to check whether a user is logged in. We check all cookies that the session has,
@@ -159,7 +160,7 @@ public class HomeController {
         UsersEntity user = UsersDao.getExact(cook.getValue(), "userID").get(0);
         model.addAttribute("user", user);
         if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("profile", "model", model);
+            return new ModelAndView("profile", "model", "");
         }
         return new ModelAndView("welcome", "status", "Please Login First");
 
@@ -181,7 +182,7 @@ public class HomeController {
         model.addAttribute("user", user);
 
         if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("editprofile", "model", model);
+            return new ModelAndView("editprofile", "model", "");
         }
         return new ModelAndView("welcome", "status", "Please Login First");
 
@@ -274,7 +275,7 @@ public class HomeController {
         // let's get that done later.
 
         if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("searchresults", "message", model);
+            return new ModelAndView("searchresults", "message", "");
         }
         return new ModelAndView("welcome", "status", "Please Login First");
 
