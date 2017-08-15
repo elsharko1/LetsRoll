@@ -146,6 +146,28 @@ public class HomeController {
 
     }
 
+    @RequestMapping("/editprofile")
+    public ModelAndView editprofilePage(Model model, HttpServletRequest request) {
+
+        String userID = userCookie(request).getValue();
+        UsersEntity user = new UsersEntity();
+        user.setFullName(request.getParameter("fullName"));
+        user.setUserID(userID);
+        user.setSkills(request.getParameter("skills"));
+        user.setLocation(request.getParameter("location"));
+        user.setEmail(request.getParameter("email"));
+        UsersDao.update(user);
+
+        model.addAttribute("user", user);
+
+        if (isLoggedIn(request.getCookies())) {
+            return new ModelAndView("editprofile", "model", model);
+        }
+        return new ModelAndView("welcome", "status","Please Login First");
+
+
+    }
+
     @RequestMapping("/createevent")
     public ModelAndView createEventPage(Model model, HttpServletRequest request) {
         // in this page, we will create an event with the following fields:

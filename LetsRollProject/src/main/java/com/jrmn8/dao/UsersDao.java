@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,8 @@ public class UsersDao {
             Session session = sessionFact.openSession();
             Transaction tx = session.beginTransaction();
 
-            session.saveOrUpdate(u);
+            ArrayList<UsersEntity> exist = (ArrayList<UsersEntity>) getExact(u.getUserID(), "userID");
+            if (exist.size() == 0) session.saveOrUpdate(u);
 
             tx.commit();
             session.close();
