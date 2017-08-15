@@ -15,6 +15,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.validation.constraints.Null;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Arrays;
@@ -66,6 +67,7 @@ public final class GoogleOAUTH {
             final GenericUrl url = new GenericUrl(USER_INFO_URL);
             final HttpRequest request = requestFactory.buildGetRequest(url);
             request.getHeaders().setContentType("application/json");
+
             /*final String jsonIdentity = request.execute().parseAsString();*/
             /*return jsonIdentity;*/
             final String jsonIdentity = request.execute().parseAsString();
