@@ -5,7 +5,6 @@ package com.jrmn8.controller;
  */
 
 import com.jrmn8.*;
-//import com.jrmn8.*;
 import com.jrmn8.dao.AccessibilityDao;
 import com.jrmn8.dao.EventDao;
 import com.jrmn8.dao.UserattendingDao;
@@ -23,7 +22,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,36 +41,45 @@ import javax.servlet.http.HttpServletResponse;
 
 import static java.lang.Byte.valueOf;
 
+/**
+ * Controller class that manages the interaction between web views
+ * and models.
+ */
 @Controller
 public class HomeController {
 
-    //Dao dao = DaoFactory.getInstance(DaoFactory.HIBERNATE);
+    /**
+     * HttpClient object will be used for Eventful data pull.
+     */
     HttpClient http = HttpClientBuilder.create().build();
-    Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+
+    /**
+    *Configuration and SessionFactory will be used for the DAO.
+    */
+     Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
     SessionFactory sessionFact = cfg.buildSessionFactory();
 
+    /**
+     * The app launches on this welcome page, checks if the user is already logged in and if not, upon clicking login,
+     * the user is logged in through Google OAUTH2. Request is the session. Return is the homepage or welcome
+     * page based on whether the user is logged in.
+     */
     @RequestMapping("/")
-
     public ModelAndView helloWorld(HttpServletRequest request) {
-        // Upon clicking login, user is sent to Eventful
-        // We should have perhaps a separate page for receiving the Eventful Login once a user has logged in
-        request.setAttribute("userid", "106510268289960979214");
-//        return new ModelAndView("welcome", "message", "Hello World");
-//    }
+
         if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("homepage", "status", "You are now welcome to creat an event!");
+            return new ModelAndView("homepage", "status", "");
         }
         return new ModelAndView("welcome", "status", "Please Login First");
     }
 
+    /**
+     */
     @RequestMapping("/homepage")
-
     public String homePage(Model model, HttpServletRequest request,
                            HttpServletResponse response) {
 
-        // just a buncha links
         final GoogleOAUTH google = new GoogleOAUTH();
-
         String code = request.getParameter("code");
 
         UsersEntity currentUser = new UsersEntity();
@@ -96,7 +103,6 @@ public class HomeController {
         //get user login cookie
         Cookie[] cookies = request.getCookies();
         boolean isLoggedIn = isLoggedIn(cookies);
-        //System.out.println(userCookie);
 
         //if cookie exists we send them to the home page
         if (!isLoggedIn && currentUser.getUserID() != null) {
@@ -105,8 +111,6 @@ public class HomeController {
             //set the cookie to the google number
             response.addCookie(new Cookie("userID", currentUser.getUserID()));
         }
-
-
         return "homepage";
     }
 
@@ -333,24 +337,24 @@ public class HomeController {
 
         ArrayList<EventsEntity> created = EventDao.getExact(userCookie(request).getValue(), "creator");
         ArrayList<UserattendingEntity> attending = UserattendingDao.getExact(userCookie(request).getValue(), "userID");
-        for (EventsEntity e: created) {
+        for (EventsEntity e : created) {
             e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
 
         }
         ArrayList<EventsEntity> attendee = new ArrayList<EventsEntity>();
         ArrayList<EventsEntity> volunteer = new ArrayList<EventsEntity>();
 
-        for (UserattendingEntity u: attending) {
-            if(u.getIsVolunteer() == 1) volunteer.add(EventDao.getExact(u.getEventID(), "eventID").get(0));
-            if(u.getIsVolunteer() == 0) attendee.add(EventDao.getExact(u.getEventID(), "eventID").get(0));
+        for (UserattendingEntity u : attending) {
+            if (u.getIsVolunteer() == 1) volunteer.add(EventDao.getExact(u.getEventID(), "eventID").get(0));
+            if (u.getIsVolunteer() == 0) attendee.add(EventDao.getExact(u.getEventID(), "eventID").get(0));
         }
 
-        for (EventsEntity e: volunteer) {
+        for (EventsEntity e : volunteer) {
             e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
 
         }
 
-        for (EventsEntity e: attendee) {
+        for (EventsEntity e : attendee) {
             e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
 
         }
@@ -580,11 +584,10 @@ public class HomeController {
         if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
 
             UserattendingEntity userAttending = UserattendingDao.getExact(eventID, "eventID").get(0);
-            if (userAttending.getUserID().equals(currentUser.getUserID())&& userAttending.getIsVolunteer() == 0) {
+            if (userAttending.getUserID().equals(currentUser.getUserID()) && userAttending.getIsVolunteer() == 0) {
                 model.addAttribute("message", "You've already signed up to attend.");
             }
         }
-
 
 
         attendee.setEventID(eventID);

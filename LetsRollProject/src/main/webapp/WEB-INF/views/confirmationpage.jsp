@@ -66,12 +66,6 @@ ${message} <br>
                     <br/>
                 </c:otherwise>
             </c:choose>
-            <%--
-                            </c:otherwise>
-            --%>
-            <%--
-                        </c:choose>
-            --%>
         </td>
     </tr>
     <br>
