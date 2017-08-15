@@ -564,6 +564,69 @@ public class HomeController {
         return "daotest";
     }
 
+
+    @RequestMapping("/addAttendee")
+    public String attend(Model model, @RequestParam("id") String eventID, HttpServletRequest request) {
+
+        UserattendingEntity attendee = new UserattendingEntity();
+
+        UsersEntity currentUser = UsersDao.getExact(userCookie(request).getValue(), "userID").get(0);
+        EventsEntity event = EventDao.getExact(eventID, "eventID").get(0);
+        AccessibilityEntity accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
+
+        if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
+
+            UserattendingEntity userAttending = UserattendingDao.getExact(eventID, "eventID").get(0);
+
+            if (userAttending.getUserID().equals(currentUser.getUserID())) {
+                model.addAttribute("message", "You've already signed up to attend.");
+                return "confirmationpage";
+            }
+        }
+
+        attendee.setEventID(eventID);
+        attendee.setUserID(userCookie(request).getValue());
+        attendee.setIsVolunteer((byte) 0);
+
+        model.addAttribute("event", event);
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("attendee", attendee);
+        model.addAttribute("accessibility", accessibility);
+
+        return "confirmationpage";
+    }
+
+    @RequestMapping("/addVolunteer")
+    public String volunteer(Model model, @RequestParam("id") String eventID, HttpServletRequest request) {
+
+        UserattendingEntity volunteer = new UserattendingEntity();
+
+        UsersEntity currentUser = UsersDao.getExact(userCookie(request).getValue(), "userID").get(0);
+        EventsEntity event = EventDao.getExact(eventID, "eventID").get(0);
+        AccessibilityEntity accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
+
+        if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
+
+            UserattendingEntity userVolunteering = UserattendingDao.getExact(eventID, "eventID").get(0);
+
+            if (userVolunteering.getUserID().equals(currentUser.getUserID())) {
+                model.addAttribute("message", "You've already signed up to attend.");
+                return "confirmationpage";
+            }
+        }
+
+        volunteer.setEventID(eventID);
+        volunteer.setUserID(userCookie(request).getValue());
+        volunteer.setIsVolunteer((byte) 1);
+
+        model.addAttribute("event", event);
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("attendee", volunteer);
+        model.addAttribute("accessibility", accessibility);
+
+        return "confirmationpage";
+    }
+
     @RequestMapping("/logout")
     public String logOut(HttpServletRequest request, HttpServletResponse response) {
 

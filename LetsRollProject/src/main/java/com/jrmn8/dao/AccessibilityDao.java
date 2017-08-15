@@ -2,10 +2,12 @@ package com.jrmn8.dao;
 
 import com.jrmn8.AccessibilityEntity;
 import com.jrmn8.EventsEntity;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 import java.util.ArrayList;
@@ -87,6 +89,30 @@ public class AccessibilityDao {
         ArrayList<AccessibilityEntity> ev = (ArrayList<AccessibilityEntity>) c.list();
 
             return ev;*/
+    }
+
+    public static ArrayList<AccessibilityEntity> getExact(String searchTerm, String column) {
+
+        switch (column) {
+            case "eventID":
+                // If the column string isn't a list of predefined columns, bad inquiry.
+                break;
+            default:
+                return null;
+        }
+        Session selectAccessibility = sessionFact.openSession();
+
+        selectAccessibility.beginTransaction();
+
+        // Criteria is used to create the query
+        Criteria c = selectAccessibility.createCriteria(AccessibilityEntity.class);
+
+        // results are returned as list and cast to an ArrayList
+
+        c.add(Restrictions.like(column, searchTerm));
+        ArrayList<AccessibilityEntity> av = (ArrayList<AccessibilityEntity>) c.list();
+
+        return av;
     }
 
     // updates. The userattending should exist in the database, so we should be ok in terms of validation.
