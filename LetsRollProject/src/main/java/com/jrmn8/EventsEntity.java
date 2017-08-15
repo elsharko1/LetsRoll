@@ -41,7 +41,7 @@ public class EventsEntity {
     }
 
     @Basic
-    @Column(name = "title", nullable = true, length = 200)
+    @Column(name = "title", nullable = true, length = 5000)
     public String getTitle() {
         return title;
     }
@@ -61,7 +61,7 @@ public class EventsEntity {
     }
 
     @Basic
-    @Column(name = "location", nullable = true, length = 99)
+    @Column(name = "location", nullable = true, length = 5000)
     public String getLocation() {
         return location;
     }

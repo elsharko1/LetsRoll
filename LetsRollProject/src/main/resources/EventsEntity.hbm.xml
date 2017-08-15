@@ -9,13 +9,13 @@
             <column name="eventID" sql-type="varchar(99)" length="99"/>
         </id>
         <property name="title">
-            <column name="title" sql-type="varchar(200)" length="200"/>
+            <column name="title" sql-type="varchar(5000)" length="5000"/>
         </property>
         <property name="creator">
             <column name="creator" sql-type="varchar(50)" length="50"/>
         </property>
         <property name="location">
-            <column name="location" sql-type="varchar(99)" length="99"/>
+            <column name="location" sql-type="varchar(5000)" length="5000"/>
         </property>
         <property name="description">
             <column name="description" sql-type="varchar(10000)" length="10000"/>
