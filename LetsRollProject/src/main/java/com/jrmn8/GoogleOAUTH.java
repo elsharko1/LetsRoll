@@ -11,11 +11,9 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson.JacksonFactory;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import javax.validation.constraints.Null;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Arrays;
@@ -31,34 +29,37 @@ public final class GoogleOAUTH {
     private static final String USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
     private static final JsonFactory JSON_FACTORY = new JacksonFactory();
     private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
-    private String stateToken;
-    private final GoogleAuthorizationCodeFlow flow;
+    private static String stateToken;
+    private static GoogleAuthorizationCodeFlow flow;
 
-    public GoogleOAUTH() {
+    /**
+     *
+     */
+    public static void buildGoogleOAUTH() {
         flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, CLIENT_ID, CLIENT_SECRET, SCOPE).build();
         generateStateToken();
     }
 
-    public String buildLoginUrl() {
+    public static String buildLoginUrl() {
         final GoogleAuthorizationCodeRequestUrl url = flow.newAuthorizationUrl();
         return url.setRedirectUri(CALLBACK_URI).setState(stateToken).build();
     }
 
-    public String buildLogoutUrl() {
+    public static String buildLogoutUrl() {
         return CALLBACK_URI;
     }
 
-    private void generateStateToken() {
+    private static void generateStateToken() {
         SecureRandom sr1 = new SecureRandom();
         stateToken = "google;" + sr1.nextInt();
     }
 
-    public String getStateToken() {
+    public static String getStateToken() {
         return stateToken;
     }
 
     /*public String getUserInfoJson(final String authCode) throws IOException {*/
-    public org.json.simple.JSONObject getUserInfoJson(final String authCode) {
+    public static org.json.simple.JSONObject getUserInfoJson(final String authCode) {
         org.json.simple.JSONObject jsonObject = new org.json.simple.JSONObject();
         try {
             final GoogleTokenResponse response = flow.newTokenRequest(authCode).setRedirectUri(CALLBACK_URI).execute();
