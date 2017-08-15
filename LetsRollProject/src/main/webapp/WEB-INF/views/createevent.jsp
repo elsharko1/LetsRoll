@@ -8,8 +8,9 @@
 <html>
 <head>
     <title>create event page</title>
-        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" media="screen" href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen"
+          href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
@@ -19,24 +20,30 @@
             height: 500px;
             width: 500px;
         }
+
         #infowindow-content .title {
             font-weight: bold;
         }
+
         #infowindow-content {
             display: none;
         }
+
         #map #infowindow-content {
             display: inline;
         }
+
         #pac-container {
             padding-bottom: 12px;
             margin-right: 12px;
         }
+
         .pac-controls label {
             font-family: Roboto;
             font-size: 13px;
             font-weight: 300;
         }
+
         #pac-input {
             background-color: #fff;
             font-family: Roboto;
@@ -47,6 +54,7 @@
             text-overflow: ellipsis;
             width: 400px;
         }
+
         #pac-input:focus {
             border-color: #4d90fe;
         }
@@ -54,7 +62,7 @@
 </head>
 <body>
 <br>
-<form method="post" action = "/eventcreated">
+<form method="post" action="/eventcreated">
     Title: <input type="text" name="title">
     <br>
     <div id="datetimepicker" class="input-append date">
@@ -67,38 +75,50 @@
     </script>
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
     </script>
-    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    <script type="text/javascript"
+            src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
     </script>
-    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+    <script type="text/javascript"
+            src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
     </script>
     <script type="text/javascript">
-        $('#datetimepicker').datetimepicker({setDate: new Date(), startDate: new Date(), pickSeconds: false, pick12HourFormat: true, format: "MM/dd/yyyy HH:mm PP" }).val();
+        $('#datetimepicker').datetimepicker({
+            setDate: new Date(),
+            startDate: new Date(),
+            pickSeconds: false,
+            pick12HourFormat: true,
+            format: "MM/dd/yyyy HH:mm PP"
+        }).val();
     </script>
     <br>
     <%--<select name="repeat">--%>
-        <%--<option value="doesnotrepeat "> -- does not repeat -- </option>--%>
-        <%--<option value="daily">Repeats Daily</option>--%>
-        <%--<option value="weekly">Repeats Weekly</option>--%>
-        <%--<option value="monthly">Repeats Monthly</option>--%>
+    <%--<option value="doesnotrepeat "> -- does not repeat -- </option>--%>
+    <%--<option value="daily">Repeats Daily</option>--%>
+    <%--<option value="weekly">Repeats Weekly</option>--%>
+    <%--<option value="monthly">Repeats Monthly</option>--%>
     <%--</select>--%>
     <%--<br>--%>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvA4Qjj6E2adhJsz-WlmViKWKhs6HQ68M&libraries=places"></script>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvA4Qjj6E2adhJsz-WlmViKWKhs6HQ68M&libraries=places"></script>
 
-        <div id="pac-container">
-            <input id="pac-input" type="text" placeholder="Enter event location" name="where">
-        </div>
+    <div id="pac-container">
+        <input id="pac-input" type="text" placeholder="Enter event location" name="where">
+    </div>
     </div>
     <div id="map"></div>
     <div id="infowindow-content">
         <img src="" width="16" height="16" id="place-icon">
-        <span id="place-name"  class="title"></span><br>
+        <span id="place-name" class="title"></span><br>
         <span id="place-address"></span>
     </div>
 
     <script>
         function initMap() {
 
-            var map = new google.maps.Map(document.getElementById('map'), {center: {lat: 42.3293, lng: -83.0398}, zoom: 13});
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 42.3293, lng: -83.0398},
+                zoom: 13
+            });
             var card = document.getElementById('pac-card');
             var input = document.getElementById('pac-input');
             var types = document.getElementById('type-selector');
@@ -120,7 +140,7 @@
                 anchorPoint: new google.maps.Point(0, -29)
             });
 
-            autocomplete.addListener('place_changed', function() {
+            autocomplete.addListener('place_changed', function () {
                 infowindow.close();
                 marker.setVisible(false);
                 var place = autocomplete.getPlace();
@@ -160,7 +180,7 @@
             // Autocomplete.
             function setupClickListener(id, types) {
                 var radioButton = document.getElementById(id);
-                radioButton.addEventListener('click', function() {
+                radioButton.addEventListener('click', function () {
                     autocomplete.setTypes(types);
                 });
             }
@@ -170,7 +190,7 @@
 
     <br>
     Description: <br>
-    <textarea rows = "5" cols = "50" name = "description">
+    <textarea rows="5" cols="50" name="description">
     </textarea>
     <br>
     Skills Needed: <br>
@@ -181,7 +201,8 @@
         <option value="Animal">Animal</option>
         <option value="Administrative">Adminstrative</option>
         <option value="Technical">Technical</option>
-        <option value="Other">Mystery</option> <br>
+        <option value="Other">Mystery</option>
+        <br>
     </select>
     <br>
     WheelChair Accessible:
