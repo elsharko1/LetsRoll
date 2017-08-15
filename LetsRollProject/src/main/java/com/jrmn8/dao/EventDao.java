@@ -1,7 +1,6 @@
 package com.jrmn8.dao;
 
 import com.jrmn8.EventsEntity;
-import com.jrmn8.dto.Event;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,7 +14,7 @@ import org.hibernate.query.Query;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class EventDao implements Dao {
+public class EventDao {
 
     static Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
     static SessionFactory sessionFact = cfg.buildSessionFactory();
