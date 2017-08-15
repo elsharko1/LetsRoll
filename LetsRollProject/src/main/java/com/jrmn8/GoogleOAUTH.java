@@ -22,7 +22,7 @@ import java.util.Arrays;
 public final class GoogleOAUTH {
 
     private static final String CLIENT_ID = "608802918864-3qu5pqf1siefm8vpmq0n7t789boj3g7d.apps.googleusercontent.com";
-    private static final String CLIENT_SECRET = "aF7_kFTqcKVGj9_3d_h5ICs";
+    private static final String CLIENT_SECRET = "Qp_kGxRUX900xB9XEKIow_lH";
     private static final String CALLBACK_URI = "http://localhost:8080/homepage";
     //private static final String CALLBACK_URI = "http://letsroll.us-east-2.elasticbeanstalk.com/homepage";
     //private static final String CALLBACK_URI = "https://letsroll.us-east-2.elasticbeanstalk.com/homepage";
