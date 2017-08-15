@@ -61,8 +61,8 @@ public class HomeController {
 
     /**
      * The app launches on this welcome page, checks if the user is already logged in and if not, upon clicking login,
-     * the user is logged in through Google OAUTH2. Request is the session. Return is the homepage or welcome
-     * page based on whether the user is logged in.
+     * the user is prompted to log in through Google OAUTH2. Request is the session, and holds all our session data,
+     * including a cookie that holds the userID we receive from google upon successful login.
      */
     @RequestMapping("/")
     public ModelAndView helloWorld(HttpServletRequest request) {
@@ -70,23 +70,33 @@ public class HomeController {
         if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("homepage", "status", "You are now welcome to create an event!");
         }
-        return new ModelAndView("welcome", "status", "");
+
+        return new ModelAndView("welcome", "", "");
+
     }
 
     /**
+     * A user is redirected to the homepage after logging in through Google. Utilizing a GoogleOAUTH class we've made,
+     * we utilize a (String) code that we receive from google to pull valid user details from google. These user details are
+     * then put into our database, and the userID received from google is stored in a cookie. Then, we direct to the homepage
+     * view that allows a user to:
+     *
+     * - Edit their profile
+     * - Create an event
+     * - View events they're participating in
+     * - Search events with a keyword.
      */
     @RequestMapping("/homepage")
-    public String homePage(Model model, HttpServletRequest request,
-                           HttpServletResponse response) {
+    public ModelAndView homePage(Model model, HttpServletRequest request, HttpServletResponse response) {
 
-        final GoogleOAUTH google = new GoogleOAUTH();
+        // Check GoogleOAUTH class for information.
+        GoogleOAUTH.buildGoogleOAUTH();
         String code = request.getParameter("code");
-        System.out.println(code);
         UsersEntity currentUser = new UsersEntity();
 
         if (code != null) {
             try {
-                org.json.simple.JSONObject userInfo = google.getUserInfoJson(code);
+                org.json.simple.JSONObject userInfo = GoogleOAUTH.getUserInfoJson(code);
                 currentUser.setUserID((String) userInfo.get("id"));
                 currentUser.setFullName((String) userInfo.get("name"));
                 currentUser.setEmail((String) userInfo.get("email"));
@@ -110,14 +120,25 @@ public class HomeController {
             UsersDao.add(currentUser);
             //set the cookie to the google number
             response.addCookie(new Cookie("userID", currentUser.getUserID()));
+            return new ModelAndView("homepage", "status", "");
         }
-        return "homepage";
-}
 
+        if (isLoggedIn(request.getCookies())) {
+            return new ModelAndView("homepage", "status", "");
+        }
+        return new ModelAndView("welcome", "status", "Please Login First");
+    }
+    /* *
+     * Method to check whether a user is logged in. We check all cookies that the session has,
+     * and going off that, attempt to find a cookie that has "userID" as a name. Then, we check if
+     * the "userID" cookie isEmpty - if empty, then the user is clearly not logged in.
+     *
+     * Returns true if user is logged in, returns false is user is not logged in.
+     */
     private boolean isLoggedIn(Cookie[] cookies) {
         boolean isLoggedIn = false;
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("userID") && cookie.getValue().isEmpty() == false) {
+            if (cookie.getName().equals("userID") && !cookie.getValue().isEmpty()) {
                 isLoggedIn = true;
             }
         }
