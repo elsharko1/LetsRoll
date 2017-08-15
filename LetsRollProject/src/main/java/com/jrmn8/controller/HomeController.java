@@ -68,7 +68,7 @@ public class HomeController {
     public ModelAndView helloWorld(HttpServletRequest request) {
 
         if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("homepage", "status", "");
+            return new ModelAndView("homepage", "status", "You are now welcome to create an event!");
         }
         return new ModelAndView("welcome", "status", "Please Login First");
     }
