@@ -134,12 +134,12 @@ public class HomeController {
 
     @RequestMapping("/profile")
     public ModelAndView profilePage(Model model, HttpServletRequest request) {
-        String userid = (String) request.getAttribute("userid");
 
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
-            return new ModelAndView("profile", "status", "You are now welcome to creat an event!");
+        Cookie cook = userCookie(request);
+        UsersEntity user = UsersDao.getExact(cook.getValue(), "userID").get(0);
+        model.addAttribute("user", user);
+        if (isLoggedIn(request.getCookies())) {
+            return new ModelAndView("profile", "model", model);
         }
         return new ModelAndView("welcome", "status","Please Login First");
 
@@ -164,7 +164,7 @@ public class HomeController {
         Cookie[] cookies = request.getCookies();
         boolean isLoggedIn = isLoggedIn(cookies);
         if (isLoggedIn) {
-            return new ModelAndView("createevent", "status", "You are now welcome to creat an event!");
+            return new ModelAndView("createevent", "status", "You are now welcome to create an event!");
         }
         return new ModelAndView("welcome", "status","Please Login First");
 
@@ -178,7 +178,7 @@ public class HomeController {
         // the API database to return certain events
 
         try {
-            keywords = keywords.replaceAll(" ", "%20");
+            String keyword = keywords.replaceAll(" ", "%20");
 
             String apiKey = "9jgSrPMqWvRQm37Q";
             String oAuthConsumerKey = "b0a69fd8c5696e3c7221";
@@ -190,7 +190,7 @@ public class HomeController {
 
             HttpHost host = new HttpHost("api.eventful.com", 80, "http");
             // maybe remove all spaces inside keywords before searching
-            HttpGet getPage = new HttpGet("/json/events/search?app_key=" + apiKey + "&keywords=" + keywords);
+            HttpGet getPage = new HttpGet("/json/events/search?app_key=" + apiKey + "&keywords=" + keyword);
             HttpResponse response = http.execute(host, getPage);
             String jsonString = EntityUtils.toString(response.getEntity());
             JSONObject json = new JSONObject(jsonString);
@@ -219,9 +219,9 @@ public class HomeController {
                 /*model.addAttribute("date", (Timestamp) dateFormat.parse(array.getJSONObject(i).getString("start_time")));*/
                 event.setSkillsneeded("skill" + i);
 
-                eventList.add(event);
+                EventDao.add(event);
             }
-            model.addAttribute("jsonPageData", eventList);
+            model.addAttribute("searchresults", EventDao.getLike(keywords));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -236,7 +236,7 @@ public class HomeController {
         Cookie[] cookies = request.getCookies();
         boolean isLoggedIn = isLoggedIn(cookies);
         if (isLoggedIn) {
-            return new ModelAndView("jsonData", "message", model);
+            return new ModelAndView("searchresults", "message", model);
         }
         return new ModelAndView("welcome", "status","Please Login First");
 
@@ -418,9 +418,7 @@ public class HomeController {
     @RequestMapping("/eventcreated")
     public ModelAndView addNewEvent(@RequestParam("title") String title,
                              @RequestParam("date") String date,
-                             //@RequestParam("repeat") String repeat,
                              @RequestParam("where") String location,
-                             //@RequestParam("choice") String choice,
                               @RequestParam("creator") String creator,
                              @RequestParam("description") String description,
                              @RequestParam("skillsneeded") String skills,

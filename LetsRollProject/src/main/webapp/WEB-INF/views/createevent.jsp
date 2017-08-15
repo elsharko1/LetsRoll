@@ -53,7 +53,6 @@
     </style>
 </head>
 <body>
-<h1>${status}</h1>
 <br>
 <form method="post" action = "/eventcreated">
     Title: <input type="text" name="title">
@@ -177,8 +176,15 @@
     </textarea>
     <br>
     Skills Needed: <br>
-    <textarea rows = "5" cols = "50" name = "skillsneeded">
-    </textarea>
+    <select multiple name="skillsneeded">
+        <option value="Disabled">Disabled</option>
+        <option value="Children">Children</option>
+        <option value="People">People</option>
+        <option value="Animal">Animal</option>
+        <option value="Administrative">Adminstrative</option>
+        <option value="Technical">Technical</option>
+        <option value="Other">Mystery</option> <br>
+    </select>
     <br>
     WheelChair Accessible:
     <select name="wheelchair">

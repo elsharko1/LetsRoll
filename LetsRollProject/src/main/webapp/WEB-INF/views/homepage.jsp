@@ -19,7 +19,7 @@
     link to profile page<br>
     link to your events page<br>
 </p>
-<a href="/profile">Make profile</a><br>
+<a href="/profile">Edit Profile</a><br>
 <a href="/createevent">create event</a><br>
 
 <form action="/searchresults" method="get">

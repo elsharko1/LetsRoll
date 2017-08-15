@@ -71,7 +71,7 @@ public class EventsEntity {
     }
 
     @Basic
-    @Column(name = "description", nullable = true, length = 2000)
+    @Column(name = "description", nullable = true, length = 10000)
     public String getDescription() {
         return description;
     }

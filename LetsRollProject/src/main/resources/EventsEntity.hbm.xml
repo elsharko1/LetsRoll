@@ -18,7 +18,7 @@
             <column name="location" sql-type="varchar(99)" length="99"/>
         </property>
         <property name="description">
-            <column name="description" sql-type="varchar(2000)" length="2000"/>
+            <column name="description" sql-type="varchar(10000)" length="10000"/>
         </property>
         <property name="date">
             <column name="date" sql-type="varchar(50)" length="50"/>
