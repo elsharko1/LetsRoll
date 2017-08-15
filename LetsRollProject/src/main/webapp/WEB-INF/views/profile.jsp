@@ -23,7 +23,9 @@
     <option value="Animal">Animal</option>
     <option value="Administrative">Adminstrative</option>
     <option value="Technical">Technical</option>
-    <option value="Other">Mystery</option><br>
+    <option value="Other">Mystery</option>
+    <br>
+    </select>
     <input type="submit" value="Submit Profile Changes"/>
 </form>
 <br>
