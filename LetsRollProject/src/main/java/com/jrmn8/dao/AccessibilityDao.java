@@ -45,20 +45,25 @@ public class AccessibilityDao {
 
     public static ArrayList<EventsEntity> get(String keyword, byte isWheelchair, byte isBlind,
                                               byte isServiceDog, byte isFamily) {
-        // if all the values are literally 0
+        // if all the values are literally 0, use eventsDao's search option, the getLike.
         if (isWheelchair+isBlind+isServiceDog+isFamily == 0) return EventDao.getLike(keyword);
 
         Session selectEvents = sessionFact.openSession();
 
         selectEvents.beginTransaction();
 
-        // find list of valid events, pull a list, parse through the list and search through it?
-
+        // find list of valid events, pull a list, parse through the list and search through it
         String hql = "FROM AccessibilityEntity E WHERE ";
-        // time for some if statements. This is terribly inefficient!
+        //these are bytes because 0 is NO and 1 is YES in our database
         byte[] fields = {isWheelchair,isBlind,isServiceDog, isFamily};
         byte index = (byte) (isWheelchair+isBlind+isServiceDog+isFamily);
         String[] fieldnames = {"E.wheelchair", "E.blind", "E.servicedog", "E.family"};
+        /**
+         * We start off with an external counter, x, that will increment every time we go through the
+         * fields array. If the byte at fields [x] is 1, we access fieldnames and append the String to
+         * our HQL statement. In short, it's generating one wholesome HQL statement to search for the
+         * accessibility parameters that are equal to 1. Because when they are 1, we want to search for them.
+         */
         int x = 0;
         for (int i = 0; i < index; x++){
             if(fields[x] == 1) {
@@ -71,24 +76,19 @@ public class AccessibilityDao {
         Query query = selectEvents.createQuery(hql);
         ArrayList<AccessibilityEntity> ae = (ArrayList<AccessibilityEntity>) query.list();
         ArrayList<EventsEntity> ev = new ArrayList<EventsEntity>();
+        //code below emulates "like" in SQL/HQL language
         keyword = keyword.toLowerCase();
         for (AccessibilityEntity acc: ae) {
             EventsEntity e = EventDao.getExact(acc.getEventID(), "eventID").get(0);
+            //.contains is case sensitive so we turn everything to lowercase.
             if(e.getTitle().toLowerCase().contains(keyword) || e.getDescription().toLowerCase().contains(keyword) ||
                     e.getLocation().toLowerCase().contains(keyword)) {
+                //adds it to our events entity array list
                 ev.add(e);
             }
         }
-
-        //Criteria c = selectEvents.createCriteria(AccessibilityEntity.class);
-
-        // results are returned as list and cast to an ArrayList
+        // returns the list
         return ev;
-        /*
-        c.add(Restrictions.like(column, searchTerm));
-        ArrayList<AccessibilityEntity> ev = (ArrayList<AccessibilityEntity>) c.list();
-
-            return ev;*/
     }
 
     public static ArrayList<AccessibilityEntity> getExact(String searchTerm, String column) {
@@ -134,6 +134,5 @@ public class AccessibilityDao {
 
 // Deleting a userattending? Maybe if a user cancels attending an event, or a coordinator cancels an event.
 // if needed will make a function later.
-    // Also, come back and see if we need a specific get() requiring a userID and an eventID for a user to submit feedback.
 // PCB
 }
