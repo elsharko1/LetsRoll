@@ -10,7 +10,6 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @SuppressWarnings("Duplicates")
 public class UserattendingDao {

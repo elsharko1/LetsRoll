@@ -81,7 +81,7 @@ public class HomeController {
 
         final GoogleOAUTH google = new GoogleOAUTH();
         String code = request.getParameter("code");
-
+        System.out.println(code);
         UsersEntity currentUser = new UsersEntity();
 
         if (code != null) {
