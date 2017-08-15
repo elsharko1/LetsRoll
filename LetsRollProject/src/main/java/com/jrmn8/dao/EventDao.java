@@ -59,8 +59,7 @@ public class EventDao implements Dao {
 
         return ev;
     }
-    public void derp() {
-    }
+
     // When we search exact eventID/Creator
     public static ArrayList<EventsEntity> getExact(String searchTerm, String column) {
 

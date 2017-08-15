@@ -57,8 +57,6 @@
 <form method="post" action = "/eventcreated">
     Title: <input type="text" name="title">
     <br>
-    Creator: <input type="text" name="creator">
-    <br>
     <div id="datetimepicker" class="input-append date">
         <input type="text" name="date">Date: </input>
         <span class="add-on">

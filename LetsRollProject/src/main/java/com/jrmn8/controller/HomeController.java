@@ -4,13 +4,11 @@ package com.jrmn8.controller;
  * Created by JRMN8 on 7/21/2017.
  */
 
-import com.jrmn8.AccessibilityEntity;
-import com.jrmn8.EventsEntity;
+import com.jrmn8.*;
 //import com.jrmn8.*;
-import com.jrmn8.GoogleOAUTH;
-import com.jrmn8.UsersEntity;
 import com.jrmn8.dao.AccessibilityDao;
 import com.jrmn8.dao.EventDao;
+import com.jrmn8.dao.UserattendingDao;
 import com.jrmn8.dao.UsersDao;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -61,18 +59,16 @@ public class HomeController {
         request.setAttribute("userid", "106510268289960979214");
 //        return new ModelAndView("welcome", "message", "Hello World");
 //    }
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
+        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("homepage", "status", "You are now welcome to creat an event!");
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
     }
 
     @RequestMapping("/homepage")
 
     public String homePage(Model model, HttpServletRequest request,
-                          HttpServletResponse response) {
+                           HttpServletResponse response) {
 
         // just a buncha links
         final GoogleOAUTH google = new GoogleOAUTH();
@@ -103,7 +99,7 @@ public class HomeController {
         //System.out.println(userCookie);
 
         //if cookie exists we send them to the home page
-        if (!isLoggedIn && currentUser.getUserID() != null){
+        if (!isLoggedIn && currentUser.getUserID() != null) {
             //if no cookie exists (they are not logged in) we call usersDao.add
             UsersDao.add(currentUser);
             //set the cookie to the google number
@@ -116,8 +112,8 @@ public class HomeController {
 
     private boolean isLoggedIn(Cookie[] cookies) {
         boolean isLoggedIn = false;
-        for (Cookie cookie: cookies){
-            if (cookie.getName().equals("userID") && cookie.getValue().isEmpty() == false){
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("userID") && cookie.getValue().isEmpty() == false) {
                 isLoggedIn = true;
             }
         }
@@ -141,7 +137,7 @@ public class HomeController {
         if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("profile", "model", model);
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
 
 
     }
@@ -163,7 +159,7 @@ public class HomeController {
         if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("editprofile", "model", model);
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
 
 
     }
@@ -183,12 +179,10 @@ public class HomeController {
 
 
 //get user login cookie
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
+        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("createevent", "status", "You are now welcome to create an event!");
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
 
 
     }
@@ -255,12 +249,10 @@ public class HomeController {
         // should go to searchresults.jsp, but at the moment that isn't set up for our JSON yet.
         // let's get that done later.
 
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
+        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("searchresults", "message", model);
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
 
 
     }
@@ -278,13 +270,10 @@ public class HomeController {
         // Other comments. God this is gonna be a potato to code. SQL fun! How to set up table later?
 
 
-
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
+        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("feedbackpage", "status", "You are now welcome to creat an event!");
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
     }
 
     @RequestMapping("/eventdetails")
@@ -296,12 +285,10 @@ public class HomeController {
         // ability to attend or volunteer will be on this page
 
 
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
+        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("eventdetails", "status", "You are now welcome to creat an event!");
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
     }
 
     @RequestMapping("/attendorvolunteer")
@@ -313,12 +300,10 @@ public class HomeController {
         // however, I have no idea how I'd implement that right now
         // but we should have it work as so.
 
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
+        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("attendorvolunteer", "status", "You are now welcome to creat an event!");
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
 
 
     }
@@ -328,12 +313,10 @@ public class HomeController {
         // confirms you're attending or volunteering.
         // return event details on the page so user knows what event they just registered for.
 
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
+        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("confirmationpage", "status", "You are now welcome to creat an event!");
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
     }
 
     @RequestMapping("/yourevents")
@@ -348,12 +331,38 @@ public class HomeController {
         // Should also display feedback once date has passed.
         // display everything
 
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
-            return new ModelAndView("yourevents", "status", "You are now welcome to creat an event!");
+        ArrayList<EventsEntity> created = EventDao.getExact(userCookie(request).getValue(), "creator");
+        ArrayList<UserattendingEntity> attending = UserattendingDao.getExact(userCookie(request).getValue(), "userID");
+        for (EventsEntity e: created) {
+            e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
+
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        ArrayList<EventsEntity> attendee = new ArrayList<EventsEntity>();
+        ArrayList<EventsEntity> volunteer = new ArrayList<EventsEntity>();
+
+        for (UserattendingEntity u: attending) {
+            if(u.getIsVolunteer() == 1) volunteer.add(EventDao.getExact(u.getEventID(), "eventID").get(0));
+            if(u.getIsVolunteer() == 0) attendee.add(EventDao.getExact(u.getEventID(), "eventID").get(0));
+        }
+
+        for (EventsEntity e: volunteer) {
+            e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
+
+        }
+
+        for (EventsEntity e: attendee) {
+            e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
+
+        }
+        model.addAttribute("created", created);
+        model.addAttribute("attendee", attendee);
+        model.addAttribute("volunteer", volunteer);
+
+
+        if (isLoggedIn(request.getCookies())) {
+            return new ModelAndView("yourevents", "status", model);
+        }
+        return new ModelAndView("welcome", "status", "Please Login First");
     }
 
     //SpringTiles -> Omnipresent header -> Logout button if we learn how to use it.
@@ -381,32 +390,28 @@ public class HomeController {
         }
         model.addAttribute("users", userstostring);
 
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
+        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("test", "status", "You are now welcome to creat an event!");
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
     }
 
 
     @RequestMapping("/adduser")
     public ModelAndView newUser(HttpServletRequest request) {
 
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
+        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("adduser", "status", "You are now welcome to creat an event!");
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
     }
 
     @RequestMapping("/addinguser")
     public ModelAndView addNewUser(@RequestParam("eventfulUserName") String username,
-                                 @RequestParam("email") String email,
-                                 @RequestParam("location") String location,
-                                 @RequestParam("skills") String skills,
-                                 @RequestParam("fullName") String fullname, Model model,
+                                   @RequestParam("email") String email,
+                                   @RequestParam("location") String location,
+                                   @RequestParam("skills") String skills,
+                                   @RequestParam("fullName") String fullname, Model model,
                                    HttpServletRequest request) {
 
 
@@ -428,28 +433,24 @@ public class HomeController {
 
         model.addAttribute("newStuff", newUser);
 
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
+        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("addUserSuccess", "status", "You are now welcome to creat an event!");
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
 
     }
 
     @RequestMapping("/eventcreated")
     public ModelAndView addNewEvent(@RequestParam("title") String title,
-                             @RequestParam("date") String date,
-                             @RequestParam("where") String location,
-                              @RequestParam("creator") String creator,
-                             @RequestParam("description") String description,
-                             @RequestParam("skillsneeded") String skills,
-                             @RequestParam("wheelchair") String choiceW,
-                            @RequestParam("family") String choiceF,
-                             @RequestParam("servicedog") byte choiceS,
-                             @RequestParam("blind") byte choiceB,
-                             Model model, HttpServletRequest request) {
-
+                                    @RequestParam("date") String date,
+                                    @RequestParam("where") String location,
+                                    @RequestParam("description") String description,
+                                    @RequestParam("skillsneeded") String skills,
+                                    @RequestParam("wheelchair") String choiceW,
+                                    @RequestParam("family") String choiceF,
+                                    @RequestParam("servicedog") byte choiceS,
+                                    @RequestParam("blind") byte choiceB,
+                                    Model model, HttpServletRequest request) {
 
 
         EventsEntity newEvent = new EventsEntity();
@@ -459,7 +460,7 @@ public class HomeController {
 
         newEvent.setEventID(eventID);
         newEvent.setTitle(title);
-        newEvent.setCreator(creator);
+        newEvent.setCreator(userCookie(request).getValue());
         newEvent.setDate(date);
         //newEvent.setRepeat(repeat);
         newEvent.setLocation(location);
@@ -495,12 +496,10 @@ public class HomeController {
         model.addAttribute("newAccess", newAccess);
 //        return "eventcreated";
 //    }
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
+        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("eventcreated", "status", "You are now welcome to creat an event!");
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
     }
 
     @RequestMapping("/registered")
@@ -510,18 +509,16 @@ public class HomeController {
                                 Model model, HttpServletRequest request) {
 
 
-        model.addAttribute("fullName",fullName);
-        model.addAttribute("location",location);
+        model.addAttribute("fullName", fullName);
+        model.addAttribute("location", location);
 
 
 //        return new ModelAndView("registrationComplete", "message" , model);
 //    }
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
-            return new ModelAndView("registrationComplete", "message" , model);
+        if (isLoggedIn(request.getCookies())) {
+            return new ModelAndView("registrationComplete", "message", model);
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
     }
 
     @RequestMapping("/registration")
@@ -530,12 +527,10 @@ public class HomeController {
 
 //        return "registration";
 //    }
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-        if (isLoggedIn) {
+        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("registration", "status", "You are now welcome to creat an event!");
         }
-        return new ModelAndView("welcome", "status","Please Login First");
+        return new ModelAndView("welcome", "status", "Please Login First");
     }
 
 
@@ -570,12 +565,12 @@ public class HomeController {
     }
 
     @RequestMapping("/logout")
-    public String logOut(HttpServletRequest request, HttpServletResponse response){
+    public String logOut(HttpServletRequest request, HttpServletResponse response) {
 
         //get user login cookie
         Cookie[] cookies = request.getCookies();
-        for (Cookie cookie: cookies){
-            if (cookie.getName().equals("userID") && cookie.getValue().isEmpty() == false){
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("userID") && cookie.getValue().isEmpty() == false) {
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
             }
