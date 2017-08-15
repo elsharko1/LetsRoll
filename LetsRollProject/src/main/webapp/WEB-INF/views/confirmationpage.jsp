@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: JRMN8
@@ -11,6 +12,7 @@
 </head>
 <body>
 Thank you ${currentUser.fullName} for signing up for the following event:
+${message} <br>
 <table border="1">
     <tr>
         <th>Event ID</th>
@@ -51,28 +53,9 @@ Thank you ${currentUser.fullName} for signing up for the following event:
         <td>${event.description}</td>
         <td>${event.date}</td>
         <td>${event.skillsneeded}</td>
-        <%--        <td>${message}
-                    <c:choose>
-                        <c:when test="${attendee.isVolunteer=='1'}">
-                            Yes
-                            <br/>
-                        </c:when>
-                        <c:otherwise>
-                            No
-                            <br/>
-                        </c:otherwise>
-                    </c:choose>
-                </td>--%>
+
         <td>
-            <%--<c:choose>
-                <c:when test="${message!='null'}">
-                    ${message}
-                    <br/>
-                </c:when>
-            </c:choose>--%>
-            <%--
-                            <c:otherwise>
-            --%>
+
             <c:choose>
                 <c:when test="${attendee.isVolunteer=='1'}">
                     Yes

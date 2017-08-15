@@ -572,27 +572,30 @@ public class HomeController {
 
         UsersEntity currentUser = UsersDao.getExact(userCookie(request).getValue(), "userID").get(0);
         EventsEntity event = EventDao.getExact(eventID, "eventID").get(0);
-        AccessibilityEntity accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
+        AccessibilityEntity accessibility = new AccessibilityEntity();
+        if (AccessibilityDao.getExact(eventID, "eventID").size() > 0) {
+            accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
+        }
 
         if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
 
             UserattendingEntity userAttending = UserattendingDao.getExact(eventID, "eventID").get(0);
-
-            if (userAttending.getUserID().equals(currentUser.getUserID())) {
+            if (userAttending.getUserID().equals(currentUser.getUserID())&& userAttending.getIsVolunteer() == 0) {
                 model.addAttribute("message", "You've already signed up to attend.");
-                return "confirmationpage";
             }
         }
+
+
 
         attendee.setEventID(eventID);
         attendee.setUserID(userCookie(request).getValue());
         attendee.setIsVolunteer((byte) 0);
+        UserattendingDao.add(attendee);
 
         model.addAttribute("event", event);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("attendee", attendee);
         model.addAttribute("accessibility", accessibility);
-
         return "confirmationpage";
     }
 
@@ -603,22 +606,25 @@ public class HomeController {
 
         UsersEntity currentUser = UsersDao.getExact(userCookie(request).getValue(), "userID").get(0);
         EventsEntity event = EventDao.getExact(eventID, "eventID").get(0);
-        AccessibilityEntity accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
+
+        AccessibilityEntity accessibility = new AccessibilityEntity();
+        if (AccessibilityDao.getExact(eventID, "eventID").size() > 0) {
+            accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
+        }
 
         if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
 
             UserattendingEntity userVolunteering = UserattendingDao.getExact(eventID, "eventID").get(0);
 
-            if (userVolunteering.getUserID().equals(currentUser.getUserID())) {
-                model.addAttribute("message", "You've already signed up to attend.");
-                return "confirmationpage";
+            if (userVolunteering.getUserID().equals(currentUser.getUserID()) && userVolunteering.getIsVolunteer() == 1) {
+                model.addAttribute("message", "You've already signed up to volunteer.");
             }
         }
 
         volunteer.setEventID(eventID);
         volunteer.setUserID(userCookie(request).getValue());
         volunteer.setIsVolunteer((byte) 1);
-
+        UserattendingDao.add(volunteer);
         model.addAttribute("event", event);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("attendee", volunteer);
