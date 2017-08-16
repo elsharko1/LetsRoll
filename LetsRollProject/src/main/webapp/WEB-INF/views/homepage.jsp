@@ -117,238 +117,57 @@
 
                                 <a href="/logout" class="section-scroll btn btn-md btn-primary">Logout</a>
 
-                                                     </div>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                     </div>
-                                     <div class="container">
-                                         <div class="navbar-header">
-                                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                                 <span class="icon-bar"></span>
-                                                 <span class="icon-bar"></span>
-                                                 <span class="icon-bar"></span>
-                                             </button>
-                                             <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoJRMN8.jpg" style="height:95px;width:125px"></a>
-                                             <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoLetsRoll.jpg" style="height:95px;width:150px"></a>
-                                         </div>
-                                         <div class="navbar-collapse collapse">
-                                             <ul class="nav navbar-nav navbar-right">
-                                                 <li class="megadrop"><a class="active" href="index.html">Home</a>
-                                                     <div class="megadrop-down">
-                                                         <div class="container">
-                                                             <div class="dropdown">
-                                                                 <div class="row">
-                                                                     <div class="col-md-3 col-sm-6">
-                                                                         <ul>
-                                                                             <li><a href="index.html">Home 1 - Default</a></li>
-                                                                             <li><a href="index-2.html">Home 2</a></li>
-                                                                             <li><a href="index-3.html">Home 3</a></li>
-                                                                             <li><a href="index-4.html">Home 4</a></li>
-                                                                         </ul>
-                                                                     </div>
-                                                                     <div class="col-md-3 col-sm-6">
-                                                                         <ul>
-                                                                             <li><a href="index-5.html">Home 5</a></li>
-                                                                             <li><a href="index-6.html">Home 6</a></li>
-                                                                             <li><a href="index-7.html">Home 7</a></li>
-                                                                             <li><a href="index-8.html">Home 8</a></li>
-                                                                         </ul>
-                                                                     </div>
-                                                                     <div class="col-md-3 col-sm-6">
-                                                                         <ul>
-                                                                             <li><a href="index-portfolio.html">Home Portfolio</a></li>
-                                                                             <li><a href="index-landing.html">Landing page</a></li>
-                                                                             <li><a href="index-app.html">App Landing Page</a></li>
-                                                                         </ul>
-                                                                     </div>
-                                                                     <div class="col-md-3 col-sm-6">
-                                                                         <ul class="last-child">
-                                                                             <li><a href="index-one-page.html">One page 1</a></li>
-                                                                             <li><a href="index-one-page2.html">One page 2</a></li>
-                                                                             <li><a href="index-one-page3.html">One page 3</a></li>
-                                                                             <li><a href="index-one-page4.html">One page 4</a></li>
-                                                                         </ul>
-                                                                     </div>
-                                                                 </div>
-                                                             </div>
-                                                         </div>
-                                                     </div>
-                                                 </li>
-                                                 <li class="megadrop"><a href="/createevent">Create Event</a>
-                                                     <div class="megadrop-down">
-                                                         <div class="container">
-                                                             <div class="dropdown">
-                                                                 <div class="row">
-                                                                     <div class="col-md-3 col-sm-6">
-                                                                         <ul>
-                                                                             <li><a href="pages-about.html">About us 1</a></li>
-                                                                             <li><a href="pages-about-2.html">About us 2</a></li>
-                                                                             <li><a href="pages-about-3.html">About us 3</a></li>
-                                                                         </ul>
-                                                                     </div>
-                                                                     <div class="col-md-3 col-sm-6">
-                                                                         <ul>
-                                                                             <li><a href="pages-services.html">Services 1</a></li>
-                                                                             <li><a href="pages-services-2.html">Services 2</a></li>
-                                                                             <li><a href="pages-services-3.html">Services 3</a></li>
-                                                                         </ul>
-                                                                     </div>
-                                                                     <div class="col-md-3 col-sm-6">
-                                                                         <ul>
-                                                                             <li><a href="pages-team.html">Team members 1</a></li>
-                                                                             <li><a href="pages-team-2.html">Team members 2</a></li>
-                                                                             <li><a href="pages-register.html">Register</a></li>
-                                                                         </ul>
-                                                                     </div>
-                                                                     <div class="col-md-3 col-sm-6">
-                                                                         <ul class="last-child">
-                                                                             <li><a href="#.html">Error 404 (next update)</a></li>
-                                                                             <li><a href="#html.html">Under construction (next update)</a></li>
-                                                                         </ul>
-                                                                     </div>
-                                                                 </div>
-                                                             </div>
-                                                         </div>
-                                                     </div>
-                                                 </li>
-                                                 <li class="drop"><a href="/profile">Edit Profile</a>
-                               <!--                      <ul class="drop-down">
-                                                         <li><a href="blog-grid-3col.html">Grid<i class="fa fa-angle-right"></i></a>
-                                                             <ul class="drop-down level3">
-                                                                 <li><a href="blog-grid-3col.html">3 Colums</a>
-                                                                 <li><a href="blog-grid-4col.html">4 Colums</a>
-                                                                 <li><a href="blog-grid-leftsidebar.html">Left Sidebar</a>
-                                                                 <li><a href="blog-grid-rightsidebar.html">Right Sidebar</a>
-                                                             </ul>
-                                                         </li>
-                                                         <li><a href="blog-standard.html">Standart<i class="fa fa-angle-right"></i></a>
-                                                             <ul class="drop-down level3">
-                                                                 <li><a href="blog-fullwidth.html">Fullwidth</a>
-                                                                 <li><a href="blog-leftsidebar.html">Left Sidebar</a>
-                                                                 <li><a href="blog-rightsidebar.html">Right Sidebar</a>
-                                                             </ul>
-                                                         </li>
-                                                         <li><a href="blog-masonry.html">Masonry<i class="fa fa-angle-right"></i></a>
-                                                             <ul class="drop-down level3">
-                                                                 <li><a href="blog-masonry.html">Fullwidth</a>
-                                                                 <li><a href="blog-masonry-leftsidebar.html">Left Sidebar</a>
-                                                                 <li><a href="blog-masonry-rightsidebar.html">Right Sidebar</a>
-                                                             </ul>
-                                                         </li>
-                                                         <li><a href="single-post.html">Single Post</a></li>
-                                                     </ul>  -->
-                                                 </li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoJRMN8.jpg" style="height:95px;width:125px"></a>
+                <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoLetsRoll.jpg" style="height:95px;width:150px"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
 
-                                                 <li class="drop"><a href="/feedbackpage">Feedback</a>
-                                                     <ul class="drop-down">
+                    <li class="drop"><a href="/createevent">Create Event</a>
+                    </li>
 
-                                                         <li><a href="portfolio-standart-3col.html">Portfolio 3 Col<i class="fa fa-angle-right"></i></a>
-                                                             <ul class="drop-down level3">
-                                                                 <li><a href="pportfolio-standart-3col-fullwidth.html">Fullwidth</a>
-                                                                 <li><a href="portfolio-standart-3col.html">Boxed</a>
-                                                                 <li><a href="portfolio-description-3col.html">With describtion</a>
-                                                             </ul>
-                                                         </li>
+                    <li class="drop"><a href="/profile">Edit Profile</a>
+                    </li>
 
-                                                         <li><a href="portfolio-standart-4col.html">Portfolio 4 Col<i class="fa fa-angle-right"></i></a>
-                                                             <ul class="drop-down level3">
-                                                                 <li><a href="pportfolio-standart-4col-fullwidth.html">Fullwidth</a>
-                                                                 <li><a href="portfolio-standart-4col.html">Boxed</a>
-                                                                 <li><a href="portfolio-description-4col.html">With describtion</a>
-                                                             </ul>
-                                                         </li>
+                    <li class="drop"><a href="/feedbackpage">Feedback</a>
+                    </li>
 
-                                                         <li><a href="portfolio-masonry.html">Masonry<i class="fa fa-angle-right"></i></a>
-                                                             <ul class="drop-down level3">
-                                                                 <li><a href="portfolio-masonry.html">Standard</a>
-                                                                 <li><a href="portfolio-masonry-fullscreen.html">Fullscreen</a>
-                                                                 <li><a href="portfolio-masonry-fullwidth.html">Fullwidth</a>
-                                                                 <li><a href="portfolio-masonry-fullwidth-2.html">Fullwidth 2</a>
-                                                             </ul>
-                                                         </li>
-                                                         <li><a href="single-project.html">Single Project<i class="fa fa-angle-right"></i></a>
-                                                             <ul class="drop-down level3">
-                                                                 <li><a href="single-project.html">Single Project 1</a>
-                                                                 <li><a href="single-project-2.html">Single Project 2</a>
-                                                                 <li><a href="single-project-3.html">Single Project 3</a>
-                                                                 <li><a href="single-video-project.html">Single Project 4</a>
-                                                                 <li><a href="single-video-project-2.html">Single Project 4</a>
-                                                             </ul>
-                                                         </li>
-                                                     </ul>
-                                                 </li>
-                                                 <li class="drop"><a href="/yourevents">Your Events</a>
-                                                     <ul class="drop-down">
-                                                         <li><a href="shop.html">Shop homepage</a></li>
-                                                         <li><a href="shop-with-sidebar.html">With Left Sidebar - Grid</a></li>
-                                                         <li><a href="shop-with-sidebar-list.html">With Left Sidebar - List</a></li>
-                                                         <li><a href="shop-single-product.html">Product Page</a></li>
-                                                         <li><a href="shop-cart.html">Shopping Cart</a></li>
-                                                         <li><a href="shop-checkout.html">Checkout</a></li>
-                                                     </ul>
-                                                 </li>
-                                                 <li class="megadrop"><a href="#.html">Shortcodes</a>
-                                                     <div class="megadrop-down">
-                                                         <div class="container">
-                                                             <div class="dropdown">
-                                                                 <div class="row">
-                                                                     <div class="col-md-3 col-sm-6">
-                                                                         <ul>
-                                                                             <li><a href="shortcodes-buttons.html">Buttons</a></li>
-                                                                             <li><a href="shortcodes-typography.html">Typography</a></li>
-                                                                             <li><a href="shortcodes-icon-list.html">Icon lists</a></li>
-                                                                         </ul>
-                                                                     </div>
-                                                                     <div class="col-md-3 col-sm-6">
-                                                                         <ul>
-                                                                             <li><a href="shortcodes-icon-box.html">Icon boxes</a></li>
-                                                                             <li><a href="shortcodes-promo-box.html">Promo boxes</a></li>
-                                                                             <li><a href="shortcodes-lightbox.html">Lightbox</a></li>
-                                                                         </ul>
-                                                                     </div>
-                                                                     <div class="col-md-3 col-sm-6">
-                                                                         <ul>
-                                                                             <li><a href="shortcodes-sliders.html">Sliders</a></li>
-                                                                             <li><a href="shortcodes-tabs.html">Tabs</a></li>
-                                                                             <li><a href="shortcodes-alerts.html">Alert boxes</a></li>
-                                                                         </ul>
-                                                                     </div>
-                                                                     <div class="col-md-3 col-sm-6">
-                                                                         <ul class="last-child">
-                                                                             <li><a href="shortcodes-toggles.html">Toggles &amp; accordions</a></li>
-                                                                             <li><a href="shortcodes-modal.html">Modal &amp; popovers</a></li>
-                                                                         </ul>
-                                                                     </div>
-                                                                 </div>
-                                                             </div>
-                                                         </div>
-                                                     </div>
-                                                 </li>
-                                                 <li class="drop"><a href="contact.html">Contact</a>
-                                                     <ul class="drop-down right-side">
-                                                         <li><a href="contact.html">Contact Page 1</a></li>
-                                                         <li><a href="contact2.html">Contact Page 2</a></li>
-                                                     </ul>
-                                                 </li>
-                                                 <li>
-                                                     <%--<a href="#" class="open-search"><i class="fa fa-search"></i></a>
-                                                     <form class="form-search">
-                                                         <div class="container">
-                                                             <input type="search" placeholder="Type to Search"/>
-                                                             <a href="#" class="close-search">x</a>
-                                                         </div>
-                                                     </form>--%>
-                                                     <a href="#" class="open-search"><i class="fa fa-search"></i></a>
-                                                         <form class="form-search" action="/searchresults" method="get">
-                                                             <div class="container">
-                                                                 <input type="text" name = "keywords" required>
-                                                                 <input type="submit" value="Search By Keywords">
-                                                             </div>
-                                                     </form>
-                                                 </li>
-                                             </ul>
-                                         </div> <!-- end navbar-collapse -->
+                    <li class="drop"><a href="/yourevents">Your Events</a>
+                    </li>
+
+                    <li class="drop"><a href="#contact-section">Contact</a>
+                    </li>
+
+                    <li>
+                        <%--<a href="#" class="open-search"><i class="fa fa-search"></i></a>
+                        <form class="form-search">
+                            <div class="container">
+                                <input type="search" placeholder="Type to Search"/>
+                                <a href="#" class="close-search">x</a>
+                            </div>
+                        </form>--%>
+                        <a href="#" class="open-search"><i class="fa fa-search"></i></a>
+                        <form class="form-search" action="/searchresults" method="get">
+                            <div class="container">
+                                <input type="text" name = "keywords" required>
+                                <input type="submit" value="Search By Keywords">
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </div> <!-- end navbar-collapse -->
         </div>
     </nav>
 </header>
@@ -547,8 +366,8 @@
     <!-- Contact info
     ================================================== -->
     <section>
-         <div class="parallax-section contact-info" data-stellar-background-ratio="1">
-             <!-- <img alt="" src="webresources/assets/images/slides/slide-1.jpg" style="height:300px;width:300px">  -->
+        <div class="parallax-section contact-info" data-stellar-background-ratio="1">
+            <!-- <img alt="" src="webresources/assets/images/slides/slide-1.jpg" style="height:300px;width:300px">  -->
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
@@ -567,8 +386,8 @@
                 </div> <!-- end row -->
             </div> <!-- end container -->
         </div>
-     </section>
-     <!-- end contact-info -->
+    </section>
+    <!-- end contact-info -->
 
     <!-- Contact-section
     ================================================== -->
@@ -698,8 +517,10 @@
                 <div class="col-md-4 col-sm-6">
 
                     <div class="widget footer-widget text-widget">
-                        <h4>About Ement</h4>
-                        <p>Dantes remained confused and silent by this explanation of the thoughts which had unconsciously been working in his mind, or rather soul; for there are two distinct sorts of ideas. Dantes remained confused and silent by this explanation.</p>
+                        <h4>About JRMN8</h4>
+                        <p>We are four Java Bootcamp classmates at Grand Circus - Detroit. It was fate that brought us together,
+                            now we call ourselves JRMN8. Our initials and 8 weeks of bootcamp. Our group name is pronounced GERMINATE and our meaning is:
+                            Come into existence and develop.</p>
                     </div> <!-- end footer-widget -->
 
                     <div class="widget footer-widget clearfix widget-newsletter">
@@ -776,7 +597,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p>Ement @2016 by <span>Clas-design</span>. All Rights Reserved</p>
+                    <p>JRMN8 @2017 by <span>Clas-design</span>. All Rights Reserved</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="footer-menu text-right">

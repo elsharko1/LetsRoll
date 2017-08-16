@@ -63,7 +63,7 @@ public class UsersDao {
 
             c.add(Restrictions.like(column, "%" + searchTerm + "%"));
             ArrayList<UsersEntity> ev = (ArrayList<UsersEntity>) c.list();
-
+            selectUsers.close();
             return ev;
         }
 
@@ -89,7 +89,7 @@ public class UsersDao {
 
             c.add(Restrictions.like(column, searchTerm));
             ArrayList<UsersEntity> ev = (ArrayList<UsersEntity>) c.list();
-
+            selectUsers.close();
             return ev;
         }
 

@@ -87,6 +87,7 @@ public class AccessibilityDao {
                 ev.add(e);
             }
         }
+        selectEvents.close();
         // returns the list
         return ev;
     }
@@ -111,7 +112,7 @@ public class AccessibilityDao {
 
         c.add(Restrictions.like(column, searchTerm));
         ArrayList<AccessibilityEntity> av = (ArrayList<AccessibilityEntity>) c.list();
-
+        selectAccessibility.close();
         return av;
     }
 

@@ -53,8 +53,8 @@ public class HomeController {
     /**
      * Configuration and SessionFactory will be used for the DAO.
      */
+
     Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-    SessionFactory sessionFact = cfg.buildSessionFactory();
 
     /**
      * The app launches on this welcome page, checks if the user is already logged in and if not, upon clicking login,
@@ -64,7 +64,8 @@ public class HomeController {
     @RequestMapping("/")
     public ModelAndView helloWorld(HttpServletRequest request, HttpServletResponse response) {
 
-        response.addCookie(new Cookie("userID", ""));
+        // see if we need to do this at all.
+        // response.addCookie(new Cookie("userID", ""));
 
         return new ModelAndView("welcome", "", "");
 

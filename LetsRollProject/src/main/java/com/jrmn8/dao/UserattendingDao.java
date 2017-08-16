@@ -72,6 +72,7 @@ public class UserattendingDao {
             c.add(Restrictions.like(column, searchTerm));
             ev = (ArrayList<UserattendingEntity>) c.list();
         }
+        selectUserAttending.close();
         return ev;
     }
 

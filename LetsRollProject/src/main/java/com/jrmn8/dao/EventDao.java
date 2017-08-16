@@ -72,6 +72,7 @@ public class EventDao {
         Query query = selectEvents.createQuery(hql);
         ArrayList<EventsEntity> ev = (ArrayList<EventsEntity>) query.list();
 
+        selectEvents.close();
         //returns trhe array list above
         return ev;
     }
@@ -94,12 +95,12 @@ public class EventDao {
                 return null;
         }
 
-        Session selectUsers = sessionFact.openSession();
-        selectUsers.beginTransaction();
+        Session selectEvents = sessionFact.openSession();
+        selectEvents.beginTransaction();
 
         // Criteria is used to create the query
         //indicate which entity class to create the criteria on
-        Criteria c = selectUsers.createCriteria(EventsEntity.class);
+        Criteria c = selectEvents.createCriteria(EventsEntity.class);
 
         // results are returned as list and cast to an ArrayList
         //applies a restriction that checks for our exact search term
@@ -108,7 +109,7 @@ public class EventDao {
         //any event that meets this criteria gets added to the array list
         c.add(Restrictions.like(column, searchTerm));
         ArrayList<EventsEntity> ev = (ArrayList<EventsEntity>) c.list();
-
+        selectEvents.close();
         return ev;
     }
 
