@@ -11,7 +11,7 @@
     <title>Let's Roll!</title>
 </head>
 
-<body style="background-color:powderblue;">
+<body style="background-color:powderblue;">${status}
 
 <div class="oauthDemo">
     <%
@@ -32,7 +32,7 @@
 <p>Meet our TEAM, JRMN8!</p>
 
 <br>
-<h1>${status}</h1>
+<h1></h1>
 <br>
 <ul style="list-style-type:square">
     <li>Jenny</li> <br>
