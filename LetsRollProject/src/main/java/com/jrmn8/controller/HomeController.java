@@ -408,13 +408,13 @@ public class HomeController {
 
         // replaces userID field(having ID number) with their full name
         for (EventsEntity e : volunteer) {
-            if (!e.getCreator().equals("evdb")) {
+            if (UsersDao.getExact(e.getCreator(), "userID").size() != 0 ) {
                 e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
             }
         }
         // replaces userID field(having ID number) with their full name
         for (EventsEntity e : attendee) {
-            if (!e.getCreator().equals("evdb")) {
+            if (UsersDao.getExact(e.getCreator(), "userID").size() != 0 ) {
                 e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
             }
         }
