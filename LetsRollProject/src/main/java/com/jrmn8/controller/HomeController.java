@@ -62,11 +62,9 @@ public class HomeController {
      * including a cookie that holds the userID we receive from google upon successful login.
      */
     @RequestMapping("/")
-    public ModelAndView helloWorld(HttpServletRequest request) {
+    public ModelAndView helloWorld(HttpServletRequest request, HttpServletResponse response) {
 
-        if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("homepage", "status", "You are now welcome to create an event!");
-        }
+        response.addCookie(new Cookie("userID", ""));
 
         return new ModelAndView("welcome", "", "");
 
@@ -186,13 +184,15 @@ public class HomeController {
     @RequestMapping("/profile")
     public ModelAndView profilePage(Model model, HttpServletRequest request) {
 
+        if (!isLoggedIn(request.getCookies()))
+            return new ModelAndView("welcome", "status", "Please Login First");
+
         Cookie cook = userCookie(request);
         UsersEntity user = UsersDao.getExact(cook.getValue(), "userID").get(0);
         model.addAttribute("user", user);
-        if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("profile", "model", "");
-        }
-        return new ModelAndView("welcome", "status", "Please Login First");
+
+        return new ModelAndView("profile", "model", "");
+
 
     }
 
@@ -208,6 +208,9 @@ public class HomeController {
     @RequestMapping("/editprofile")
     public ModelAndView editprofilePage(Model model, HttpServletRequest request) {
 
+        if (!isLoggedIn(request.getCookies()))
+            return new ModelAndView("welcome", "status", "Please Login First");
+
         String userID = userCookie(request).getValue();
         UsersEntity user = new UsersEntity();
         user.setFullName(request.getParameter("fullName"));
@@ -219,10 +222,7 @@ public class HomeController {
 
         model.addAttribute("user", user);
 
-        if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("editprofile", "model", "");
-        }
-        return new ModelAndView("welcome", "status", "Please Login First");
+        return new ModelAndView("editprofile", "model", "");
 
     }
 
@@ -234,21 +234,21 @@ public class HomeController {
 
     @RequestMapping("/createevent")
     public ModelAndView createEventPage(HttpServletRequest request) {
-
-        //get user login cookie
-        if (isLoggedIn(request.getCookies())) {
+        if (!isLoggedIn(request.getCookies()))
+            return new ModelAndView("welcome", "status", "Please Login First");
+        else
             return new ModelAndView("createevent", "status", "You are now welcome to create an event!");
-        }
-        return new ModelAndView("welcome", "status", "Please Login First");
+
 
     }
 
     /**
      * This page comes from the homepage, after a user has entered keywords to search for in events.
      * We search in LetsRoll's Event Database and Eventful.
-     * @param model - model to add our search results to
+     *
+     * @param model    - model to add our search results to
      * @param keywords - keywords to search with
-     * @param request - session to pull cookies from
+     * @param request  - session to pull cookies from
      * @return searchresults.jsp that displays all our valid results.
      */
     @RequestMapping("/searchresults")
@@ -317,16 +317,12 @@ public class HomeController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        if (isLoggedIn(request.getCookies())) {
             return new ModelAndView("searchresults", "message", "");
-        }
-        return new ModelAndView("welcome", "status", "Please Login First");
-
     }
 
     /**
      * Functionality not implemented yet. This is a stretch goal.
+     *
      * @param model
      * @param request
      * @return
@@ -342,12 +338,11 @@ public class HomeController {
         // Directed prompts above a text field to take in feedback. Ask:
         // Were the accessbility options valid? Did the Event Coordinator do what he was supposed to?
         // Other comments.
-
-
-        if (isLoggedIn(request.getCookies())) {
+        if (!isLoggedIn(request.getCookies()))
+            return new ModelAndView("welcome", "status", "Please Login First");
+        else
             return new ModelAndView("feedbackpage", "status", "You are now welcome to creat an event!");
-        }
-        return new ModelAndView("welcome", "status", "Please Login First");
+
     }
 
     /**
@@ -356,13 +351,16 @@ public class HomeController {
      * does some queries to pull out events that possess the userID.
      * sorting the results, make them all mutually exclusive
      * first display just attending, then ones you're volunteering at, and finally ones you're coordinating.
-     * @param model - model to display events with
+     *
+     * @param model   - model to display events with
      * @param request - session to request cookies from.
      * @return yourevents.jsp, a page that shows events the currentUser is affiliated with.
      */
     @RequestMapping("/yourevents")
     public ModelAndView yourEventsPage(Model model, HttpServletRequest request) {
 
+        if (!isLoggedIn(request.getCookies()))
+            return new ModelAndView("welcome", "status", "Please Login First");
         // Should also display feedback once date has passed.[Stretch Goal]
 
         ArrayList<EventsEntity> created = EventDao.getExact(userCookie(request).getValue(), "creator");
@@ -389,7 +387,6 @@ public class HomeController {
                 e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
             }
         }
-
         // replaces userID field(having ID number) with their full name
         for (EventsEntity e : attendee) {
             if (!e.getCreator().equals("evdb")) {
@@ -401,10 +398,8 @@ public class HomeController {
         model.addAttribute("volunteer", volunteer);
 
 
-        if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("yourevents", "status", model);
-        }
-        return new ModelAndView("welcome", "status", "Please Login First");
+        return new ModelAndView("yourevents", "status", model);
+
     }
 
 
@@ -450,16 +445,15 @@ public class HomeController {
         model.addAttribute("newEvent", newEvent);
         model.addAttribute("newAccess", newAccess);
 
-        if (isLoggedIn(request.getCookies())) {
-            return new ModelAndView("eventcreated", "status", "You are now welcome to creat an event!");
-        }
-        return new ModelAndView("welcome", "status", "Please Login First");
+        return new ModelAndView("eventcreated", "status", "You are now welcome to creat an event!");
+
     }
 
     /**
      * confirms you're attending after you click 'attend' on an event in searchresults.
      * return event details on the page so user knows what event they just registered for.
-     * @param model - model to add userattending stuff to display in the confirmationpage.
+     *
+     * @param model   - model to add userattending stuff to display in the confirmationpage.
      * @param eventID - eventID to match up with in Database.
      * @param request - session to request cookies.
      * @return confirmationpage.jsp that has a confirmation for whatever event you just signed up for.
@@ -500,10 +494,12 @@ public class HomeController {
         model.addAttribute("accessibility", accessibility);
         return "confirmationpage";
     }
+
     /**
      * confirms you're volunteering after clicking 'volunteer' on an event in searchresults.
      * return event details on the page so user knows what event they just registered for.
-     * @param model - model to add userattending stuff to display in the confirmationpage.
+     *
+     * @param model   - model to add userattending stuff to display in the confirmationpage.
      * @param eventID - eventID to match up with in Database.
      * @param request - session to request cookies.
      * @return confirmationpage.jsp that has a confirmation for whatever event you just signed up for.
