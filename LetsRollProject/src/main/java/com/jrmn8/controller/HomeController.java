@@ -259,14 +259,13 @@ public class HomeController {
             String keyword = keywords.replaceAll(" ", "%20");
 
             // apiKey is a credential given by Eventful to use in order to search their DataBase ('DB')
-            String apiKey = "9jgSrPMqWvRQm37Q";
 
             // This is the http that we go to in order to search.
             // Using port 80 = http. Different port for https, but that's irrelevant.
             HttpHost host = new HttpHost("api.eventful.com", 80, "http");
 
             // Build a URL in the way that Eventful requires in order to search.
-            HttpGet getPage = new HttpGet("/json/events/search?app_key=" + apiKey + "&keywords=" + keyword);
+            HttpGet getPage = new HttpGet("/json/events/search?app_key=" + Information.APIKEY + "&keywords=" + keyword);
 
             // The HTTP page we get after we execute the above getpage.
             // this literally gets us a http page that we can theoretically view in our browser

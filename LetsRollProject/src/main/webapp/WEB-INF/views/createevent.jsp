@@ -194,7 +194,7 @@
     </textarea>
     <br>
     Skills Needed: <br>
-    <select multiple name="skillsneeded">
+    <select multiple name="skillsneeded" required>
         <option value="Disabled">Disabled</option>
         <option value="Children">Children</option>
         <option value="People">People</option>
