@@ -296,7 +296,7 @@ public class HomeController {
                 event.setLocation(array.getJSONObject(i).getString("venue_name") + array.getJSONObject(i).getString("venue_address"));
                 event.setDescription(array.getJSONObject(i).getString("description"));
                 model.addAttribute("date", (array.getJSONObject(i).getString("start_time")));
-                event.setSkillsneeded("skill" + i);
+                event.setSkillsneeded("Technical");
 
                 // Even though this says add, it's actually addorupdate
                 // so no errors are thrown.
