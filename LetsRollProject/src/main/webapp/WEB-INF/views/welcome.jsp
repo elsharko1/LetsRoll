@@ -115,7 +115,7 @@
                         <div class="c-vertical">
                             <div class="container">
                                 <div class="hero-text">
-                                    &lt;%&ndash;<h1 class="animated out" data-animation="slideInDown"
+                                    <h1 class="animated out" data-animation="slideInDown"
                                                     data-delay="0.5">Let's<span> Roll!</span></h1>
                                     <p class="animated out" data-animation="slideInLeft" data-delay="0.5">Find
                                         your favorite events that are wheelchair accessible here!</p>
@@ -144,7 +144,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>&ndash;%&gt;
+                                    </div>
                                 </div> <!-- end col-md-6 -->
                             </div> <!-- End container -->
                         </div> <!-- end c-vertical -->
