@@ -14,17 +14,14 @@ import com.google.api.client.json.jackson.JacksonFactory;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Arrays;
 
 public final class GoogleOAUTH {
 
-    private static final String CLIENT_ID = "608802918864-3qu5pqf1siefm8vpmq0n7t789boj3g7d.apps.googleusercontent.com";
-    private static final String CLIENT_SECRET = "Qp_kGxRUX900xB9XEKIow_lH";
     private static final String CALLBACK_URI = "http://localhost:8080/homepage";
-    // private static final String CALLBACK_URI = "http://letsroll.us-east-2.elasticbeanstalk.com/homepage";
-    // private static final String CALLBACK_URI = "https://letsroll.us-east-2.elasticbeanstalk.com/homepage";
     private static final Iterable<String> SCOPE = Arrays.asList("https://www.googleapis.com/auth/userinfo.profile;https://www.googleapis.com/auth/userinfo.email".split(";"));
     private static final String USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
     private static final JsonFactory JSON_FACTORY = new JacksonFactory();
@@ -42,7 +39,7 @@ public final class GoogleOAUTH {
      * Then we use generateStateToken().
      */
     public static void buildGoogleOAUTH() {
-        flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, CLIENT_ID, CLIENT_SECRET, SCOPE).build();
+        flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, Information.CLIENT_ID, Information.CLIENT_SECRET, SCOPE).build();
         generateStateToken();
     }
 

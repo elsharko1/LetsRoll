@@ -10,8 +10,11 @@
     <title>Feedback page</title>
 </head>
 <body>
-<p>this is our feedback page</p>
-<p> feedback from recently attended events from our customers</p>
+<h3>Feedback for ${name}</h3>
+<form action="">$</form>
+<br>
+<textarea rows="5" cols="50" name="feedback">
+    </textarea>
 <a href="/homepage">Home page</a>
 </body>
 </html>

@@ -259,14 +259,13 @@ public class HomeController {
             String keyword = keywords.replaceAll(" ", "%20");
 
             // apiKey is a credential given by Eventful to use in order to search their DataBase ('DB')
-            String apiKey = "9jgSrPMqWvRQm37Q";
 
             // This is the http that we go to in order to search.
             // Using port 80 = http. Different port for https, but that's irrelevant.
             HttpHost host = new HttpHost("api.eventful.com", 80, "http");
 
             // Build a URL in the way that Eventful requires in order to search.
-            HttpGet getPage = new HttpGet("/json/events/search?app_key=" + apiKey + "&keywords=" + keyword);
+            HttpGet getPage = new HttpGet("/json/events/search?app_key=" + Information.APIKEY + "&keywords=" + keyword);
 
             // The HTTP page we get after we execute the above getpage.
             // this literally gets us a http page that we can theoretically view in our browser
@@ -303,16 +302,23 @@ public class HomeController {
                 // so no errors are thrown.
                 EventDao.add(event);
             }
+            ArrayList<EventsEntity> events = EventDao.getLike(keywords);
+            for (EventsEntity e : events) {
+                //get(0) because our DAO's return us a list but the list only has one true entity which
+                //is the creator
+                if(!e.getCreator().equals("evdb"))
+                e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
 
+            }
             // Then we use our DAO to search through our database with the keywords.
-            model.addAttribute("searchresults", EventDao.getLike(keywords));
+            model.addAttribute("searchresults", events);
 
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-            return new ModelAndView("searchresults", "message", "");
+        return new ModelAndView("searchresults", "message", "");
     }
 
     /**
@@ -323,7 +329,7 @@ public class HomeController {
      * @return
      */
     @RequestMapping("/feedbackpage")
-    public ModelAndView feedbackPage(Model model, HttpServletRequest request) {
+    public ModelAndView feedbackPage(Model model, HttpServletRequest request, @RequestParam("id") String eventID) {
         // so in our database we have a userevents table
         // this links userid with eventid that they are participating in
         // additionally there is a field for feedback
@@ -333,6 +339,10 @@ public class HomeController {
         // Directed prompts above a text field to take in feedback. Ask:
         // Were the accessbility options valid? Did the Event Coordinator do what he was supposed to?
         // Other comments.
+
+        String name = EventDao.getExact(eventID, "eventID").get(0).getTitle();
+        model.addAttribute(name);
+
         if (!isLoggedIn(request.getCookies()))
             return new ModelAndView("welcome", "status", "Please Login First");
         else
@@ -468,19 +478,32 @@ public class HomeController {
             accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
         }
 
+        boolean exists = false;
         if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
-
-            UserattendingEntity userAttending = UserattendingDao.getExact(eventID, "eventID").get(0);
-            if (userAttending.getUserID().equals(currentUser.getUserID()) && userAttending.getIsVolunteer() == 0) {
-                model.addAttribute("message", "You've already signed up to attend.");
+            for (UserattendingEntity use :
+                    UserattendingDao.getExact(eventID, "eventID")) {
+                if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 0) {
+                    model.addAttribute("message", "- however, you've already signed up to attend.");
+                    exists = true;
+                    break;
+                } else if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 1) {
+                    model.addAttribute("message", "- we've swapped your volunteering status to attending.");
+                    UserattendingEntity temp = use;
+                    temp.setIsVolunteer((byte) 0);
+                    UserattendingDao.update(temp);
+                    exists = true;
+                    break;
+                }
             }
         }
 
         //this is putting the user down for attending the event
-        attendee.setEventID(eventID);
-        attendee.setUserID(userCookie(request).getValue());
-        attendee.setIsVolunteer((byte) 0);
-        UserattendingDao.add(attendee);
+        if (!exists) {
+            attendee.setEventID(eventID);
+            attendee.setUserID(userCookie(request).getValue());
+            attendee.setIsVolunteer((byte) 0);
+            UserattendingDao.add(attendee);
+        }
 
         //this actually prints the conversation
         model.addAttribute("event", event);
@@ -512,19 +535,30 @@ public class HomeController {
             accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
         }
 
+        boolean exists = false;
         if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
-
-            UserattendingEntity userVolunteering = UserattendingDao.getExact(eventID, "eventID").get(0);
-
-            if (userVolunteering.getUserID().equals(currentUser.getUserID()) && userVolunteering.getIsVolunteer() == 1) {
-                model.addAttribute("message", "You've already signed up to volunteer.");
+            for (UserattendingEntity use :
+                    UserattendingDao.getExact(eventID, "eventID")) {
+                if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 1) {
+                    model.addAttribute("message", "- however, you've already signed up to volunteer.");
+                    exists = true;
+                    break;
+                } else if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 0) {
+                    model.addAttribute("message", "- we've swapped your attending status to volunteering.");
+                    UserattendingEntity temp = use;
+                    temp.setIsVolunteer((byte) 1);
+                    UserattendingDao.update(temp);
+                    exists = true;
+                    break;
+                }
             }
         }
-
-        volunteer.setEventID(eventID);
-        volunteer.setUserID(userCookie(request).getValue());
-        volunteer.setIsVolunteer((byte) 1);
-        UserattendingDao.add(volunteer);
+        if (!exists) {
+            volunteer.setEventID(eventID);
+            volunteer.setUserID(userCookie(request).getValue());
+            volunteer.setIsVolunteer((byte) 1);
+            UserattendingDao.add(volunteer);
+        }
         model.addAttribute("event", event);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("attendee", volunteer);

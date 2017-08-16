@@ -21,6 +21,7 @@
         <th>Location (Venue Name / Address)</th>
         <th>Description</th>
         <th>Date (Start Time)</th>
+        <th>Feedback</th>
     </tr>
     <c:forEach var="data" items="${attendee}">
         <tr>
@@ -29,6 +30,11 @@
             <td>${data.location}</td>
             <td>${data.description}</td>
             <td>${data.date}</td>
+            <td>
+            <a href="/feedbackpage?id=${data.eventID}">
+                <button value="Feedback">Feedback</button>
+            </a>
+            </td>
         </tr>
     </c:forEach>
 </table>
@@ -40,6 +46,7 @@
         <th>Location (Venue Name / Address)</th>
         <th>Description</th>
         <th>Date (Start Time)</th>
+        <th>Feedback</th>
     </tr>
     <c:forEach var="data" items="${volunteer}">
         <tr>
@@ -48,6 +55,11 @@
             <td>${data.location}</td>
             <td>${data.description}</td>
             <td>${data.date}</td>
+            <td>
+                <a href="/feedbackpage?id=${data.eventID}">
+                    <button value="Feedback">Feedback</button>
+                </a>
+            </td>
         </tr>
     </c:forEach>
 </table>
