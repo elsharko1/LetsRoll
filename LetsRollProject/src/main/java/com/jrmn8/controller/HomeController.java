@@ -344,6 +344,8 @@ public class HomeController {
             return new ModelAndView("welcome", "status", "Please Login First");
 
         String namer = EventDao.getExact(eventID, "eventID").get(0).getTitle();
+
+        System.out.println(userCookie(request).getValue());
         model.addAttribute("name", namer);
         UserattendingEntity u = UserattendingDao.getInstance(eventID, userCookie(request).getValue());
         model.addAttribute("feedbackID", u.getUserattendingid());
@@ -354,7 +356,7 @@ public class HomeController {
 
     @RequestMapping("/feedbackconfirmation")
     public ModelAndView feedbackconfirmation(Model model, HttpServletRequest request,
-                                             @RequestParam("feedbacke") String feedback, @RequestParam("feedbackID") int feedbackID) {
+                                             @RequestParam("feedback") String feedback, @RequestParam("feedbackID") int feedbackID) {
         String fed = String.valueOf(feedbackID);
         ArrayList<UserattendingEntity> uaelist = UserattendingDao.getExact(userCookie(request).getValue(), "userID");
         UserattendingEntity uae = new UserattendingEntity();
