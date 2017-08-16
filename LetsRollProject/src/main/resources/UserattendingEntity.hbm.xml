@@ -5,9 +5,12 @@
 <hibernate-mapping>
 
     <class name="com.jrmn8.UserattendingEntity" table="userattending" schema="letsrolldb">
-        <id name="userID">
-            <column name="userID" sql-type="varchar(50)" length="50"/>
+        <id name="userattendingid">
+            <column name="userattendingid" sql-type="int(10) unsigned"/>
         </id>
+        <property name="userID">
+            <column name="userID" sql-type="varchar(50)" length="50"/>
+        </property>
         <property name="eventID">
             <column name="eventID" sql-type="varchar(99)" length="99"/>
         </property>

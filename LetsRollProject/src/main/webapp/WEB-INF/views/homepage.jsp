@@ -4,50 +4,24 @@
   Date: 8/7/2017
   Time: 3:32 PM
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!-- <html>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <title>Home page</title>
 </head>
 <body>
-<p>
-    this is our home page<br>
-    Search bar<br>
-    Search results page<br>
-    location from eventful<br>
-    create and event button<br>
-    link to profile page<br>
-    link to your events page<br>
-</p>
+<a href="/createevent">Create Event</a><br>
 <a href="/profile">Edit Profile</a><br>
-<a href="/createevent">create event</a><br>
-
+<a href="/feedbackpage">Feedback</a><br>
 <form action="/searchresults" method="get">
     <input type="text" name = "keywords" required>
     <input type="submit" value="Search By Keywords">
 </form>
-<%--<a href="/searchresults">search results</a><br>--%>
-<a href="/feedbackpage">feedback</a><br>
+<a href="/searchresults">search results</a><br>
 <a href="/yourevents">See your events</a><br>
-
-<!-- this is to register a new user -->
-
-<!--<a href="/adduser">Register</a>
-<br>
-<form action="/test" method="get">
-    <input type="text" name="userName" required/>
-    <input type="submit" value="Search">
-</form>
-<!--${sessionScope.get("test")}
-<br>
-<!--${currentuser}
-<br>
 <a href="/logout">Log Out</a><br>
 </body>
-</html> -->
-
-
-
+</html>--%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -141,7 +115,7 @@
                         <div class="right-align">
                             <ul>
 
-                                <a href="#contact-section" class="section-scroll btn btn-md btn-primary">Logout</a>
+                                <a href="/logout" class="section-scroll btn btn-md btn-primary">Logout</a>
 
                                                      </div>
                                                  </div>
@@ -201,7 +175,7 @@
                                                          </div>
                                                      </div>
                                                  </li>
-                                                 <li class="megadrop"><a href="index.html">Pages</a>
+                                                 <li class="megadrop"><a href="/createevent">Create Event</a>
                                                      <div class="megadrop-down">
                                                          <div class="container">
                                                              <div class="dropdown">
@@ -238,7 +212,7 @@
                                                          </div>
                                                      </div>
                                                  </li>
-                                                 <li class="drop"><a href="/profile">Profile</a>
+                                                 <li class="drop"><a href="/profile">Edit Profile</a>
                                <!--                      <ul class="drop-down">
                                                          <li><a href="blog-grid-3col.html">Grid<i class="fa fa-angle-right"></i></a>
                                                              <ul class="drop-down level3">
@@ -266,7 +240,7 @@
                                                      </ul>  -->
                                                  </li>
 
-                                                 <li class="drop"><a href="portfolio-standart-3col.html">Portfolio</a>
+                                                 <li class="drop"><a href="/feedbackpage">Feedback</a>
                                                      <ul class="drop-down">
 
                                                          <li><a href="portfolio-standart-3col.html">Portfolio 3 Col<i class="fa fa-angle-right"></i></a>
@@ -304,7 +278,7 @@
                                                          </li>
                                                      </ul>
                                                  </li>
-                                                 <li class="drop"><a href="shop.html">Shop</a>
+                                                 <li class="drop"><a href="/yourevents">Your Events</a>
                                                      <ul class="drop-down">
                                                          <li><a href="shop.html">Shop homepage</a></li>
                                                          <li><a href="shop-with-sidebar.html">With Left Sidebar - Grid</a></li>
@@ -358,12 +332,19 @@
                                                      </ul>
                                                  </li>
                                                  <li>
-                                                     <a href="#" class="open-search"><i class="fa fa-search"></i></a>
+                                                     <%--<a href="#" class="open-search"><i class="fa fa-search"></i></a>
                                                      <form class="form-search">
                                                          <div class="container">
                                                              <input type="search" placeholder="Type to Search"/>
                                                              <a href="#" class="close-search">x</a>
                                                          </div>
+                                                     </form>--%>
+                                                     <a href="#" class="open-search"><i class="fa fa-search"></i></a>
+                                                         <form class="form-search" action="/searchresults" method="get">
+                                                             <div class="container">
+                                                                 <input type="text" name = "keywords" required>
+                                                                 <input type="submit" value="Search By Keywords">
+                                                             </div>
                                                      </form>
                                                  </li>
                                              </ul>

@@ -15,11 +15,10 @@
 
 <div class="oauthDemo">
     <%
-        final GoogleOAUTH google = new GoogleOAUTH();
-
+        GoogleOAUTH.buildGoogleOAUTH();
         if (request.getParameter("code") == null || request.getParameter("state") == null) {
-            out.println("<a href='" + google.buildLoginUrl() + "'>log in with google</a>");
-            session.setAttribute("state", google.getStateToken());
+            out.println("<a href='" + GoogleOAUTH.buildLoginUrl() + "'>log in with google</a>");
+            session.setAttribute("state", GoogleOAUTH.getStateToken());
         } else if (request.getParameter("code") != null && request.getParameter("state") != null && request.getParameter("state").equals(session.getAttribute("state"))) {
             session.removeAttribute("state");
         }
@@ -40,14 +39,6 @@
     <li>Mark</li> <br>
     <li>Ny</li>
 </ul>
-
-<a href="http://eventful.com/signin?goto=http%3A%2F%2Fdetroit.eventful.com%2Fevents">Sign In</a><br>
-
-(If the system could not pull an existing user from our Database after they signed in with Evenful's API)<br>
-<a href="/registration">Sign Up</a> <br>
-If they are an existing user, then we lead them to the homepage.
-<br>
-<a href="/homepage">Homepage</a>
 
 </body>
 </html>

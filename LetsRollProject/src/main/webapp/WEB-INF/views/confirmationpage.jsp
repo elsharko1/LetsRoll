@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: JRMN8
@@ -10,9 +11,64 @@
     <title>Confirmation Page</title>
 </head>
 <body>
-<p> this is your confirmation. Thank you for helping us out.</p>
-<br>
-<br>
-<a href="/homepage">Home page</a>
+Thank you ${currentUser.fullName} for signing up for the following event:
+${message} <br>
+<table border="1">
+    <tr>
+        <th>Event ID</th>
+        <th>Title</th>
+        <th>Location (Venue Name / Address)</th>
+        <th>Accessibility</th>
+        <th>Description</th>
+        <th>Date (Start Time)</th>
+        <th>Skills Needed</th>
+        <th>Volunteer</th>
+    </tr>
+    <tr>
+        <td>${event.eventID}</td>
+        <td>${event.title}</td>
+        <td>${event.location}</td>
+        <td>
+            <c:choose>
+                <c:when test="${accessibility.blind=='1'}">
+                    Visually Impaired<br/>
+                </c:when>
+            </c:choose>
+            <c:choose>
+                <c:when test="${accessibility.family=='1'}">
+                    Families<br/>
+                </c:when>
+            </c:choose>
+            <c:choose>
+                <c:when test="${accessibility.servicedog=='1'}">
+                    Service Dogs<br/>
+                </c:when>
+            </c:choose>
+            <c:choose>
+                <c:when test="${accessibility.wheelchair=='1'}">
+                    Wheelchairs
+                </c:when>
+            </c:choose>
+        </td>
+        <td>${event.description}</td>
+        <td>${event.date}</td>
+        <td>${event.skillsneeded}</td>
+
+        <td>
+
+            <c:choose>
+                <c:when test="${attendee.isVolunteer=='1'}">
+                    Yes
+                    <br/>
+                </c:when>
+                <c:otherwise>
+                    No
+                    <br/>
+                </c:otherwise>
+            </c:choose>
+        </td>
+    </tr>
+    <br>
+    <a href="/homepage">Home page</a>
 </body>
 </html>

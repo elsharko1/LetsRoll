@@ -12,7 +12,7 @@
     <title>Search results page</title>
 </head>
 <body>
-<h1>This is the JSON Data</h1>
+<h1>Search Results...</h1>
 
 <%--<img src="${imageData}" width="128" height="128"><br>--%>
 <%--${type.key} : ${type.value} <br>--%>
@@ -25,6 +25,8 @@
         <th>Description</th>
         <th>Date (Start Time)</th>
         <th>Skills Needed</th>
+        <th>Attend</th>
+        <th>Volunteer</th>
     </tr>
     <c:forEach var="data" items="${searchresults}">
         <tr>
@@ -35,6 +37,16 @@
             <td>${data.description}</td>
             <td>${data.date}</td>
             <td>${data.skillsneeded}</td>
+            <td>
+                <a href="/addAttendee?id=${data.eventID}">
+                    <button value="Attend">Attend</button>
+                </a>
+            </td>
+            <td>
+                <a href="addVolunteer?id=${data.eventID}">
+                    <button value="Volunteer">Volunteer</button>
+                </a>
+            </td>
         </tr>
     </c:forEach>
 </table>

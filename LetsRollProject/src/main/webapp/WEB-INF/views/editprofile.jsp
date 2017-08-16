@@ -16,5 +16,6 @@ ${user.fullName}<br>
 ${user.email}<br>
 ${user.location}<br>
 ${user.skills}<br>
+<a href="/homepage">Home page</a>
 </body>
 </html>
