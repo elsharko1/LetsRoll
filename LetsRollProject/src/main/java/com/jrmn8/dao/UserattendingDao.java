@@ -81,12 +81,12 @@ public class UserattendingDao extends Dao {
         selectAccessibility.beginTransaction();
 
         // Criteria is used to create the query
-        Criteria c = selectAccessibility.createCriteria(AccessibilityEntity.class);
+        Criteria c = selectAccessibility.createCriteria(UserattendingEntity.class);
 
         // results are returned as list and cast to an ArrayList
-        LogicalExpression le = Restrictions.like("eventID", eventID)
-        c.add();
-        ArrayList<AccessibilityEntity> av = (ArrayList<AccessibilityEntity>) c.list();
+        LogicalExpression le = Restrictions.or(Restrictions.like("eventID", eventID), Restrictions.like("userID", userID));
+        c.add(le);
+        UserattendingEntity av = (UserattendingEntity) c.list().get(0);
         selectAccessibility.close();
         return av;
     }

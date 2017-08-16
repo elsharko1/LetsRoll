@@ -306,8 +306,8 @@ public class HomeController {
             for (EventsEntity e : events) {
                 //get(0) because our DAO's return us a list but the list only has one true entity which
                 //is the creator
-                if(!e.getCreator().equals("evdb"))
-                e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
+                if (!e.getCreator().equals("evdb"))
+                    e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
 
             }
             // Then we use our DAO to search through our database with the keywords.
@@ -340,14 +340,32 @@ public class HomeController {
         // Were the accessbility options valid? Did the Event Coordinator do what he was supposed to?
         // Other comments.
 
-        String name = EventDao.getExact(eventID, "eventID").get(0).getTitle();
-        model.addAttribute(name);
-
         if (!isLoggedIn(request.getCookies()))
             return new ModelAndView("welcome", "status", "Please Login First");
-        else
-            return new ModelAndView("feedbackpage", "status", "You are now welcome to creat an event!");
 
+        String namer = EventDao.getExact(eventID, "eventID").get(0).getTitle();
+        model.addAttribute("name", namer);
+        UserattendingEntity u = UserattendingDao.getInstance(eventID, userCookie(request).getValue());
+        model.addAttribute("feedbackID", u.getUserattendingid());
+        model.addAttribute("feedback", u.getFeedback());
+        return new ModelAndView("feedbackpage", "", "");
+
+    }
+
+    @RequestMapping("/feedbackconfirmation")
+    public ModelAndView feedbackconfirmation(Model model, HttpServletRequest request,
+                                             @RequestParam("feedbacke") String feedback, @RequestParam("feedbackID") int feedbackID) {
+        String fed = String.valueOf(feedbackID);
+        ArrayList<UserattendingEntity> uaelist = UserattendingDao.getExact(userCookie(request).getValue(), "userID");
+        UserattendingEntity uae = new UserattendingEntity();
+        for (UserattendingEntity u : uaelist) {
+            if(u.getUserattendingid() == feedbackID) {
+                uae = u;
+            }
+        }
+        uae.setFeedback(feedback);
+        UserattendingDao.update(uae);
+        return new ModelAndView("feedbackconfirmation", "feedback", uae.getFeedback());
     }
 
     /**

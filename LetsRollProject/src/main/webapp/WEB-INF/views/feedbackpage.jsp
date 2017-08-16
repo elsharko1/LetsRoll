@@ -11,10 +11,13 @@
 </head>
 <body>
 <h3>Feedback for ${name}</h3>
-<form action="">$</form>
+<form action="feedbackconfirmation">
+    <input type="text" value="${feedbackID}" name="feedbackID" hidden>
+    <textarea rows="5" cols="50" name="feedback"}>${feedback}</textarea>
+    <br>
+    <input type="submit" value="Submit feedback">
+</form>
 <br>
-<textarea rows="5" cols="50" name="feedback">
-    </textarea>
 <a href="/homepage">Home page</a>
 </body>
 </html>
