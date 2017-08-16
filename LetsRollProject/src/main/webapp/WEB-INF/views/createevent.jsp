@@ -190,8 +190,7 @@
 
     <br>
     Description: <br>
-    <textarea rows="5" cols="50" name="description">
-    </textarea>
+    <textarea rows="5" cols="50" name="description"></textarea>
     <br>
     Skills Needed: <br>
     <select multiple name="skillsneeded" required>
