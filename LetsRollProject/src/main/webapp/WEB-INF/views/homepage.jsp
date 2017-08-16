@@ -108,8 +108,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-7">
-                        <span><i class="fa fa-phone"></i> +102655874624</span>
-                        <span><i class="fa fa-envelope"></i> contact@gmail.com</span>
+                        <span><i class="fa fa-phone"></i> 1(313)888-ROLL</span>
+                        <span><i class="fa fa-envelope"></i> jrmn8@gmail.com</span>
                     </div>
                     <div class="col-md-6 col-sm-5">
                         <div class="right-align">
@@ -162,7 +162,7 @@
                         <form class="form-search" action="/searchresults" method="get">
                             <div class="container">
                                 <input type="text" name = "keywords" required>
-                                <input type="submit" value="Search By Keywords">
+                                <input type="submit" value="Event Search By Keywords">
                             </div>
                         </form>
                     </li>
@@ -194,8 +194,8 @@
                                                 <h1 class="animated out" data-animation="slideInDown" data-delay="0.5">Let's<span> Roll!</span></h1>
                                                 <p class="animated out" data-animation="slideInLeft" data-delay="0.5">Find your favorite events that are wheelchair accessible here!</p>
                                                 <div class="call-to-action animated out" data-animation="slideInUp" data-delay="0.7">
-                                                    <a href="#contact-section" class="section-scroll btn btn-md btn-clean">Sign Up</a>
-                                                    <a href="#contact-section" class="section-scroll btn btn-md btn-primary">Login</a>
+                                            <!--        <a href="#contact-section" class="section-scroll btn btn-md btn-clean">Sign Up</a>
+                                                    <a href="#contact-section" class="section-scroll btn btn-md btn-primary">Login</a> -->
                                                 </div>
                                             </div> <!-- End hero-text -->
                                         </div> <!-- end col-md-6 -->
@@ -217,7 +217,7 @@
                                                 <h1 class="animated out" data-animation="rotateInDownLeft" data-delay="0.5">Let's <span>Roll!</span></h1>
                                                 <p class="animated out" data-animation="rotateIn" data-delay="0">Attend. Volunteer. Create an Event.</p>
                                                 <div class="call-to-action animated out" data-animation="slideInLeft" data-delay="0.7">
-                                                    <a href="#contact-section" class="section-scroll btn btn-md btn-primary">Explore more</a>
+                                            <!--        <a href="#contact-section" class="section-scroll btn btn-md btn-primary">Explore more</a> -->
                                                 </div>
                                             </div> <!-- End hero-text -->
                                         </div> <!-- end col-md-6 -->
@@ -364,32 +364,7 @@
     </section>
 
     <!-- Contact info
-    ================================================== -->
-    <section>
-        <div class="parallax-section contact-info" data-stellar-background-ratio="1">
-            <!-- <img alt="" src="webresources/assets/images/slides/slide-1.jpg" style="height:300px;width:300px">  -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="text-center">
-                            <div class="large-info"><i class="fa fa-phone"></i>310-111-0000</div>
-                            <div class="email-info">
-                                <i class="fa fa-envelope"></i>
-                                <a href="mailto:a.axminenko@gmail.com">a.axminenko@gmail.com</a>
-                            </div>
-                            <div class="adress-info">
-                                <i class="fa fa-map-marker"></i>
-                                <a href="#google-map">5 Park Avenue, New York, NY 10016</a>
-                            </div>
-                        </div> <!-- end text-center -->
-                    </div> <!-- end col-md-8 -->
-                </div> <!-- end row -->
-            </div> <!-- end container -->
-        </div>
-    </section>
-    <!-- end contact-info -->
 
-    <!-- Contact-section
     ================================================== -->
     <section>
         <div id="contact-section" class="pad-sec-80">
@@ -402,7 +377,7 @@
                             <div class="col-sm-8 col-sm-offset-2">
                                 <h2>Get in touch</h2>
                                 <hr>
-                                <p>Sed ac mattis justo. Vestibulum facilisis at arcu ac porta. Vivamus at ipsum at quam hendrerit gravida</p>
+                                <p>We are looking forward in connecting with you!</p>
                             </div> <!-- end col-sm-8 -->
                         </div> <!-- End row -->
                     </div> <!-- end container -->
@@ -418,9 +393,9 @@
                                 </div>
                                 <h5 class="text-uppercase">Location</h5>
                                 <div class="loc-desc">
-                                    1400 Defense Pentagon, Arlington County
+                                    1570 Woodward Avenue, Level 3
                                     <br>
-                                    Virginia, United States
+                                    Detroit, Michigan
                                 </div>
                             </div> <!-- end location-item  -->
                         </div> <!-- end col-sm-4 -->
@@ -430,7 +405,7 @@
                                 <div class="icon">
                                     <i class="fa fa-mobile"></i>
                                 </div>
-                                <h5 class="text-uppercase">Call us 24/7</h5>
+                                <h5 class="text-uppercase">Call us </h5>
                                 <div class="loc-desc">
                                     +1065289799 <br> +1065289712
                                 </div>
@@ -523,7 +498,7 @@
                             Come into existence and develop.</p>
                     </div> <!-- end footer-widget -->
 
-                    <div class="widget footer-widget clearfix widget-newsletter">
+            <!--        <div class="widget footer-widget clearfix widget-newsletter">
                         <form id="widget-subscribe-form" method="post" class="form-inline">
                             <p><strong>Subscribe</strong> to Our Newsletter to get Important News, Amazing Offers & Inside Scoops:</p>
                             <div class="input-group">
@@ -534,15 +509,20 @@
                   </span>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
 
                 </div> <!-- end col-md-3 -->
 
                 <div class="col-md-4 col-sm-6">
                     <div class="widget footer-widget recent-widget">
-                        <h4>Recent Posts</h4>
-                        <ul>
-                            <li>
+                        <h4>Our Team!</h4>
+
+                        <div class="team-post">
+                            <img alt="" src="webresources/assets/images/team/jrmn8teampic.JPG"style="height:300px;width:240px">
+                        </div>
+
+                    <!--    <ul>
+                         <li>
                                 <h5><a href="single-post.html">Aenean sed justo tincidunt, vulputate nisi</a></h5>
                                 <span>12 April 2016</span>
                             </li>
@@ -553,7 +533,7 @@
                             <li>
                                 <h5><a href="single-post.html">Aenean sed justo tincidunt, vulputate nisi</a></h5>
                                 <span>12 April 2016</span>
-                            </li>
+                            </li> -->
                         </ul>
                     </div> <!-- end recent-widget -->
                 </div> <!-- end col-md-3 -->
@@ -566,18 +546,18 @@
                         <h4>Contact us</h4>
                         <ul class="widget-contact-list">
                             <li><i class="fa fa-map-marker"></i>
-                                <strong>Address:</strong> 795 Folsom Ave, Suite 600
-                                <br>San Francisco, CA 94107</li>
-                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (123) 456-7890 </li>
-                            <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a href="mailto:first.last@example.com">first.last@example.com</a>
+                                <strong>Address:</strong> 1570 Woodward Avenue, Level 3
+                                <br>Detroit, MI 48226</li>
+                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (313) 888-ROLL </li>
+                            <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a href="mailto:first.last@example.com">jrmn8@gmail.com</a>
                             </li>
-                            <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>08:00 - 22:00</strong>
+                            <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>9:00AM - 5:00PM</strong>
                                 <br>Saturday, Sunday: <strong>Closed</strong>
                             </li>
                         </ul>
                     </div> <!-- end widget-contact-info -->
 
-                    <div class="widget footer-widget follow-widget">
+           <!--         <div class="widget footer-widget follow-widget">
                         <h4>Follow us</h4>
                         <ul class="social-list">
                             <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
@@ -587,7 +567,7 @@
                             <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
                             <li><a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div> <!-- end col-md-3 -->
             </div> <!-- end row -->
         </div> <!-- end container -->
@@ -597,16 +577,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p>JRMN8 @2017 by <span>Clas-design</span>. All Rights Reserved</p>
+                    <p>JRMN8 @2017 by <span>Let's Roll</span>. All Rights Reserved</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="footer-menu text-right">
-                        <li><a href="#.html">Home</a></li>
+               <!--         <li><a href="#.html">Home</a></li>
                         <li><a href="#.html">About</a></li>
                         <li><a href="#.html">Services</a></li>
                         <li><a href="#.html">Portfolio</a></li>
                         <li><a href="#.html">Blog</a></li>
-                        <li><a href="#.html">Contact</a></li>
+                        <li><a href="#.html">Contact</a></li> -->
                     </ul>
                 </div>  <!-- end col-md-6   -->
             </div> <!-- end row      -->

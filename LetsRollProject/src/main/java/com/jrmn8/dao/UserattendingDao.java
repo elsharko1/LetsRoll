@@ -1,11 +1,13 @@
 package com.jrmn8.dao;
 
+import com.jrmn8.AccessibilityEntity;
 import com.jrmn8.UserattendingEntity;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
@@ -71,6 +73,22 @@ public class UserattendingDao extends Dao {
         }
         selectUserAttending.close();
         return ev;
+    }
+
+    public static UserattendingEntity getInstance(String eventID, String userID) {
+        Session selectAccessibility = sessionFact.openSession();
+
+        selectAccessibility.beginTransaction();
+
+        // Criteria is used to create the query
+        Criteria c = selectAccessibility.createCriteria(UserattendingEntity.class);
+
+        // results are returned as list and cast to an ArrayList
+        LogicalExpression le = Restrictions.or(Restrictions.like("eventID", eventID), Restrictions.like("userID", userID));
+        c.add(le);
+        UserattendingEntity av = (UserattendingEntity) c.list().get(0);
+        selectAccessibility.close();
+        return av;
     }
 
     // updates. The userattending should exist in the database, so we should be ok in terms of validation.
