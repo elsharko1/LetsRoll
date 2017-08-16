@@ -11,7 +11,7 @@ import org.hibernate.query.Query;
 import java.util.ArrayList;
 
 //Event CRUD -> Add, Get, Update, Delete
-public class EventDao {
+public class EventDao extends Dao {
 
     /*
     * Variables we will need to run hibernate.
@@ -20,8 +20,6 @@ public class EventDao {
     * Entities are Data transfer Objects that hold the data being transferred in and out of the database
     * SessionFactory object generates session objects to use as we need them
     */
-    static Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-    static SessionFactory sessionFact = cfg.buildSessionFactory();
 
     /*  So this method will add a new Event to the events table. Because the eventID is randomly generated,
         we do not need to worry about duplicates in the Primary Key.

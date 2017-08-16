@@ -51,12 +51,6 @@ public class HomeController {
     HttpClient http = HttpClientBuilder.create().build();
 
     /**
-     * Configuration and SessionFactory will be used for the DAO.
-     */
-
-    Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-
-    /**
      * The app launches on this welcome page, checks if the user is already logged in and if not, upon clicking login,
      * the user is prompted to log in through Google OAUTH2. Request is the session, and holds all our session data,
      * including a cookie that holds the userID we receive from google upon successful login.

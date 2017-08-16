@@ -13,10 +13,9 @@ import org.hibernate.query.Query;
 import java.util.ArrayList;
 
 @SuppressWarnings("Duplicates")
-public class AccessibilityDao {
+public class AccessibilityDao extends Dao {
 
-    static Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-    static SessionFactory sessionFact = cfg.buildSessionFactory();
+
 
     //CRUD -> Add, Get, Update, Delete
 

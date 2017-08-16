@@ -12,10 +12,7 @@ import org.hibernate.query.Query;
 import java.util.ArrayList;
 
 @SuppressWarnings("Duplicates")
-public class UserattendingDao {
-
-    static Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-    static SessionFactory sessionFact = cfg.buildSessionFactory();
+public class UserattendingDao extends Dao {
 
     //CRUD -> Add, Get, Update, Delete
 
