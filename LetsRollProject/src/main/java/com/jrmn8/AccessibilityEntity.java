@@ -1,16 +1,18 @@
 package com.jrmn8;
 
 import javax.persistence.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @Entity
-@Table(name = "accessibility", schema = "letsrolldb", catalog = "")
+@Table(name = "accessibility", schema = "letsrolldb")
 public class AccessibilityEntity {
     private String eventID;
     private byte wheelchair;
     private byte family;
     private byte servicedog;
     private byte blind;
+    private String access = "";
 
     @Id
     @Column(name = "eventID", nullable = false, length = 99)

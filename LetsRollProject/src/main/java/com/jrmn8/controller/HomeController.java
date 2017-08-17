@@ -508,7 +508,11 @@ public class HomeController {
         if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
             for (UserattendingEntity use :
                     UserattendingDao.getExact(eventID, "eventID")) {
-                if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 0) {
+                if (event.getCreator().equals(currentUser.getUserID())) {
+                    model.addAttribute("message", "- however, you can't register for events you've made yourself!");
+                    exists = true;
+                }
+                else if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 0) {
                     model.addAttribute("message", "- however, you've already signed up to attend.");
                     exists = true;
                     break;
@@ -565,7 +569,10 @@ public class HomeController {
         if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
             for (UserattendingEntity use :
                     UserattendingDao.getExact(eventID, "eventID")) {
-                if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 1) {
+                if (event.getCreator().equals(currentUser.getUserID())) {
+                model.addAttribute("message", "- however, you can't register for events you've made yourself!");
+                exists = true;
+            } else if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 1) {
                     model.addAttribute("message", "- however, you've already signed up to volunteer.");
                     exists = true;
                     break;
