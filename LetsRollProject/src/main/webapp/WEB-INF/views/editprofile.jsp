@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%--<html>
 <head>
     <title>Profile</title>
 </head>
@@ -18,7 +18,7 @@ ${user.location}<br>
 ${user.skills}<br>
 <a href="/homepage">Home page</a>
 </body>
-</html>
+</html>--%>
 
 
 <!DOCTYPE html>
@@ -166,6 +166,15 @@ ${user.skills}<br>
 <!-- End Header -->
 
 <div id="wrapper">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <%--<!-- Work process--%>
     <%--================================================== -->--%>
@@ -183,7 +192,7 @@ ${user.skills}<br>
                             <p>Full Name: ${user.fullName}</p>
                             <p>Email: ${user.email}</p>
                             <p>Location: ${user.location}</p>
-                            <p>Skills: ${user.skills}</p>
+                            <p>Skills Relevant to: ${user.skills}</p>
                         </div> <!-- end col-sm-8 -->
                     </div> <!-- End row -->
                 </div> <!-- end container -->

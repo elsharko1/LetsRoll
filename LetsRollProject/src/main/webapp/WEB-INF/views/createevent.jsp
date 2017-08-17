@@ -498,7 +498,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                Skills Needed: <br>
+                                                Need Skills Relevant to: <br>
                                                 <select multiple name="skillsneeded" class="form-control" style="height:120px">
                                                     <option value="Disabled">Disabled</option>
                                                     <option value="Children">Children</option>

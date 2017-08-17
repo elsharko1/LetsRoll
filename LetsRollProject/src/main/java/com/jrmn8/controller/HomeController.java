@@ -201,18 +201,22 @@ public class HomeController {
      */
 
     @RequestMapping("/editprofile")
-    public ModelAndView editprofilePage(Model model, HttpServletRequest request) {
+    public ModelAndView editprofilePage(Model model, HttpServletRequest request,
+                                        @RequestParam("fullName") String fullName,
+                                        @RequestParam("skills") String skills,
+                                        @RequestParam("location") String location,
+                                        @RequestParam("email") String email) {
 
         if (!isLoggedIn(request.getCookies()))
             return new ModelAndView("welcome", "status", "Please Login First");
 
         String userID = userCookie(request).getValue();
         UsersEntity user = new UsersEntity();
-        user.setFullName(request.getParameter("fullName"));
         user.setUserID(userID);
-        user.setSkills(request.getParameter("skills"));
-        user.setLocation(request.getParameter("location"));
-        user.setEmail(request.getParameter("email"));
+        user.setFullName(fullName);
+        user.setSkills(skills);
+        user.setLocation(location);
+        user.setEmail(email);
         UsersDao.update(user);
 
         model.addAttribute("user", user);
@@ -309,17 +313,17 @@ public class HomeController {
                 if (UsersDao.getExact(e.getCreator(), "userID").size() != 0)
                     e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
 
-                }
-                // Then we use our DAO to search through our database with the keywords.
-                model.addAttribute("searchresults", events);
-
-            } catch(IOException e){
-                e.printStackTrace();
-            } catch(JSONException e){
-                e.printStackTrace();
             }
-            return new ModelAndView("searchresults", "message", "");
+            // Then we use our DAO to search through our database with the keywords.
+            model.addAttribute("searchresults", events);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+        return new ModelAndView("searchresults", "message", "");
+    }
 
         /**
          * Functionality not implemented yet. This is a stretch goal.
@@ -329,7 +333,7 @@ public class HomeController {
          * @return
          */
         @RequestMapping("/feedbackpage")
-        public ModelAndView feedbackPage (Model model, HttpServletRequest request, @RequestParam("id") String eventID){
+        public ModelAndView feedbackPage (Model model, HttpServletRequest request, @RequestParam("id") String eventID) {
             // so in our database we have a userevents table
             // this links userid with eventid that they are participating in
             // additionally there is a field for feedback
@@ -352,15 +356,12 @@ public class HomeController {
             model.addAttribute("feedback", u.getFeedback());
 
             return new ModelAndView("feedbackpage", "", "");
-
         }
 
-        @RequestMapping("/feedbackconfirmation")
-
-
+    @RequestMapping("/feedbackconfirmation")
         public ModelAndView feedbackconfirmation (Model model, HttpServletRequest request,
                 @RequestParam("feedback") String feedback,@RequestParam("feedbackID") int feedbackID,
-                                                  @RequestParam("eventname") String eventname){
+                                                  @RequestParam("eventname") String eventname) {
             String fed = String.valueOf(feedbackID);
             ArrayList<UserattendingEntity> uaelist = UserattendingDao.getExact(userCookie(request).getValue(), "userID");
             UserattendingEntity uae = new UserattendingEntity();
@@ -375,237 +376,237 @@ public class HomeController {
             return new ModelAndView("feedbackconfirmation", "feedback", uae.getFeedback());
         }
 
-        /**
-         * this should show the events you're attending
-         * whether you're just an attendee, a volunteer, or the coordinator!
-         * does some queries to pull out events that possess the userID.
-         * sorting the results, make them all mutually exclusive
-         * first display just attending, then ones you're volunteering at, and finally ones you're coordinating.
-         *
-         * @param model   - model to display events with
-         * @param request - session to request cookies from.
-         * @return yourevents.jsp, a page that shows events the currentUser is affiliated with.
-         */
-        @RequestMapping("/yourevents")
-        public ModelAndView yourEventsPage (Model model, HttpServletRequest request){
+    /**
+     * this should show the events you're attending
+     * whether you're just an attendee, a volunteer, or the coordinator!
+     * does some queries to pull out events that possess the userID.
+     * sorting the results, make them all mutually exclusive
+     * first display just attending, then ones you're volunteering at, and finally ones you're coordinating.
+     *
+     * @param model   - model to display events with
+     * @param request - session to request cookies from.
+     * @return yourevents.jsp, a page that shows events the currentUser is affiliated with.
+     */
+    @RequestMapping("/yourevents")
+    public ModelAndView yourEventsPage(Model model, HttpServletRequest request) {
 
-            if (!isLoggedIn(request.getCookies()))
-                return new ModelAndView("welcome", "status", "Please Login First");
-            // Should also display feedback once date has passed.[Stretch Goal]
+        if (!isLoggedIn(request.getCookies()))
+            return new ModelAndView("welcome", "status", "Please Login First");
+        // Should also display feedback once date has passed.[Stretch Goal]
 
-            ArrayList<EventsEntity> created = EventDao.getExact(userCookie(request).getValue(), "creator");
-            ArrayList<UserattendingEntity> attending = UserattendingDao.getExact(userCookie(request).getValue(), "userID");
-            // replaces creator field(having ID number) with their full name
-            for (EventsEntity e : created) {
-                //get(0) because our DAO's return us a list but the list only has one true entity which
-                //is the creator
+        ArrayList<EventsEntity> created = EventDao.getExact(userCookie(request).getValue(), "creator");
+        ArrayList<UserattendingEntity> attending = UserattendingDao.getExact(userCookie(request).getValue(), "userID");
+        // replaces creator field(having ID number) with their full name
+        for (EventsEntity e : created) {
+            //get(0) because our DAO's return us a list but the list only has one true entity which
+            //is the creator
+            e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
+
+        }
+        ArrayList<EventsEntity> attendee = new ArrayList<EventsEntity>();
+        ArrayList<EventsEntity> volunteer = new ArrayList<EventsEntity>();
+
+        // Splits all of the events a user is attending based on whether they are violunteering or just attending
+        for (UserattendingEntity u : attending) {
+            if (u.getIsVolunteer() == 1) volunteer.add(EventDao.getExact(u.getEventID(), "eventID").get(0));
+            if (u.getIsVolunteer() == 0) attendee.add(EventDao.getExact(u.getEventID(), "eventID").get(0));
+        }
+
+        // replaces userID field(having ID number) with their full name
+        for (EventsEntity e : volunteer) {
+            if (UsersDao.getExact(e.getCreator(), "userID").size() != 0) {
                 e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
-
             }
-            ArrayList<EventsEntity> attendee = new ArrayList<EventsEntity>();
-            ArrayList<EventsEntity> volunteer = new ArrayList<EventsEntity>();
-
-            // Splits all of the events a user is attending based on whether they are violunteering or just attending
-            for (UserattendingEntity u : attending) {
-                if (u.getIsVolunteer() == 1) volunteer.add(EventDao.getExact(u.getEventID(), "eventID").get(0));
-                if (u.getIsVolunteer() == 0) attendee.add(EventDao.getExact(u.getEventID(), "eventID").get(0));
-            }
-
-            // replaces userID field(having ID number) with their full name
-            for (EventsEntity e : volunteer) {
-                if (UsersDao.getExact(e.getCreator(), "userID").size() != 0) {
-                    e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
-                }
-            }
-            // replaces userID field(having ID number) with their full name
-            for (EventsEntity e : attendee) {
-                if (UsersDao.getExact(e.getCreator(), "userID").size() != 0) {
-                    e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
-                }
-            }
-            model.addAttribute("created", created);
-            model.addAttribute("attendee", attendee);
-            model.addAttribute("volunteer", volunteer);
-
-
-            return new ModelAndView("yourevents", "status", model);
-
         }
-
-
-        @RequestMapping("/eventcreated")
-        public ModelAndView addNewEvent (@RequestParam("title") String title,
-                @RequestParam("date") String date,
-                @RequestParam("where") String location,
-                @RequestParam("description") String description,
-                @RequestParam("skillsneeded") String skills,
-        @RequestParam("wheelchair") byte choiceW,
-        @RequestParam("family") byte choiceF,
-        @RequestParam("servicedog") byte choiceS,
-        @RequestParam("blind") byte choiceB,
-        Model model, HttpServletRequest request){
-
-
-            EventsEntity newEvent = new EventsEntity();
-            int ID = (int) (Math.random() * 10000000);
-            String eventID = String.valueOf(ID);
-            AccessibilityEntity newAccess = new AccessibilityEntity();
-
-            newEvent.setEventID(eventID);
-            newEvent.setTitle(title);
-            newEvent.setCreator(userCookie(request).getValue());
-            newEvent.setDate(date);
-            newEvent.setLocation(location);
-            newEvent.setDescription(description);
-            newEvent.setSkillsneeded(skills);
-
-            newAccess.setEventID(eventID);
-            byte wheelchair = valueOf(choiceW);
-            newAccess.setWheelchair(wheelchair);
-            byte family = valueOf(choiceF);
-            newAccess.setFamily(family);
-            byte servicedog = valueOf(choiceS);
-            newAccess.setServicedog(servicedog);
-            byte blind = valueOf(choiceB);
-            newAccess.setBlind(blind);
-
-            EventDao.add(newEvent);
-            AccessibilityDao.add(newAccess);
-
-            model.addAttribute("newEvent", newEvent);
-            model.addAttribute("newAccess", newAccess);
-
-            return new ModelAndView("eventcreated", "status", "You are now welcome to creat an event!");
-
+        // replaces userID field(having ID number) with their full name
+        for (EventsEntity e : attendee) {
+            if (UsersDao.getExact(e.getCreator(), "userID").size() != 0) {
+                e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
+            }
         }
+        model.addAttribute("created", created);
+        model.addAttribute("attendee", attendee);
+        model.addAttribute("volunteer", volunteer);
 
-        /**
-         * confirms you're attending after you click 'attend' on an event in searchresults.
-         * return event details on the page so user knows what event they just registered for.
-         *
-         * @param model   - model to add userattending stuff to display in the confirmationpage.
-         * @param eventID - eventID to match up with in Database.
-         * @param request - session to request cookies.
-         * @return confirmationpage.jsp that has a confirmation for whatever event you just signed up for.
-         */
-        @RequestMapping("/addAttendee")
-        public String attend (Model model, @RequestParam("id") String eventID, HttpServletRequest request){
 
-            UserattendingEntity attendee = new UserattendingEntity();
+        return new ModelAndView("yourevents", "status", model);
 
-            UsersEntity currentUser = UsersDao.getExact(userCookie(request).getValue(), "userID").get(0);
-            EventsEntity event = EventDao.getExact(eventID, "eventID").get(0);
-            AccessibilityEntity accessibility = new AccessibilityEntity();
-
-            //a check to confirm that the event is in the accessibility table which means that accessibility
-            //has been previously defined
-            if (AccessibilityDao.getExact(eventID, "eventID").size() > 0) {
-                accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
-            }
-
-            boolean exists = false;
-            if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
-                for (UserattendingEntity use :
-                        UserattendingDao.getExact(eventID, "eventID")) {
-                    if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 0) {
-                        model.addAttribute("message", "- however, you've already signed up to attend.");
-                        exists = true;
-                        break;
-                    } else if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 1) {
-                        model.addAttribute("message", "- we've swapped your volunteering status to attending.");
-                        UserattendingEntity temp = use;
-                        temp.setIsVolunteer((byte) 0);
-                        UserattendingDao.update(temp);
-                        exists = true;
-                        break;
-                    }
-                }
-            }
-
-            //this is putting the user down for attending the event
-            if (!exists) {
-                attendee.setEventID(eventID);
-                attendee.setUserID(userCookie(request).getValue());
-                attendee.setIsVolunteer((byte) 0);
-                UserattendingDao.add(attendee);
-            }
-
-            //this actually prints the conversation
-            model.addAttribute("event", event);
-            model.addAttribute("currentUser", currentUser);
-            model.addAttribute("attendee", attendee);
-            model.addAttribute("accessibility", accessibility);
-            return "confirmationpage";
-        }
-
-        /**
-         * confirms you're volunteering after clicking 'volunteer' on an event in searchresults.
-         * return event details on the page so user knows what event they just registered for.
-         *
-         * @param model   - model to add userattending stuff to display in the confirmationpage.
-         * @param eventID - eventID to match up with in Database.
-         * @param request - session to request cookies.
-         * @return confirmationpage.jsp that has a confirmation for whatever event you just signed up for.
-         */
-        @RequestMapping("/addVolunteer")
-        public String volunteer (Model model, @RequestParam("id") String eventID, HttpServletRequest request){
-
-            UserattendingEntity volunteer = new UserattendingEntity();
-
-            UsersEntity currentUser = UsersDao.getExact(userCookie(request).getValue(), "userID").get(0);
-            EventsEntity event = EventDao.getExact(eventID, "eventID").get(0);
-
-            AccessibilityEntity accessibility = new AccessibilityEntity();
-            if (AccessibilityDao.getExact(eventID, "eventID").size() > 0) {
-                accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
-            }
-
-            boolean exists = false;
-            if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
-                for (UserattendingEntity use :
-                        UserattendingDao.getExact(eventID, "eventID")) {
-                    if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 1) {
-                        model.addAttribute("message", "- however, you've already signed up to volunteer.");
-                        exists = true;
-                        break;
-                    } else if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 0) {
-                        model.addAttribute("message", "- we've swapped your attending status to volunteering.");
-                        UserattendingEntity temp = use;
-                        temp.setIsVolunteer((byte) 1);
-                        UserattendingDao.update(temp);
-                        exists = true;
-                        break;
-                    }
-                }
-            }
-            if (!exists) {
-                volunteer.setEventID(eventID);
-                volunteer.setUserID(userCookie(request).getValue());
-                volunteer.setIsVolunteer((byte) 1);
-                UserattendingDao.add(volunteer);
-            }
-            model.addAttribute("event", event);
-            model.addAttribute("currentUser", currentUser);
-            model.addAttribute("attendee", volunteer);
-            model.addAttribute("accessibility", accessibility);
-
-            return "confirmationpage";
-        }
-
-        @RequestMapping("/logout")
-        public String logOut (HttpServletRequest request, HttpServletResponse response){
-
-            //get user login cookie
-            Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("userID") && cookie.getValue().isEmpty() == false) {
-
-                    //this sets the life span of the cookie to 0, so now it expires immediately and
-                    //therefore logs you out of the system
-                    cookie.setMaxAge(0);
-                    response.addCookie(cookie);
-                }
-            }
-            return "welcome";
-        }
     }
+
+
+    @RequestMapping("/eventcreated")
+    public ModelAndView addNewEvent(@RequestParam("title") String title,
+                                    @RequestParam("date") String date,
+                                    @RequestParam("where") String location,
+                                    @RequestParam("description") String description,
+                                    @RequestParam("skillsneeded") String skills,
+                                    @RequestParam("wheelchair") byte choiceW,
+                                    @RequestParam("family") byte choiceF,
+                                    @RequestParam("servicedog") byte choiceS,
+                                    @RequestParam("blind") byte choiceB,
+                                    Model model, HttpServletRequest request) {
+
+
+        EventsEntity newEvent = new EventsEntity();
+        int ID = (int) (Math.random() * 10000000);
+        String eventID = String.valueOf(ID);
+        AccessibilityEntity newAccess = new AccessibilityEntity();
+
+        newEvent.setEventID(eventID);
+        newEvent.setTitle(title);
+        newEvent.setCreator(userCookie(request).getValue());
+        newEvent.setDate(date);
+        newEvent.setLocation(location);
+        newEvent.setDescription(description);
+        newEvent.setSkillsneeded(skills);
+
+        newAccess.setEventID(eventID);
+        byte wheelchair = valueOf(choiceW);
+        newAccess.setWheelchair(wheelchair);
+        byte family = valueOf(choiceF);
+        newAccess.setFamily(family);
+        byte servicedog = valueOf(choiceS);
+        newAccess.setServicedog(servicedog);
+        byte blind = valueOf(choiceB);
+        newAccess.setBlind(blind);
+
+        EventDao.add(newEvent);
+        AccessibilityDao.add(newAccess);
+
+        model.addAttribute("newEvent", newEvent);
+        model.addAttribute("newAccess", newAccess);
+
+        return new ModelAndView("eventcreated", "status", "You are now welcome to creat an event!");
+
+    }
+
+    /**
+     * confirms you're attending after you click 'attend' on an event in searchresults.
+     * return event details on the page so user knows what event they just registered for.
+     *
+     * @param model   - model to add userattending stuff to display in the confirmationpage.
+     * @param eventID - eventID to match up with in Database.
+     * @param request - session to request cookies.
+     * @return confirmationpage.jsp that has a confirmation for whatever event you just signed up for.
+     */
+    @RequestMapping("/addAttendee")
+    public String attend(Model model, @RequestParam("id") String eventID, HttpServletRequest request) {
+
+        UserattendingEntity attendee = new UserattendingEntity();
+
+        UsersEntity currentUser = UsersDao.getExact(userCookie(request).getValue(), "userID").get(0);
+        EventsEntity event = EventDao.getExact(eventID, "eventID").get(0);
+        AccessibilityEntity accessibility = new AccessibilityEntity();
+
+        //a check to confirm that the event is in the accessibility table which means that accessibility
+        //has been previously defined
+        if (AccessibilityDao.getExact(eventID, "eventID").size() > 0) {
+            accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
+        }
+
+        boolean exists = false;
+        if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
+            for (UserattendingEntity use :
+                    UserattendingDao.getExact(eventID, "eventID")) {
+                if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 0) {
+                    model.addAttribute("message", "- however, you've already signed up to attend.");
+                    exists = true;
+                    break;
+                } else if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 1) {
+                    model.addAttribute("message", "- we've swapped your volunteering status to attending.");
+                    UserattendingEntity temp = use;
+                    temp.setIsVolunteer((byte) 0);
+                    UserattendingDao.update(temp);
+                    exists = true;
+                    break;
+                }
+            }
+        }
+
+        //this is putting the user down for attending the event
+        if (!exists) {
+            attendee.setEventID(eventID);
+            attendee.setUserID(userCookie(request).getValue());
+            attendee.setIsVolunteer((byte) 0);
+            UserattendingDao.add(attendee);
+        }
+
+        //this actually prints the conversation
+        model.addAttribute("event", event);
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("attendee", attendee);
+        model.addAttribute("accessibility", accessibility);
+        return "confirmationpage";
+    }
+
+    /**
+     * confirms you're volunteering after clicking 'volunteer' on an event in searchresults.
+     * return event details on the page so user knows what event they just registered for.
+     *
+     * @param model   - model to add userattending stuff to display in the confirmationpage.
+     * @param eventID - eventID to match up with in Database.
+     * @param request - session to request cookies.
+     * @return confirmationpage.jsp that has a confirmation for whatever event you just signed up for.
+     */
+    @RequestMapping("/addVolunteer")
+    public String volunteer(Model model, @RequestParam("id") String eventID, HttpServletRequest request) {
+
+        UserattendingEntity volunteer = new UserattendingEntity();
+
+        UsersEntity currentUser = UsersDao.getExact(userCookie(request).getValue(), "userID").get(0);
+        EventsEntity event = EventDao.getExact(eventID, "eventID").get(0);
+
+        AccessibilityEntity accessibility = new AccessibilityEntity();
+        if (AccessibilityDao.getExact(eventID, "eventID").size() > 0) {
+            accessibility = AccessibilityDao.getExact(eventID, "eventID").get(0);
+        }
+
+        boolean exists = false;
+        if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
+            for (UserattendingEntity use :
+                    UserattendingDao.getExact(eventID, "eventID")) {
+                if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 1) {
+                    model.addAttribute("message", "- however, you've already signed up to volunteer.");
+                    exists = true;
+                    break;
+                } else if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 0) {
+                    model.addAttribute("message", "- we've swapped your attending status to volunteering.");
+                    UserattendingEntity temp = use;
+                    temp.setIsVolunteer((byte) 1);
+                    UserattendingDao.update(temp);
+                    exists = true;
+                    break;
+                }
+            }
+        }
+        if (!exists) {
+            volunteer.setEventID(eventID);
+            volunteer.setUserID(userCookie(request).getValue());
+            volunteer.setIsVolunteer((byte) 1);
+            UserattendingDao.add(volunteer);
+        }
+        model.addAttribute("event", event);
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("attendee", volunteer);
+        model.addAttribute("accessibility", accessibility);
+
+        return "confirmationpage";
+    }
+
+    @RequestMapping("/logout")
+    public String logOut(HttpServletRequest request, HttpServletResponse response) {
+
+        //get user login cookie
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("userID") && cookie.getValue().isEmpty() == false) {
+
+                //this sets the life span of the cookie to 0, so now it expires immediately and
+                //therefore logs you out of the system
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
+        }
+        return "welcome";
+    }
+}

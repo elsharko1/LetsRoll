@@ -5,15 +5,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html>
+<%--<html>
 <head>
     <title>Search results page</title>
 </head>
 <body>
 <h1>Search Results...</h1>
 
-<%--<img src="${imageData}" width="128" height="128"><br>--%>
-<%--${type.key} : ${type.value} <br>--%>
+<img src="${imageData}" width="128" height="128"><br>;
+${type.key} : ${type.value} <br>;
 <table border="1">
     <tr>
         <th>Event ID</th>
@@ -50,8 +50,7 @@
 </table>
 <a href="/homepage">Home page</a><br>
 </body>
-</html>
-<%--
+</html>--%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -147,7 +146,7 @@
                             <ul>
 
                                 <a href="/logout" class="section-scroll btn btn-md btn-primary">Logout</a>
-
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -160,9 +159,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoJRMN8.jpg"
+                <a class="navbar-brand" href="/homepage"><img alt="" src="webresources/images/logoJRMN8.jpg"
                                                                style="height:95px;width:125px"></a>
-                <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoLetsRoll.jpg"
+                <a class="navbar-brand" href="/homepage"><img alt="" src="webresources/images/logoLetsRoll.jpg"
                                                                style="height:95px;width:150px"></a>
             </div>
             <div class="navbar-collapse collapse">
@@ -184,13 +183,13 @@
                     </li>
 
                     <li>
-                        &lt;%&ndash;<a href="#" class="open-search"><i class="fa fa-search"></i></a>
+                        <%--<a href="#" class="open-search"><i class="fa fa-search"></i></a>
                         <form class="form-search">
                             <div class="container">
                                 <input type="search" placeholder="Type to Search"/>
                                 <a href="#" class="close-search">x</a>
                             </div>
-                        </form>&ndash;%&gt;
+                        </form>--%>
                         <a href="#" class="open-search"><i class="fa fa-search"></i></a>
                         <form class="form-search" action="/searchresults" method="get">
                             <div class="container">
@@ -206,8 +205,8 @@
 </header>
 <!-- End Header -->
 
-&lt;%&ndash;<div id="wrapper">&ndash;%&gt;
-    &lt;%&ndash;<!-- Event section
+<%--<div id="wrapper">--%>
+    <%--<!-- Event section
     ================================================== -->
     <section>
         <div class="shop-section pad-top-80 pad-bt-80">
@@ -306,9 +305,9 @@
             </div> <!-- end container -->
         </div> <!-- end shop-section -->
     </section>
-    <!-- end Event section -->&ndash;%&gt;
+    <!-- end Event section -->--%>
 
-    &lt;%&ndash;    <!-- Event details section
+    <%--    <!-- Event details section
         ================================================== -->
         <section>
             <div class="shop-details grey-bg pad-top-40">
@@ -351,7 +350,7 @@
         </section>
         <!-- end Shop details section -->
 
-    </div> <!-- End wrapper -->&ndash;%&gt;
+    </div> <!-- End wrapper -->--%>
 
     <!-- Footer
     ================================================== -->
@@ -502,4 +501,3 @@
 
 </body>
 </html>
---%>
