@@ -43,7 +43,8 @@
     <link rel="shortcut icon" href="webresources/assets/images/favicon.ico">
 
     <!-- Custom Google fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic,300italic,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic,300italic,300'
+          rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap CSS Style -->
@@ -114,9 +115,8 @@
                     <div class="col-md-6 col-sm-5">
                         <div class="right-align">
                             <ul>
-
                                 <a href="/logout" class="section-scroll btn btn-md btn-primary">Logout</a>
-
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -129,45 +129,38 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoJRMN8.jpg" style="height:95px;width:125px"></a>
-                <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoLetsRoll.jpg" style="height:95px;width:150px"></a>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img alt="" src="webresources/images/LogoBanner.JPG">
+                        <%--<a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoJRMN8.jpg" style="height:95px;width:125px"></a>
+                        <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoLetsRoll.jpg" style="height:95px;width:150px"></a>--%>
+                    </div>
+                    <div class="col-lg-5">
+
+                        <div class="navbar-collapse collapse">
+
+                            <ul class="nav navbar-nav navbar-right">
+
+                                <li class="drop"><a href="/createevent">Create Event</a>
+                                </li>
+                                <li class="drop"><a href="/profile">Edit Profile</a>
+                                </li>
+                                <li class="drop"><a href="/yourevents">Your Events</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="open-search"><i class="fa fa-search"></i></a>
+                                    <form class="form-search" action="/searchresults" method="get">
+                                        <div class="container">
+                                            <input type="text" name="keywords" required>
+                                            <input type="submit" value="Event Search By Keywords">
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div> <!-- end navbar-collapse -->
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li class="drop"><a href="/createevent">Create Event</a>
-                    </li>
-
-                    <li class="drop"><a href="/profile">Edit Profile</a>
-                    </li>
-
-         <!--           <li class="drop"><a href="/feedbackpage">Feedback</a>
-                    </li> -->
-
-                    <li class="drop"><a href="/yourevents">Your Events</a>
-                    </li>
-
-             <!--       <li class="drop"><a href="#contact-section">Contact</a>
-                    </li> -->
-
-                    <li>
-                        <%--<a href="#" class="open-search"><i class="fa fa-search"></i></a>
-                        <form class="form-search">
-                            <div class="container">
-                                <input type="search" placeholder="Type to Search"/>
-                                <a href="#" class="close-search">x</a>
-                            </div>
-                        </form>--%>
-                        <a href="#" class="open-search"><i class="fa fa-search"></i></a>
-                        <form class="form-search" action="/searchresults" method="get">
-                            <div class="container">
-                                <input type="text" name = "keywords" required>
-                                <input type="submit" value="Event Search By Keywords">
-                            </div>
-                        </form>
-                    </li>
-                </ul>
-            </div> <!-- end navbar-collapse -->
         </div>
     </nav>
 </header>
@@ -191,11 +184,14 @@
                                     <div class="row">
                                         <div class="col-md-8 col-lg-8">
                                             <div class="hero-text">
-                                                <h1 class="animated out" data-animation="slideInDown" data-delay="0.5">Let's<span> Roll!</span></h1>
-                                                <p class="animated out" data-animation="slideInLeft" data-delay="0.5">Find your favorite events that are wheelchair accessible here!</p>
-                                                <div class="call-to-action animated out" data-animation="slideInUp" data-delay="0.7">
-                                            <!--        <a href="#contact-section" class="section-scroll btn btn-md btn-clean">Sign Up</a>
-                                                    <a href="#contact-section" class="section-scroll btn btn-md btn-primary">Login</a> -->
+                                                <h1 class="animated out" data-animation="slideInDown" data-delay="0.5">
+                                                    Let's<span> Roll!</span></h1>
+                                                <p class="animated out" data-animation="slideInLeft" data-delay="0.5">
+                                                    Find your favorite events that are wheelchair accessible here!</p>
+                                                <div class="call-to-action animated out" data-animation="slideInUp"
+                                                     data-delay="0.7">
+                                                    <!--        <a href="#contact-section" class="section-scroll btn btn-md btn-clean">Sign Up</a>
+                                                            <a href="#contact-section" class="section-scroll btn btn-md btn-primary">Login</a> -->
                                                 </div>
                                             </div> <!-- End hero-text -->
                                         </div> <!-- end col-md-6 -->
@@ -214,10 +210,13 @@
                                     <div class="row">
                                         <div class="col-md-8 col-lg-8">
                                             <div class="hero-text">
-                                                <h1 class="animated out" data-animation="rotateInDownLeft" data-delay="0.5">Let's <span>Roll!</span></h1>
-                                                <p class="animated out" data-animation="rotateIn" data-delay="0">Attend. Volunteer. Create an Event.</p>
-                                                <div class="call-to-action animated out" data-animation="slideInLeft" data-delay="0.7">
-                                            <!--        <a href="#contact-section" class="section-scroll btn btn-md btn-primary">Explore more</a> -->
+                                                <h1 class="animated out" data-animation="rotateInDownLeft"
+                                                    data-delay="0.5">Let's <span>Roll!</span></h1>
+                                                <p class="animated out" data-animation="rotateIn" data-delay="0">Attend.
+                                                    Volunteer. Create an Event.</p>
+                                                <div class="call-to-action animated out" data-animation="slideInLeft"
+                                                     data-delay="0.7">
+                                                    <!--        <a href="#contact-section" class="section-scroll btn btn-md btn-primary">Explore more</a> -->
                                                 </div>
                                             </div> <!-- End hero-text -->
                                         </div> <!-- end col-md-6 -->
@@ -236,9 +235,13 @@
                                     <div class="row">
                                         <div class="col-md-8 col-lg-8">
                                             <div class="hero-text">
-                                                <h1 class="animated out" data-animation="rotateInDownLeft" data-delay="0.5">Let's Roll!</h1>
-                                                <p class="animated out" data-animation="rotateIn" data-delay="0">Designed to help the disabled find a precise, clear, avenue to the venue and gain access to the event. </p>
-                                                <div class="call-to-action animated out" data-animation="slideInLeft" data-delay="0.7">
+                                                <h1 class="animated out" data-animation="rotateInDownLeft"
+                                                    data-delay="0.5">Let's Roll!</h1>
+                                                <p class="animated out" data-animation="rotateIn" data-delay="0">
+                                                    Designed to help the disabled find a precise, clear, avenue to the
+                                                    venue and gain access to the event. </p>
+                                                <div class="call-to-action animated out" data-animation="slideInLeft"
+                                                     data-delay="0.7">
                                                     <p class="section-scroll">Volunteer at your favorite event here!</p>
                                                     <%--<a href="#contact-section" class="section-scroll btn btn-md btn-clean">Volunteer at your favorite event here!</a>--%>
                                                 </div>
@@ -273,8 +276,10 @@
                         <div class="col-sm-8 col-sm-offset-2">
                             <h2>Our Team</h2>
                             <hr>
-                            <p>We are four Java Bootcamp classmates at Grand Circus - Detroit. It was fate that brought us together,
-                                now we call ourselves JRMN8. Our initials and 8 weeks of bootcamp. Our group name is pronounced GERMINATE and our meaning is:
+                            <p>We are four Java Bootcamp classmates at Grand Circus - Detroit. It was fate that brought
+                                us together,
+                                now we call ourselves JRMN8. Our initials and 8 weeks of bootcamp. Our group name is
+                                pronounced GERMINATE and our meaning is:
                                 Come into existence and develop.</p>
                         </div> <!-- end col-sm-8 -->
                     </div> <!-- End row -->
@@ -291,12 +296,15 @@
                                 <div class="team-content">
                                     <h2>Jenny St. Peters</h2>
                                     <span>Software Designer</span>
-                                    <p>Software developer and detail oriented professional engineer with more than 10 years of professional experience looking to utilize my proven ability to learn and adapt quickly to provide high quality, systematic solutions.</p>
+                                    <p>Software developer and detail oriented professional engineer with more than 10
+                                        years of professional experience looking to utilize my proven ability to learn
+                                        and adapt quickly to provide high quality, systematic solutions.</p>
                                     <ul class="team-social">
                                         <!--<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                                         <!--<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
                                         <!--<li><a class="dribble" href="#"><i class="fa fa-dribbble"></i></a></li> -->
-                                        <li><a class="linkedin" href="https://www.linkedin.com/in/jennystpeters/"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a class="linkedin" href="https://www.linkedin.com/in/jennystpeters/"><i
+                                                class="fa fa-linkedin"></i></a></li>
                                     </ul>
                                 </div><!--  end team-content -->
                             </div> <!-- end team-post -->
@@ -313,7 +321,8 @@
                                         <!-- <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                                          <!--<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
                                          <!--<li><a class="dribble" href="#"><i class="fa fa-dribbble"></i></a></li> -->
-                                        <li><a class="linkedin" href="https://www.linkedin.com/in/richard-ren/"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a class="linkedin" href="https://www.linkedin.com/in/richard-ren/"><i
+                                                class="fa fa-linkedin"></i></a></li>
                                     </ul>
                                 </div><!--  end team-content -->
                             </div> <!-- end team-post -->
@@ -330,7 +339,8 @@
                                         <!--<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                                         <!--<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
                                         <!--<li><a class="dribble" href="#"><i class="fa fa-dribbble"></i></a></li> -->
-                                        <li><a class="linkedin" href="https://www.linkedin.com/in/markritter423/"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a class="linkedin" href="https://www.linkedin.com/in/markritter423/"><i
+                                                class="fa fa-linkedin"></i></a></li>
                                     </ul>
                                 </div><!--  end team-content -->
                             </div> <!-- end team-post -->
@@ -342,12 +352,14 @@
                                 <div class="team-content">
                                     <h2>Ny Derry</h2>
                                     <span>Software Designer</span>
-                                    <p>Using technical skills in collaborating with a diverse group of people in accomplishing a common goal. </p>
+                                    <p>Using technical skills in collaborating with a diverse group of people in
+                                        accomplishing a common goal. </p>
                                     <ul class="team-social">
                                         <!--<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                                         <!-- <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
                                         <!-- <li><a class="dribble" href="#"><i class="fa fa-dribbble"></i></a></li> -->
-                                        <li><a class="linkedin" href="https://www.linkedin.com/in/nyderry/"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a class="linkedin" href="https://www.linkedin.com/in/nyderry/"><i
+                                                class="fa fa-linkedin"></i></a></li>
                                     </ul>
                                 </div><!--  end team-content -->
                             </div> <!-- end team-post -->
@@ -369,113 +381,115 @@
     ================================================== -->
 
 
-<!-- Footer
-================================================== -->
-<footer>
-    <div class="up-footer">
-        <div class="container">
-            <div class="row">
+    <!-- Footer
+    ================================================== -->
+    <footer>
+        <div class="up-footer">
+            <div class="container">
+                <div class="row">
 
-                <div class="col-md-4 col-sm-6">
+                    <div class="col-md-4 col-sm-6">
 
-                    <div class="widget footer-widget text-widget">
-                        <h4>About JRMN8</h4>
-                        <p>We are four Java Bootcamp classmates at Grand Circus - Detroit.
-                            It was fate that brought us together,now we call ourselves JRMN8.
-                            Our initials and 8 weeks of bootcamp. Our group name is pronounced
-                            GERMINATE and our meaning is: Come into existence and develop.</p>
-                    </div> <!-- end footer-widget -->
+                        <div class="widget footer-widget text-widget">
+                            <h4>About JRMN8</h4>
+                            <p>We are four Java Bootcamp classmates at Grand Circus - Detroit.
+                                It was fate that brought us together,now we call ourselves JRMN8.
+                                Our initials and 8 weeks of bootcamp. Our group name is pronounced
+                                GERMINATE and our meaning is: Come into existence and develop.</p>
+                        </div> <!-- end footer-widget -->
 
 
+                    </div> <!-- end col-md-3 -->
 
-                </div> <!-- end col-md-3 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="widget footer-widget recent-widget">
+                            <h4>Our Team!</h4>
 
-                <div class="col-md-4 col-sm-6">
-                    <div class="widget footer-widget recent-widget">
-                        <h4>Our Team!</h4>
+                            <div class="team-post">
+                                <img alt="" src="webresources/assets/images/team/jrmn8teampic.JPG"
+                                     style="height:300px;width:240px">
+                            </div>
 
-                        <div class="team-post">
-                            <img alt="" src="webresources/assets/images/team/jrmn8teampic.JPG"style="height:300px;width:240px">
+
+                            </ul>
+                        </div> <!-- end recent-widget -->
+                    </div> <!-- end col-md-3 -->
+
+                    <div class="clearfix visible-sm-block"></div>
+
+                    <div class="col-md-4 col-sm-6">
+
+                        <div class="widget footer-widget widget-contact-info">
+                            <h4>Contact us</h4>
+                            <ul class="widget-contact-list">
+                                <li><i class="fa fa-map-marker"></i>
+                                    <strong>Address:</strong> 1570 Woodward Avenue, Level 3
+                                    <br>Detroit, MI 48226
+                                </li>
+                                <li><i class="fa fa-phone"></i><strong>Phone:</strong> (313) 888-ROLL</li>
+                                <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a
+                                        href="mailto:first.last@example.com">jrmn8@gmail.com</a>
+                                </li>
+                                <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>9:00AM - 5:00PM</strong>
+                                    <br>Saturday, Sunday: <strong>Closed</strong>
+                                </li>
+                            </ul>
+
+                        </div> <!-- end col-md-3 -->
+                    </div> <!-- end row -->
+                </div> <!-- end container -->
+            </div>
+
+            <div class="footer-line">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Let's Roll @2017 by <span>JRMN8</span>. All Rights Reserved</p>
                         </div>
+                        <div class="col-md-6">
+                            <ul class="footer-menu text-right">
 
+                            </ul>
+                        </div>  <!-- end col-md-6   -->
+                    </div> <!-- end row      -->
+                </div> <!-- end container -->
+            </div> <!-- end footer-line -->
 
-                        </ul>
-                    </div> <!-- end recent-widget -->
-                </div> <!-- end col-md-3 -->
+    </footer>
+    <!-- End footer -->
 
-                <div class="clearfix visible-sm-block"></div>
+    <!-- Back-to-top
+    ================================================== -->
+    <div class="back-to-top">
+        <i class="fa fa-angle-up fa-3x"></i>
+    </div> <!-- end back-to-top -->
 
-                <div class="col-md-4 col-sm-6">
-
-                    <div class="widget footer-widget widget-contact-info">
-                        <h4>Contact us</h4>
-                        <ul class="widget-contact-list">
-                            <li><i class="fa fa-map-marker"></i>
-                                <strong>Address:</strong> 1570 Woodward Avenue, Level 3
-                                <br>Detroit, MI 48226</li>
-                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (313) 888-ROLL </li>
-                            <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a href="mailto:first.last@example.com">jrmn8@gmail.com</a>
-                            </li>
-                            <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>9:00AM - 5:00PM</strong>
-                                <br>Saturday, Sunday: <strong>Closed</strong>
-                            </li>
-                        </ul>
-
-                </div> <!-- end col-md-3 -->
-            </div> <!-- end row -->
-        </div> <!-- end container -->
-    </div>
-
-    <div class="footer-line">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>Let's Roll @2017 by <span>JRMN8</span>. All Rights Reserved</p>
-                </div>
-                <div class="col-md-6">
-                    <ul class="footer-menu text-right">
-
-                    </ul>
-                </div>  <!-- end col-md-6   -->
-            </div> <!-- end row      -->
-        </div> <!-- end container -->
-    </div> <!-- end footer-line -->
-
-</footer>
-<!-- End footer -->
-
-<!-- Back-to-top
-================================================== -->
-<div class="back-to-top">
-    <i class="fa fa-angle-up fa-3x"></i>
-</div> <!-- end back-to-top -->
-
-<!-- JS libraries and scripts -->
-<script src="webresources/assets/js/jquery-1.11.3.min.js"></script>
-<script src="webresources/assets/js/bootstrap.min.js"></script>
-<script src="webresources/assets/js/jquery.easing.1.3.js"></script>
-<script src="webresources/assets/js/jquery.smoothscroll.js"></script>
-<script src="webresources/assets/js/jquery.stellar.min.js"></script>
-<script src="webresources/assets/js/jquery.countTo.js"></script>
-<script src="webresources/assets/js/jquery.waypoints.js"></script>
-<script src="webresources/assets/js/jquery.imagesloaded.min.js"></script>
-<script src="webresources/assets/js/jquery.appear.min.js"></script>
-<script src="webresources/assets/js/jquery.bxslider.min.js"></script>
-<script src="webresources/assets/js/jquery.touchSwipe.min.js"></script>
-<script src="webresources/assets/js/jquery.isotope.js"></script>
-<script src="webresources/assets/js/jquery.placeholder.js"></script>
-<script src="webresources/assets/js/jquery.ajaxchimp.min.js"></script>
-<script src="webresources/assets/js/jquery.fitvids.js"></script>
-<script src="webresources/assets/js/jquery.magnific-popup.min.js"></script>
-<script src="webresources/assets/js/jquery.mb.YTPlayer.min.js"></script>
-<script src="webresources/assets/js/jquery.owl.carousel.min.js"></script>
-<script src="webresources/assets/js/jquery.superslides.min.js"></script>
-<script src="webresources/assets/js/jquery.morphext.min.js"></script>
-<script src="webresources/assets/js/jquery.nouislider.min.js"></script>
-<script src="webresources/assets/js/jquery.flexslider-min.js"></script>
-<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script src="webresources/assets/js/jquery.gmaps.js"></script>
-<script src="webresources/assets/js/main.js"></script>
+    <!-- JS libraries and scripts -->
+    <script src="webresources/assets/js/jquery-1.11.3.min.js"></script>
+    <script src="webresources/assets/js/bootstrap.min.js"></script>
+    <script src="webresources/assets/js/jquery.easing.1.3.js"></script>
+    <script src="webresources/assets/js/jquery.smoothscroll.js"></script>
+    <script src="webresources/assets/js/jquery.stellar.min.js"></script>
+    <script src="webresources/assets/js/jquery.countTo.js"></script>
+    <script src="webresources/assets/js/jquery.waypoints.js"></script>
+    <script src="webresources/assets/js/jquery.imagesloaded.min.js"></script>
+    <script src="webresources/assets/js/jquery.appear.min.js"></script>
+    <script src="webresources/assets/js/jquery.bxslider.min.js"></script>
+    <script src="webresources/assets/js/jquery.touchSwipe.min.js"></script>
+    <script src="webresources/assets/js/jquery.isotope.js"></script>
+    <script src="webresources/assets/js/jquery.placeholder.js"></script>
+    <script src="webresources/assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="webresources/assets/js/jquery.fitvids.js"></script>
+    <script src="webresources/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="webresources/assets/js/jquery.mb.YTPlayer.min.js"></script>
+    <script src="webresources/assets/js/jquery.owl.carousel.min.js"></script>
+    <script src="webresources/assets/js/jquery.superslides.min.js"></script>
+    <script src="webresources/assets/js/jquery.morphext.min.js"></script>
+    <script src="webresources/assets/js/jquery.nouislider.min.js"></script>
+    <script src="webresources/assets/js/jquery.flexslider-min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="webresources/assets/js/jquery.gmaps.js"></script>
+    <script src="webresources/assets/js/main.js"></script>
 
 </body>
 </html>
