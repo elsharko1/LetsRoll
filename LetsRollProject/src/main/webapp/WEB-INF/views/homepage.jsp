@@ -379,9 +379,10 @@
 
                     <div class="widget footer-widget text-widget">
                         <h4>About JRMN8</h4>
-                        <p>We are four Java Bootcamp classmates at Grand Circus - Detroit. It was fate that brought us together,
-                            now we call ourselves JRMN8. Our initials and 8 weeks of bootcamp. Our group name is pronounced GERMINATE and our meaning is:
-                            Come into existence and develop.</p>
+                        <p>We are four Java Bootcamp classmates at Grand Circus - Detroit.
+                            It was fate that brought us together,now we call ourselves JRMN8.
+                            Our initials and 8 weeks of bootcamp. Our group name is pronounced
+                            GERMINATE and our meaning is: Come into existence and develop.</p>
                     </div> <!-- end footer-widget -->
 
 
@@ -418,19 +419,7 @@
                                 <br>Saturday, Sunday: <strong>Closed</strong>
                             </li>
                         </ul>
-                    </div> <!-- end widget-contact-info -->
 
-           <!--         <div class="widget footer-widget follow-widget">
-                        <h4>Follow us</h4>
-                        <ul class="social-list">
-                            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a class="rss" href="#"><i class="fa fa-rss"></i></a></li>
-                            <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
-                        </ul>
-                    </div> -->
                 </div> <!-- end col-md-3 -->
             </div> <!-- end row -->
         </div> <!-- end container -->
@@ -444,12 +433,7 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="footer-menu text-right">
-               <!--         <li><a href="#.html">Home</a></li>
-                        <li><a href="#.html">About</a></li>
-                        <li><a href="#.html">Services</a></li>
-                        <li><a href="#.html">Portfolio</a></li>
-                        <li><a href="#.html">Blog</a></li>
-                        <li><a href="#.html">Contact</a></li> -->
+
                     </ul>
                 </div>  <!-- end col-md-6   -->
             </div> <!-- end row      -->
