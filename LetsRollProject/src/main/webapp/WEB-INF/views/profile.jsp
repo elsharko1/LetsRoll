@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%--<html>
 <head>
     <title>Profile</title>
 </head>
@@ -34,9 +34,8 @@
 <br>
 <a href="/homepage">Home page</a>
 </body>
-</html>
+</html>--%>
 
-<%--
 
 <!DOCTYPE html>
 <html lang="en">
@@ -130,9 +129,8 @@
                     <div class="col-md-6 col-sm-5">
                         <div class="right-align">
                             <ul>
-
                                 <a href="/logout" class="section-scroll btn btn-md btn-primary">Logout</a>
-
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -169,13 +167,13 @@
                     </li>
 
                     <li>
-                        &lt;%&ndash;<a href="#" class="open-search"><i class="fa fa-search"></i></a>
+                        <%--<a href="#" class="open-search"><i class="fa fa-search"></i></a>
                         <form class="form-search">
                             <div class="container">
                                 <input type="search" placeholder="Type to Search"/>
                                 <a href="#" class="close-search">x</a>
                             </div>
-                        </form>&ndash;%&gt;
+                        </form>--%>
                         <a href="#" class="open-search"><i class="fa fa-search"></i></a>
                         <form class="form-search" action="/searchresults" method="get">
                             <div class="container">
@@ -206,8 +204,8 @@
             <div class="col-md-12">
 
                 <!-- form fields -->
-                <form action="editprofile" method="POST" name="contactform" id="contactform"
-                      class=" animated out" data-animation="fadeInUp" data-delay="0">
+                <form action="editprofile" method="POST" name="contactform" class="animated out"
+                      data-animation="fadeInUp">
                     <fieldset>
                         <div class="row">
                             <div class="col-md-6">
@@ -215,31 +213,29 @@
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             Full Name: <br>
-                                            <input class="form-control" type="text" name="fullname"
-                                                   id="name" value="${user.fullName}"
-                                                   placeholder="Full Name">
+                                            <input class="form-control" type="text" name="fullName"
+                                                   value="${user.fullName}">
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             Email: <br>
-                                            <input class="form-control" type="email" name="email" id="email"
-                                                   value="${user.email}" placeholder="Email">
+                                            <input class="form-control" type="email" name="email"
+                                                   value="${user.email}">
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             Location: <br>
                                             <input class="form-control" type="text" name="location"
-                                                   id="subject" value="${user.location}"
-                                                   placeholder="Location"> <br>
+                                                   value="${user.location}">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    Skills: <br>
+                                    Skills Relevant to: <br>
                                     <select multiple class="form-control" name="skills">
                                         <option value="Disabled">Disabled</option>
                                         <option value="Children">Children</option>
@@ -247,16 +243,12 @@
                                         <option value="Animal">Animal</option>
                                         <option value="Administrative">Adminstrative</option>
                                         <option value="Technical">Technical</option>
-                                        <option value="Other">Mystery</option>
                                         <option value="Other">None</option>
-                                        <br>
                                     </select>
                                 </div>
-
                                 <!-- submit button -->
-                                <div class="form-group">
-                                    <input type="submit" value="Submit Profile Changes" name="submit"
-                                           id="submit" class="btn btn-sm btn-primary">
+                                <div>
+                                    <input type="submit" value="Submit Profile Changes" name="submit" id="submit">
                                 </div>
                             </div>
                         </div>
@@ -423,4 +415,3 @@
 
 </body>
 </html>
---%>
