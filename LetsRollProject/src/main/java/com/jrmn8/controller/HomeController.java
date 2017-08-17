@@ -241,9 +241,11 @@ public class HomeController {
      * @return searchresults.jsp that displays all our valid results.
      */
     @RequestMapping("/searchresults")
-    public ModelAndView searchResultsPage(Model model, @RequestParam("keywords") String keywords, HttpServletRequest request){
-         //                                 @RequestParam("iswheelchair") byte isWheelchair, @RequestParam("isblind") byte isBlind,
-           //                               @RequestParam("isservicedog") byte isServiceDog,  @RequestParam("isfamily") byte isFamily) {
+    public ModelAndView searchResultsPage(Model model, @RequestParam("keywords") String keywords, HttpServletRequest request) {
+    /*public ModelAndView searchResultsPage(Model model, @RequestParam("keywords") String keywords, HttpServletRequest request,
+                                          @RequestParam("iswheelchair") byte isWheelchair, @RequestParam("isblind") byte isBlind,
+                                          @RequestParam("isservicedog") byte isServiceDog,  @RequestParam("isfamily") byte isFamily) {*/
+
         // In the following block of code, we have two keyword variables
         // one is keywords which has potential spaces, and the other is keyword (no s!)
         // that replaces the spaces with '%20'.
@@ -298,14 +300,16 @@ public class HomeController {
                 // so no errors are thrown.
                 EventDao.add(event);
             }
-           // ArrayList<EventsEntity> events = AccessibilityDao.get(keywords, isWheelchair, isBlind, isServiceDog,isFamily);
+
             ArrayList<EventsEntity> events = EventDao.getLike(keywords);
+            /*ArrayList<EventsEntity> events = AccessibilityDao.get(keywords, isWheelchair, isBlind, isServiceDog,isFamily);*/
+            
             for (EventsEntity e : events) {
                 //get(0) because our DAO's return us a list but the list only has one true entity which
                 //is the creator
                 if (UsersDao.getExact(e.getCreator(), "userID").size() != 0)
                     e.setCreator(UsersDao.getExact(e.getCreator(), "userID").get(0).getFullName());
-                e.accessibility();
+                /*e.accessibility();*/
 
             }
             // Then we use our DAO to search through our database with the keywords.

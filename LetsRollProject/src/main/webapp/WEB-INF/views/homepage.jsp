@@ -296,9 +296,7 @@
                                 <div class="team-content">
                                     <h2>Jenny St. Peters</h2>
                                     <span>Software Designer</span>
-                                    <p>Software developer and detail oriented professional engineer with more than 10
-                                        years of professional experience looking to utilize my proven ability to learn
-                                        and adapt quickly to provide high quality, systematic solutions.</p>
+                                    <p>Software developer looking to provide high quality, systematic solutions.</p>
                                     <ul class="team-social">
                                         <!--<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                                         <!--<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>

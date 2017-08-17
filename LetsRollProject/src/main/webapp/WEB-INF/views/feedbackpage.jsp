@@ -123,24 +123,6 @@
 
 <!-- Navbar
 ================================================== -->
-<div class="col-md-8 col-sm-7">
-    <div class="head-title">
-        <h1>
-            XXXX
-        </h1>
-    </div>
-</div>
-
-<div class="col-md-8 col-sm-7">
-    <div class="head-title">
-        <h1>
-            XXXX
-        </h1>
-    </div>
-</div>
-
-
-
 <header class="clearfix">
     <!-- Static navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -154,10 +136,8 @@
                     <div class="col-md-6 col-sm-5">
                         <div class="right-align">
                             <ul>
-
                                 <a href="/logout" class="section-scroll btn btn-md btn-primary">Logout</a>
                             </ul>
-
                         </div>
                     </div>
                 </div>
@@ -170,39 +150,38 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoJRMN8.jpg" style="height:95px;width:125px"></a>
-                <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoLetsRoll.jpg" style="height:95px;width:150px"></a>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img alt="" src="webresources/images/LogoBanner.JPG">
+                        <%--<a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoJRMN8.jpg" style="height:95px;width:125px"></a>
+                        <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoLetsRoll.jpg" style="height:95px;width:150px"></a>--%>
+                    </div>
+                    <div class="col-lg-5">
+
+                        <div class="navbar-collapse collapse">
+
+                            <ul class="nav navbar-nav navbar-right">
+
+                                <li class="drop"><a href="/homepage">Homepage</a>
+                                </li>
+                                <li class="drop"><a href="/createevent">Create Event</a>
+                                </li>
+                                <li class="drop"><a href="/profile">Edit Profile</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="open-search"><i class="fa fa-search"></i></a>
+                                    <form class="form-search" action="/searchresults" method="get">
+                                        <div class="container">
+                                            <input type="text" name="keywords" required>
+                                            <input type="submit" value="Event Search By Keywords">
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div> <!-- end navbar-collapse -->
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li class="drop"><a href="/createevent">Create Event</a>
-                    </li>
-
-                    <li class="drop"><a href="/profile">Edit Profile</a>
-                    </li>
-
-            <!--        <li class="drop"><a href="/feedbackpage">Feedback</a>
-                    </li> -->
-
-                    <li class="drop"><a href="/yourevents">Your Events</a>
-                    </li>
-
-                    <li class="drop"><a href="/homepage">Homepage</a>
-                    </li>
-
-                    <li>
-
-                        <a href="#" class="open-search"><i class="fa fa-search"></i></a>
-                        <form class="form-search" action="/searchresults" method="get">
-                            <div class="container">
-                                <input type="text" name = "keywords" required>
-                                <input type="submit" value="Event Search By Keywords">
-                            </div>
-                        </form>
-                    </li>
-                </ul>
-            </div> <!-- end navbar-collapse -->
         </div>
     </nav>
 </header>
@@ -216,6 +195,14 @@
 <!-- Contact info
 
 ================================================== -->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <section>
     <div id="contact-section" class="pad-sec-80">
 
