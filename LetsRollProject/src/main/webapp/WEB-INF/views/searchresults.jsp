@@ -12,8 +12,8 @@
 <body>
 <h1>Search Results...</h1>
 
-<img src="${imageData}" width="128" height="128"><br>;
-${type.key} : ${type.value} <br>;
+&lt;%&ndash;<img src="${imageData}" width="128" height="128"><br>;
+${type.key} : ${type.value} <br>;&ndash;%&gt;
 <table border="1">
     <tr>
         <th>Event ID</th>
@@ -138,15 +138,15 @@ ${type.key} : ${type.value} <br>;
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-7">
-                        <span><i class="fa fa-phone"></i> +102655874624</span>
-                        <span><i class="fa fa-envelope"></i> contact@gmail.com</span>
+                        <span><i class="fa fa-phone"></i> 1 (313) 888-ROLL</span>
+                        <span><i class="fa fa-envelope"></i> jrmn8@gmail.com</span>
                     </div>
                     <div class="col-md-6 col-sm-5">
                         <div class="right-align">
                             <ul>
 
                                 <a href="/logout" class="section-scroll btn btn-md btn-primary">Logout</a>
-                            </ul>
+
                         </div>
                     </div>
                 </div>
@@ -159,9 +159,9 @@ ${type.key} : ${type.value} <br>;
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/homepage"><img alt="" src="webresources/images/logoJRMN8.jpg"
+                <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoJRMN8.jpg"
                                                                style="height:95px;width:125px"></a>
-                <a class="navbar-brand" href="/homepage"><img alt="" src="webresources/images/logoLetsRoll.jpg"
+                <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoLetsRoll.jpg"
                                                                style="height:95px;width:150px"></a>
             </div>
             <div class="navbar-collapse collapse">
@@ -173,14 +173,14 @@ ${type.key} : ${type.value} <br>;
                     <li class="drop"><a href="/profile">Edit Profile</a>
                     </li>
 
-                    <li class="drop"><a href="/feedbackpage">Feedback</a>
-                    </li>
+                    <!--           <li class="drop"><a href="/feedbackpage">Feedback</a>
+                               </li> -->
 
                     <li class="drop"><a href="/yourevents">Your Events</a>
                     </li>
 
-                    <li class="drop"><a href="#contact-section">Contact</a>
-                    </li>
+                    <!--       <li class="drop"><a href="#contact-section">Contact</a>
+                           </li> -->
 
                     <li>
                         <%--<a href="#" class="open-search"><i class="fa fa-search"></i></a>
@@ -194,7 +194,7 @@ ${type.key} : ${type.value} <br>;
                         <form class="form-search" action="/searchresults" method="get">
                             <div class="container">
                                 <input type="text" name="keywords" required>
-                                <input type="submit" value="Search By Keywords">
+                                <input type="submit" value="Event Search By Keywords">
                             </div>
                         </form>
                     </li>
@@ -205,8 +205,15 @@ ${type.key} : ${type.value} <br>;
 </header>
 <!-- End Header -->
 
-<%--<div id="wrapper">--%>
-    <%--<!-- Event section
+<div id="wrapper">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Event section
     ================================================== -->
     <section>
         <div class="shop-section pad-top-80 pad-bt-80">
@@ -220,7 +227,7 @@ ${type.key} : ${type.value} <br>;
 
                                 <div class="product-post">
 
-                                    &lt;%&ndash;<td></td>
+                                    <%--<td></td>
                                     <td>${data.creator}</td>
                                     <td>${data.location}</td>
                                     <td>${data.description}</td>
@@ -236,59 +243,79 @@ ${type.key} : ${type.value} <br>;
                                             <button value="Volunteer">Volunteer</button>
                                         </a>
                                     </td>
-                                    </tr>&ndash;%&gt;
-
-
+                                    </tr>--%>
+                                    <h1>Search Results...</h1>
                                     <c:forEach var="data" items="${searchresults}">
-
                                         <div class="row">
-
                                             <div class="col-sm-4">
                                                 <div class="product-image">
-                                                    <a href="shop-single-product.html"><img alt="Shop product image!"
+                                                    <div class="row">
+                                                        <a class="btn btn-xs btn-primary"
+                                                           href="/addAttendee?id=${data.eventID}">Attend</a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <a class="btn btn-xs btn-primary"
+                                                           href="addVolunteer?id=${data.eventID}">Volunteer</a>
+                                                        <p style="padding-left:20px; padding-right:20px">(Note: The
+                                                            Event Coordinator is looking for volunteers with skills
+                                                            relevant to ${data.skillsneeded})</p>
+                                                            <%--                                                        <div class="product-hover">
+                                                                                                                        <ul class="clearfix hover-stock-details">
+                                                                                                                            <p class="stock">(Note: The Event Coordinator
+                                                                                                                                is looking for volunteers with skills relevant
+                                                                                                                                to ${data.skillsneeded})</p>
+                                                                                                                                &lt;%&ndash;<li><a href="#">S</a></li>
+                                                                                                                                <li><a href="#">M</a></li>
+                                                                                                                                <li><a href="#">XL</a></li>&ndash;%&gt;
+                                                                                                                        </ul>
+                                                                                                                    </div> <!-- end product-hover -->--%>
+                                                    </div>
+                                                        <%--<a href="shop-single-product.html"><img alt="Shop product image!"
                                                                                             src="assets/images/shop/products/2.jpg"></a>
                                                     <a href="shop-single-product.html"><img alt="Shop product image!"
-                                                                                            src="assets/images/shop/products/1.jpg"></a>
-                                                    <div class="product-hover">
-                                                        <ul class="clearfix hover-stock-details">
-                                                            <li class="stock"><a href="#">In stock:</a></li>
-                                                            <li><a href="#">S</a></li>
-                                                            <li><a href="#">M</a></li>
-                                                            <li><a href="#">XL</a></li>
-                                                        </ul>
-                                                    </div> <!-- end product-hover -->
+                                                                                            src="assets/images/shop/products/1.jpg"></a>--%>
                                                 </div> <!-- end product-image -->
                                             </div> <!-- end col-sm-4 -->
 
                                             <div class="col-sm-8">
                                                 <div class="product-title">
-                                                    <h5><a href="shop-single-product.html">${data.eventID}</a></h5>
-                                                    <h5><a href="shop-single-product.html">${data.title}</a></h5>
+                                                    <h2>${data.title}</h2>
+                                                    <p>(${data.eventID})</p>
+                                                        <%--<h5>(Note: The Event Coordinator is looking for volunteers with
+                                                            skills relevant to ${data.skillsneeded})</h5>--%>
+
+                                                        <%--<h4>Event Coordinator: ${data.creator}</h4>--%>
+                                                    <c:choose>
+                                                        <c:when test="${data.date!='null'}">
+                                                            <p><b>Date: ${data.date}</b></p>
+                                                        </c:when>
+                                                    </c:choose>
+                                                    <c:choose>
+                                                        <c:when test="${data.location!='null'}">
+                                                            <p><b>Location: ${data.location}</b></p>
+                                                        </c:when>
+                                                    </c:choose>
+                                                        <%--<h4><a href="shop-single-product.html">${data.title}</a></h4>
+                                                        <h5><a href="shop-single-product.html">(${data.eventID})</a></h5>--%>
                                                 </div>
-                                                <div class="clearfix">
-                                                    <div class="product-price">
-                                                        $59.99
-                                                    </div>
-                                                    <div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                </div>
-                                                <p class="hidden-xs">Phasellus rutrum convallis tortor vel sagittis. Ut
-                                                    pulvinar neque non orci feugiat hendrerit. Etiam vel placerat arcu.
-                                                    Integer semper ipsum a lacus consectetur rutrum. Quisque molestie
-                                                    euismod odio, sed hendrerit metus adipiscing ultricies. Aliquam sed
-                                                    magna id augue porta mattis. Mauris nec erat eros. Fusce gravida
-                                                    blandit
-                                                    odio, eget egestas dui auctor posuere. Sed dignissim quam libero,
-                                                    eget
-                                                    ornare nisi tempor ac. Proin hendrerit volutpat neque at iaculis.
-                                                    Aliquam vitae lacinia metus. In consequat porta eleifend. In mauris
-                                                    eros, feugiat vel ante eget, faucibus pretium eros.</p>
-                                                <a class="btn btn-xs btn-primary" href="#.html">Add to cart</a>
+                                                    <%--                                                <div class="clearfix">
+                                                                                                        <div class="product-price">
+                                                                                                            $59.99
+                                                                                                        </div>
+                                                                                                        <div class="product-rating">
+                                                                                                            <i class="fa fa-star"></i>
+                                                                                                            <i class="fa fa-star"></i>
+                                                                                                            <i class="fa fa-star"></i>
+                                                                                                            <i class="fa fa-star-o"></i>
+                                                                                                            <i class="fa fa-star-o"></i>
+                                                                                                        </div>
+                                                                                                    </div>--%>
+                                                <c:choose>
+                                                    <c:when test="${data.description!='null'}">
+                                                        <p class="hidden-xs">${data.description}</p>
+                                                    </c:when>
+                                                </c:choose>
+                                                    <%--<p class="hidden-xs">${data.description}</p>--%>
                                             </div>
                                         </div>
                                     </c:forEach>
@@ -305,199 +332,181 @@ ${type.key} : ${type.value} <br>;
             </div> <!-- end container -->
         </div> <!-- end shop-section -->
     </section>
-    <!-- end Event section -->--%>
+    <!-- end Event section -->
 
-    <%--    <!-- Event details section
-        ================================================== -->
-        <section>
-            <div class="shop-details grey-bg pad-top-40">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-md-4">
-                            <div class="services-post-1">
-                                <span><i class="fa fa-gift"></i></span>
-                                <div class="services-content">
-                                    <h3>Free shipping on orders $60+</h3>
-                                    <p>Order more than 60$ and you will get free shippining Worldwide. More info.</p>
-                                </div> <!-- end services-content -->
-                            </div> <!-- end services-post-1 -->
-                        </div> <!-- end col-md-4 -->
-
-                        <div class="col-md-4">
-                            <div class="services-post-1">
-                                <span><i class="fa fa-plane"></i></span>
-                                <div class="services-content">
-                                    <h3>Worldwide delivery</h3>
-                                    <p>We deliver to the following countries: USA, Canada, Europe, Australia</p>
-                                </div> <!-- end services-content -->
-                            </div> <!-- end services-post-1 -->
-                        </div> <!-- end col-md-4 -->
-
-                        <div class="col-md-4">
-                            <div class="services-post-1">
-                                <span><i class="fa fa-history"></i></span>
-                                <div class="services-content">
-                                    <h3>60 days money back guranty!</h3>
-                                    <p>Not happy with our product, feel free to return it, we will refund 100% your money!</p>
-                                </div> <!-- end services-content -->
-                            </div> <!-- end services-post-1 -->
-                        </div> <!-- end col-md-4 -->
-
-                    </div> <!-- end row -->
-                </div> <!-- end container -->
-            </div> <!-- end shop-details -->
-        </section>
-        <!-- end Shop details section -->
-
-    </div> <!-- End wrapper -->--%>
-
-    <!-- Footer
+    <!-- Event details section
     ================================================== -->
-    <footer>
-        <div class="up-footer">
+    <section>
+        <div class="shop-details grey-bg pad-top-40">
             <div class="container">
                 <div class="row">
 
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-4">
+                        <div class="services-post-1">
+                            <span><i class="fa fa-gift"></i></span>
+                            <div class="services-content">
+                                <h3>Free shipping on orders $60+</h3>
+                                <p>Order more than 60$ and you will get free shippining Worldwide. More info.</p>
+                            </div> <!-- end services-content -->
+                        </div> <!-- end services-post-1 -->
+                    </div> <!-- end col-md-4 -->
 
-                        <div class="widget footer-widget text-widget">
-                            <h4>About Ement</h4>
-                            <p>Dantes remained confused and silent by this explanation of the thoughts which had
-                                unconsciously been working in his mind, or rather soul; for there are two distinct sorts
-                                of ideas. Dantes remained confused and silent by this explanation.</p>
-                        </div> <!-- end footer-widget -->
+                    <div class="col-md-4">
+                        <div class="services-post-1">
+                            <span><i class="fa fa-plane"></i></span>
+                            <div class="services-content">
+                                <h3>Worldwide delivery</h3>
+                                <p>We deliver to the following countries: USA, Canada, Europe, Australia</p>
+                            </div> <!-- end services-content -->
+                        </div> <!-- end services-post-1 -->
+                    </div> <!-- end col-md-4 -->
 
-                        <div class="widget footer-widget clearfix widget-newsletter">
-                            <form id="widget-subscribe-form" method="post" class="form-inline">
-                                <p><strong>Subscribe</strong> to Our Newsletter to get Important News, Amazing Offers &
-                                    Inside Scoops:</p>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                                    <input type="email" aria-required="true" name="widget-subscribe-form-email"
-                                           id="subscriberemail" class="form-control required email"
-                                           placeholder="Enter your Email">
-                                    <span class="input-group-btn">
-                    <a id="widget-subscribe-submit-button" class="btn btn-primary">Subscribe</a>
-                  </span>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="col-md-4">
+                        <div class="services-post-1">
+                            <span><i class="fa fa-history"></i></span>
+                            <div class="services-content">
+                                <h3>60 days money back guranty!</h3>
+                                <p>Not happy with our product, feel free to return it, we will refund 100% your
+                                    money!</p>
+                            </div> <!-- end services-content -->
+                        </div> <!-- end services-post-1 -->
+                    </div> <!-- end col-md-4 -->
 
-                    </div> <!-- end col-md-3 -->
-
-                    <div class="col-md-4 col-sm-6">
-                        <div class="widget footer-widget recent-widget">
-                            <h4>Recent Posts</h4>
-                            <ul>
-                                <li>
-                                    <h5><a href="single-post.html">Aenean sed justo tincidunt, vulputate nisi</a></h5>
-                                    <span>12 April 2016</span>
-                                </li>
-                                <li>
-                                    <h5><a href="single-post.html">Aenean sed justo tincidunt, vulputate nisi</a></h5>
-                                    <span>12 April 2016</span>
-                                </li>
-                                <li>
-                                    <h5><a href="single-post.html">Aenean sed justo tincidunt, vulputate nisi</a></h5>
-                                    <span>12 April 2016</span>
-                                </li>
-                            </ul>
-                        </div> <!-- end recent-widget -->
-                    </div> <!-- end col-md-3 -->
-
-                    <div class="clearfix visible-sm-block"></div>
-
-                    <div class="col-md-4 col-sm-6">
-
-                        <div class="widget footer-widget widget-contact-info">
-                            <h4>Contact us</h4>
-                            <ul class="widget-contact-list">
-                                <li><i class="fa fa-map-marker"></i>
-                                    <strong>Address:</strong> 795 Folsom Ave, Suite 600
-                                    <br>San Francisco, CA 94107
-                                </li>
-                                <li><i class="fa fa-phone"></i><strong>Phone:</strong> (123) 456-7890</li>
-                                <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a
-                                        href="mailto:first.last@example.com">first.last@example.com</a>
-                                </li>
-                                <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>08:00 - 22:00</strong>
-                                    <br>Saturday, Sunday: <strong>Closed</strong>
-                                </li>
-                            </ul>
-                        </div> <!-- end widget-contact-info -->
-
-                        <div class="widget footer-widget follow-widget">
-                            <h4>Follow us</h4>
-                            <ul class="social-list">
-                                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a class="rss" href="#"><i class="fa fa-rss"></i></a></li>
-                                <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
-                            </ul>
-                        </div>
-                    </div> <!-- end col-md-3 -->
                 </div> <!-- end row -->
             </div> <!-- end container -->
-        </div>
+        </div> <!-- end shop-details -->
+    </section>
+    <!-- end Shop details section -->
 
-        <div class="footer-line">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>Ement @2016 by <span>Clas-design</span>. All Rights Reserved</p>
-                    </div>
-                    <div class="col-md-6">
-                        <ul class="footer-menu text-right">
-                            <li><a href="#.html">Home</a></li>
-                            <li><a href="#.html">About</a></li>
-                            <li><a href="#.html">Services</a></li>
-                            <li><a href="#.html">Portfolio</a></li>
-                            <li><a href="#.html">Blog</a></li>
-                            <li><a href="#.html">Contact</a></li>
+</div> <!-- End wrapper -->
+
+<!-- Footer
+================================================== -->
+<footer>
+    <div class="up-footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 col-sm-6">
+
+                    <div class="widget footer-widget text-widget">
+                        <h4>About JRMN8</h4>
+                        <p>We are four Java Bootcamp classmates at Grand Circus - Detroit. It was fate that brought
+                            us together,
+                            now we call ourselves JRMN8. Our initials and 8 weeks of bootcamp. Our group name is
+                            pronounced GERMINATE and our meaning is:
+                            Come into existence and develop.</p>
+                    </div> <!-- end footer-widget -->
+
+
+                </div> <!-- end col-md-3 -->
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="widget footer-widget recent-widget">
+                        <h4>Our Team!</h4>
+
+                        <div class="team-post">
+                            <img alt="" src="webresources/assets/images/team/jrmn8teampic.JPG"
+                                 style="height:300px;width:240px">
+                        </div>
+
+
                         </ul>
-                    </div>  <!-- end col-md-6   -->
-                </div> <!-- end row      -->
-            </div> <!-- end container -->
-        </div> <!-- end footer-line -->
+                    </div> <!-- end recent-widget -->
+                </div> <!-- end col-md-3 -->
 
-    </footer>
-    <!-- End footer -->
+                <div class="clearfix visible-sm-block"></div>
 
-    <!-- Back-to-top
-    ================================================== -->
-    <div class="back-to-top">
-        <i class="fa fa-angle-up fa-3x"></i>
-    </div> <!-- end back-to-top -->
+                <div class="col-md-4 col-sm-6">
 
-    <!-- JS libraries and scripts -->
-    <script src="assets/js/jquery-1.11.3.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.easing.1.3.js"></script>
-    <script src="assets/js/jquery.smoothscroll.js"></script>
-    <script src="assets/js/jquery.stellar.min.js"></script>
-    <script src="assets/js/jquery.countTo.js"></script>
-    <script src="assets/js/jquery.waypoints.js"></script>
-    <script src="assets/js/jquery.imagesloaded.min.js"></script>
-    <script src="assets/js/jquery.appear.min.js"></script>
-    <script src="assets/js/jquery.bxslider.min.js"></script>
-    <script src="assets/js/jquery.touchSwipe.min.js"></script>
-    <script src="assets/js/jquery.isotope.js"></script>
-    <script src="assets/js/jquery.placeholder.js"></script>
-    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
-    <script src="assets/js/jquery.fitvids.js"></script>
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/jquery.mb.YTPlayer.min.js"></script>
-    <script src="assets/js/jquery.owl.carousel.min.js"></script>
-    <script src="assets/js/jquery.superslides.min.js"></script>
-    <script src="assets/js/jquery.morphext.min.js"></script>
-    <script src="assets/js/jquery.nouislider.min.js"></script>
-    <script src="assets/js/jquery.flexslider-min.js"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="assets/js/jquery.gmaps.js"></script>
-    <script src="assets/js/main.js"></script>
+                    <div class="widget footer-widget widget-contact-info">
+                        <h4>Contact us</h4>
+                        <ul class="widget-contact-list">
+                            <li><i class="fa fa-map-marker"></i>
+                                <strong>Address:</strong> 1570 Woodward Avenue, Level 3
+                                <br>Detroit, MI 48226
+                            </li>
+                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (313) 888-ROLL</li>
+                            <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a
+                                    href="mailto:first.last@example.com">jrmn8@gmail.com</a>
+                            </li>
+                            <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>9:00AM - 5:00PM</strong>
+                                <br>Saturday, Sunday: <strong>Closed</strong>
+                            </li>
+                        </ul>
+                    </div> <!-- end widget-contact-info -->
+
+                    <!--         <div class="widget footer-widget follow-widget">
+                                 <h4>Follow us</h4>
+                                 <ul class="social-list">
+                                     <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                     <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                     <li><a class="rss" href="#"><i class="fa fa-rss"></i></a></li>
+                                     <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                     <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                                     <li><a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
+                                 </ul>
+                             </div> -->
+                </div> <!-- end col-md-3 -->
+            </div> <!-- end row -->
+        </div> <!-- end container -->
+    </div>
+
+    <div class="footer-line">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Let's Roll @2017 by <span>JRMN8</span>. All Rights Reserved</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="footer-menu text-right">
+                        <!--         <li><a href="#.html">Home</a></li>
+                                 <li><a href="#.html">About</a></li>
+                                 <li><a href="#.html">Services</a></li>
+                                 <li><a href="#.html">Portfolio</a></li>
+                                 <li><a href="#.html">Blog</a></li>
+                                 <li><a href="#.html">Contact</a></li> -->
+                    </ul>
+                </div>  <!-- end col-md-6   -->
+            </div> <!-- end row      -->
+        </div> <!-- end container -->
+    </div> <!-- end footer-line -->
+
+</footer>
+<!-- End footer -->
+
+<!-- Back-to-top
+================================================== -->
+<div class="back-to-top">
+    <i class="fa fa-angle-up fa-3x"></i>
+</div> <!-- end back-to-top -->
+
+<!-- JS libraries and scripts -->
+<script src="webresources/assets/js/jquery-1.11.3.min.js"></script>
+<script src="webresources/assets/js/bootstrap.min.js"></script>
+<script src="webresources/assets/js/jquery.easing.1.3.js"></script>
+<script src="webresources/assets/js/jquery.smoothscroll.js"></script>
+<script src="webresources/assets/js/jquery.stellar.min.js"></script>
+<script src="webresources/assets/js/jquery.countTo.js"></script>
+<script src="webresources/assets/js/jquery.waypoints.js"></script>
+<script src="webresources/assets/js/jquery.imagesloaded.min.js"></script>
+<script src="webresources/assets/js/jquery.appear.min.js"></script>
+<script src="webresources/assets/js/jquery.bxslider.min.js"></script>
+<script src="webresources/assets/js/jquery.touchSwipe.min.js"></script>
+<script src="webresources/assets/js/jquery.isotope.js"></script>
+<script src="webresources/assets/js/jquery.placeholder.js"></script>
+<script src="webresources/assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="webresources/assets/js/jquery.fitvids.js"></script>
+<script src="webresources/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="webresources/assets/js/jquery.mb.YTPlayer.min.js"></script>
+<script src="webresources/assets/js/jquery.owl.carousel.min.js"></script>
+<script src="webresources/assets/js/jquery.superslides.min.js"></script>
+<script src="webresources/assets/js/jquery.morphext.min.js"></script>
+<script src="webresources/assets/js/jquery.nouislider.min.js"></script>
+<script src="webresources/assets/js/jquery.flexslider-min.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="webresources/assets/js/jquery.gmaps.js"></script>
+<script src="webresources/assets/js/main.js"></script>
 
 </body>
 </html>
