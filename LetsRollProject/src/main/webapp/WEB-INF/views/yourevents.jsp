@@ -500,8 +500,7 @@
                                             <div class="col-lg-2">
                                                 <div class="product-image">
                                                     <div class="row">
-                                                        <a class="btn btn-xs btn-primary"
-                                                           href="/feedbackpage?id=${data.eventID}">Feedback</a>
+                                                        
                                                             <%-- <div class="product-hover">
                                                                                                                                 <ul class="clearfix hover-stock-details">
                                                                                                                                     <p class="stock">(Note: The Event Coordinator
