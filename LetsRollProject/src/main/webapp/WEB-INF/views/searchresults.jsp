@@ -247,7 +247,7 @@ ${type.key} : ${type.value} <br>;&ndash;%&gt;
                                     <h1>Search Results...</h1>
                                     <c:forEach var="data" items="${searchresults}">
                                         <div class="row">
-                                            <div class="col-sm-4">
+                                            <div class="col-lg-2">
                                                 <div class="product-image">
                                                     <div class="row">
                                                         <a class="btn btn-xs btn-primary"
@@ -277,7 +277,7 @@ ${type.key} : ${type.value} <br>;&ndash;%&gt;
                                                 </div> <!-- end product-image -->
                                             </div> <!-- end col-sm-4 -->
 
-                                            <div class="col-sm-8">
+                                            <div class="col-lg-10">
                                                 <div class="product-title">
                                                     <h2>${data.title}</h2>
                                                     <p>(${data.eventID})</p>
@@ -286,12 +286,12 @@ ${type.key} : ${type.value} <br>;&ndash;%&gt;
 
                                                         <%--<h4>Event Coordinator: ${data.creator}</h4>--%>
                                                     <c:choose>
-                                                        <c:when test="${data.date!='null'}">
+                                                        <c:when test="${data.date!=null}">
                                                             <p><b>Date: ${data.date}</b></p>
                                                         </c:when>
                                                     </c:choose>
                                                     <c:choose>
-                                                        <c:when test="${data.location!='null'}">
+                                                        <c:when test="${data.location!=null}">
                                                             <p><b>Location: ${data.location}</b></p>
                                                         </c:when>
                                                     </c:choose>
@@ -335,6 +335,7 @@ ${type.key} : ${type.value} <br>;&ndash;%&gt;
     <!-- end Event section -->
 
     <!-- Event details section
+<%--
     ================================================== -->
     <section>
         <div class="shop-details grey-bg pad-top-40">
@@ -379,9 +380,11 @@ ${type.key} : ${type.value} <br>;&ndash;%&gt;
     <!-- end Shop details section -->
 
 </div> <!-- End wrapper -->
+--%>
 
 <!-- Footer
 ================================================== -->
+</div>
 <footer>
     <div class="up-footer">
         <div class="container">
