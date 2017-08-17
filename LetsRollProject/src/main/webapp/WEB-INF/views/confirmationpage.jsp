@@ -240,18 +240,7 @@ ${message} <br>
                                                     Thank You, ${currentUser.fullName}!
                                                 </h1>
                                                 <p class="animated out" data-animation="slideInLeft" data-delay="0.5">
-                                                    You are scheduled to
-                                                    <c:choose>
-                                                        <c:when test="${attendee.isVolunteer=='1'}">
-                                                            volunteer ${message}
-                                                <p class="animated out" data-animation="slideInLeft" data-delay="0.5">(Note: The Event Coordinator is looking for volunteers with  ${event.skillsneeded} skills.)</p>
-                                                            <br/>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            attend ${event.title}. ${message}
-                                                            <br/>
-                                                        </c:otherwise>
-                                                    </c:choose>
+                                                        ${message}
                                                     </p>
                                             </div> <!-- End hero-text -->
                                         </div> <!-- end col-md-6 -->

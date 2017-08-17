@@ -9,6 +9,7 @@ import com.jrmn8.dao.AccessibilityDao;
 import com.jrmn8.dao.EventDao;
 import com.jrmn8.dao.UserattendingDao;
 import com.jrmn8.dao.UsersDao;
+import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -98,6 +99,7 @@ public class HomeController {
                 currentUser.setSkills("");
                 currentUser.setLocation("");
                 UsersDao.add(currentUser);
+                response.addCookie(new Cookie("userID", currentUser.getUserID()));
 
                 if (currentUser.getUserID() != null) model.addAttribute("currentuser", currentUser);
             } catch (IdentifierGenerationException E) {
@@ -105,23 +107,11 @@ public class HomeController {
             }
         }
 
-        //get user login cookie
-        Cookie[] cookies = request.getCookies();
-        boolean isLoggedIn = isLoggedIn(cookies);
-
         /** if cookie exists we send them to the home page
          *  because every time we revisit the page, currentUser = new UserEntity();
          *  and as such is a completely new object. We only want to run the addCookie()
          *  method once, and that is when the user logs in the first time around.
          */
-        if (!isLoggedIn && currentUser.getUserID() != null) {
-            //if no cookie exists (they are not logged in) we call usersDao.add
-            UsersDao.add(currentUser);
-            //set the cookie to the google userID
-            response.addCookie(new Cookie("userID", currentUser.getUserID()));
-            // return the proper modelandview
-            return new ModelAndView("homepage", "status", "");
-        }
 
         // are you logged in?
         if (isLoggedIn(request.getCookies())) {
@@ -251,9 +241,9 @@ public class HomeController {
      * @return searchresults.jsp that displays all our valid results.
      */
     @RequestMapping("/searchresults")
-    public ModelAndView searchResultsPage(Model model, @RequestParam("keywords") String keywords, HttpServletRequest request,
-                                          @RequestParam("iswheelchair") byte isWheelchair, @RequestParam("isblind") byte isBlind,
-                                          @RequestParam("isservicedog") byte isServiceDog,  @RequestParam("isfamily") byte isFamily) {
+    public ModelAndView searchResultsPage(Model model, @RequestParam("keywords") String keywords, HttpServletRequest request){
+         //                                 @RequestParam("iswheelchair") byte isWheelchair, @RequestParam("isblind") byte isBlind,
+           //                               @RequestParam("isservicedog") byte isServiceDog,  @RequestParam("isfamily") byte isFamily) {
         // In the following block of code, we have two keyword variables
         // one is keywords which has potential spaces, and the other is keyword (no s!)
         // that replaces the spaces with '%20'.
@@ -308,7 +298,8 @@ public class HomeController {
                 // so no errors are thrown.
                 EventDao.add(event);
             }
-            ArrayList<EventsEntity> events = AccessibilityDao.get(keywords, isWheelchair, isBlind, isServiceDog,isFamily);
+           // ArrayList<EventsEntity> events = AccessibilityDao.get(keywords, isWheelchair, isBlind, isServiceDog,isFamily);
+            ArrayList<EventsEntity> events = EventDao.getLike(keywords);
             for (EventsEntity e : events) {
                 //get(0) because our DAO's return us a list but the list only has one true entity which
                 //is the creator
@@ -508,19 +499,20 @@ public class HomeController {
         }
 
         boolean exists = false;
+        if (event.getCreator().equals(currentUser.getUserID())) {
+            model.addAttribute("message", "However, you can't register for events you've made yourself!");
+            exists = true;
+        }
+
         if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
             for (UserattendingEntity use :
                     UserattendingDao.getExact(eventID, "eventID")) {
-                if (event.getCreator().equals(currentUser.getUserID())) {
-                    model.addAttribute("message", "- however, you can't register for events you've made yourself!");
-                    exists = true;
-                }
-                else if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 0) {
-                    model.addAttribute("message", "- however, you've already signed up to attend.");
+                if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 0) {
+                    model.addAttribute("message", "However, you've already signed up to attend "+ event.getTitle() + ".");
                     exists = true;
                     break;
                 } else if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 1) {
-                    model.addAttribute("message", "- we've swapped your volunteering status to attending.");
+                    model.addAttribute("message", "We've swapped your volunteering status to attending.");
                     UserattendingEntity temp = use;
                     temp.setIsVolunteer((byte) 0);
                     UserattendingDao.update(temp);
@@ -532,6 +524,7 @@ public class HomeController {
 
         //this is putting the user down for attending the event
         if (!exists) {
+            model.addAttribute("message", "You are scheduled to attend " + event.getTitle() + ".");
             attendee.setEventID(eventID);
             attendee.setUserID(userCookie(request).getValue());
             attendee.setIsVolunteer((byte) 0);
@@ -569,18 +562,19 @@ public class HomeController {
         }
 
         boolean exists = false;
+        if (event.getCreator().equals(currentUser.getUserID())) {
+            model.addAttribute("message", "However, you can't register for events you've made yourself!");
+            exists = true;
+        }
         if (UserattendingDao.getExact(eventID, "eventID").size() > 0) {
             for (UserattendingEntity use :
                     UserattendingDao.getExact(eventID, "eventID")) {
-                if (event.getCreator().equals(currentUser.getUserID())) {
-                model.addAttribute("message", "- however, you can't register for events you've made yourself!");
-                exists = true;
-            } else if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 1) {
-                    model.addAttribute("message", "- however, you've already signed up to volunteer.");
+                if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 1) {
+                    model.addAttribute("message", "However, you've already signed up to volunteer.");
                     exists = true;
                     break;
                 } else if (use.getUserID().equals(currentUser.getUserID()) && use.getIsVolunteer() == 0) {
-                    model.addAttribute("message", "- we've swapped your attending status to volunteering.");
+                    model.addAttribute("message", "We've swapped your attending status to volunteering.");
                     UserattendingEntity temp = use;
                     temp.setIsVolunteer((byte) 1);
                     UserattendingDao.update(temp);
@@ -590,6 +584,7 @@ public class HomeController {
             }
         }
         if (!exists) {
+            model.addAttribute("message", "You are scheduled to volunteer at " + event.getTitle() + ".");
             volunteer.setEventID(eventID);
             volunteer.setUserID(userCookie(request).getValue());
             volunteer.setIsVolunteer((byte) 1);
