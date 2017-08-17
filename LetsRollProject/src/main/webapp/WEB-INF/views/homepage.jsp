@@ -141,14 +141,14 @@
                     <li class="drop"><a href="/profile">Edit Profile</a>
                     </li>
 
-                    <li class="drop"><a href="/feedbackpage">Feedback</a>
-                    </li>
+         <!--           <li class="drop"><a href="/feedbackpage">Feedback</a>
+                    </li> -->
 
                     <li class="drop"><a href="/yourevents">Your Events</a>
                     </li>
 
-                    <li class="drop"><a href="#contact-section">Contact</a>
-                    </li>
+             <!--       <li class="drop"><a href="#contact-section">Contact</a>
+                    </li> -->
 
                     <li>
                         <%--<a href="#" class="open-search"><i class="fa fa-search"></i></a>
@@ -366,121 +366,7 @@
     <!-- Contact info
 
     ================================================== -->
-    <section>
-        <div id="contact-section" class="pad-sec-80">
 
-            <div class="container">
-
-                <div class="title-section">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-8 col-sm-offset-2">
-                                <h2>Get in touch</h2>
-                                <hr>
-                                <p>We are looking forward in connecting with you!</p>
-                            </div> <!-- end col-sm-8 -->
-                        </div> <!-- End row -->
-                    </div> <!-- end container -->
-                </div> <!-- end title-section -->
-
-                <div class="location-section">
-                    <div class="row">
-
-                        <div class="col-sm-4">
-                            <div class="location-item text-center">
-                                <div class="icon">
-                                    <i class="fa fa-map-marker"></i>
-                                </div>
-                                <h5 class="text-uppercase">Location</h5>
-                                <div class="loc-desc">
-                                    1570 Woodward Avenue, Level 3
-                                    <br>
-                                    Detroit, Michigan
-                                </div>
-                            </div> <!-- end location-item  -->
-                        </div> <!-- end col-sm-4 -->
-
-                        <div class="col-sm-4">
-                            <div class="location-item text-center">
-                                <div class="icon">
-                                    <i class="fa fa-mobile"></i>
-                                </div>
-                                <h5 class="text-uppercase">Call us </h5>
-                                <div class="loc-desc">
-                                    +1065289799 <br> +1065289712
-                                </div>
-                            </div> <!-- end location-item  -->
-                        </div> <!-- end col-sm-4 -->
-
-                        <div class="col-sm-4">
-                            <div class="location-item text-center">
-                                <div class="icon">
-                                    <i class="fa fa-envelope-o"></i>
-                                </div>
-                                <h5 class="text-uppercase">Mail us</h5>
-                                <div class="loc-desc">
-                                    clas-design@hot.com <br> email@hot.com
-                                </div>
-                            </div> <!-- end location-item  -->
-                        </div> <!-- end col-sm-4 -->
-                    </div> <!-- end row -->
-                </div> <!-- end location-section -->
-
-                <div class="form-wrapper">
-                    <div class="row">
-                        <div class="col-md-12">
-
-                            <!-- form fields -->
-                            <form action="webresources/assets/php/contact.php" method="post" name="contactform" id="contactform" class=" animated out" data-animation="fadeInUp" data-delay="0">
-
-                                <fieldset>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="name" id="name" placeholder="Name">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="email" name="email" id="email" placeholder="Email">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" name="subject" id="subject" placeholder="Subject">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="message" id="message" placeholder="Message..."></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </fieldset>
-
-                                <!-- submit button -->
-                                <div class="form-group">
-                                    <input type="submit" name="submit" value="Send message" id="submit" class="btn btn-sm btn-primary">
-                                </div>
-
-                                <div id="alert"></div>
-
-                            </form>
-
-                        </div> <!-- end col-md-8 -->
-                    </div> <!-- end row -->
-                </div>  <!-- end form-wrapper -->
-
-            </div> <!-- end container -->
-        </div> <!-- End contact-section -->
-    </section>
-    <!-- end Contact-section -->
-
-</div> <!-- End wrapper -->
 
 <!-- Footer
 ================================================== -->
@@ -498,18 +384,7 @@
                             Come into existence and develop.</p>
                     </div> <!-- end footer-widget -->
 
-            <!--        <div class="widget footer-widget clearfix widget-newsletter">
-                        <form id="widget-subscribe-form" method="post" class="form-inline">
-                            <p><strong>Subscribe</strong> to Our Newsletter to get Important News, Amazing Offers & Inside Scoops:</p>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                                <input type="email" aria-required="true" name="widget-subscribe-form-email" id="subscriberemail" class="form-control required email" placeholder="Enter your Email">
-                                <span class="input-group-btn">
-                    <a id="widget-subscribe-submit-button" class="btn btn-primary">Subscribe</a>
-                  </span>
-                            </div>
-                        </form>
-                    </div> -->
+
 
                 </div> <!-- end col-md-3 -->
 
@@ -521,19 +396,7 @@
                             <img alt="" src="webresources/assets/images/team/jrmn8teampic.JPG"style="height:300px;width:240px">
                         </div>
 
-                    <!--    <ul>
-                         <li>
-                                <h5><a href="single-post.html">Aenean sed justo tincidunt, vulputate nisi</a></h5>
-                                <span>12 April 2016</span>
-                            </li>
-                            <li>
-                                <h5><a href="single-post.html">Aenean sed justo tincidunt, vulputate nisi</a></h5>
-                                <span>12 April 2016</span>
-                            </li>
-                            <li>
-                                <h5><a href="single-post.html">Aenean sed justo tincidunt, vulputate nisi</a></h5>
-                                <span>12 April 2016</span>
-                            </li> -->
+
                         </ul>
                     </div> <!-- end recent-widget -->
                 </div> <!-- end col-md-3 -->
@@ -577,7 +440,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p>JRMN8 @2017 by <span>Let's Roll</span>. All Rights Reserved</p>
+                    <p>Let's Roll @2017 by <span>JRMN8</span>. All Rights Reserved</p>
                 </div>
                 <div class="col-md-6">
                     <ul class="footer-menu text-right">
