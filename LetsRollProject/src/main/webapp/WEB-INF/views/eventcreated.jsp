@@ -184,7 +184,7 @@ ${newAccess}
                                         <div class="col-md-12 col-lg-12">
                                             <div class="hero-text">
                                                 <h1 class="animated out" data-animation="slideInDown" data-delay="0.5">
-                                                    Thank you for creating ${newEvent.title} through Let's Roll!
+                                                    Thank you for creating "${newEvent.title}" with Let's Roll!
                                                 </h1>
                                             </div> <!-- End hero-text -->
                                         </div> <!-- end col-md-6 -->
@@ -209,7 +209,7 @@ ${newAccess}
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2">
-                            <h2>${newEvent.title}</h2>
+                            <h1>${newEvent.title}</h1>
                             <h4>(${newEvent.eventID})</h4>
                             <hr>
                             <h3>${newEvent.description}</h3>
@@ -239,7 +239,9 @@ ${newAccess}
                                 </c:choose>
                             </h3>
                             <br>
-                            <h3><b>Volunteer Skills Needed: </b>${newEvent.skillsneeded}</h3>
+                            <h3><b>Need Volunteers with Skills Relevant to: </b>
+                                <br>
+                                ${newEvent.skillsneeded}</h3>
                             <hr>
                         </div> <!-- end col-sm-8 -->
                     </div> <!-- End row -->

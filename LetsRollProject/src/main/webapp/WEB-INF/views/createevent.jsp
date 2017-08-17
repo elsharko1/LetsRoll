@@ -200,7 +200,6 @@
         <option value="Animal">Animal</option>
         <option value="Administrative">Adminstrative</option>
         <option value="Technical">Technical</option>
-        <option value="Other">Mystery</option>
 
         <br>
         Description: <br>
@@ -215,7 +214,6 @@
             <option value="Animal">Animal</option>
             <option value="Administrative">Adminstrative</option>
             <option value="Technical">Technical</option>
-            <option value="Other">Mystery</option>
             <br>
         </select>
         <br>
@@ -506,7 +504,6 @@
                                                     <option value="Animal">Animal</option>
                                                     <option value="Administrative">Adminstrative</option>
                                                     <option value="Technical">Technical</option>
-                                                    <option value="Other">Mystery</option>
                                                     <option value="Other">Other</option>
                                                 </select>
                                             </div>
