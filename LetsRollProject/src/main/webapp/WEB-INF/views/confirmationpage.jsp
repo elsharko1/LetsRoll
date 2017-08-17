@@ -476,9 +476,10 @@ ${message} <br>
 
                     <div class="widget footer-widget text-widget">
                         <h4>About JRMN8</h4>
-                        <p>We are four Java Bootcamp classmates at Grand Circus - Detroit. It was fate that brought us together,
-                            now we call ourselves JRMN8. Our initials and 8 weeks of bootcamp. Our group name is pronounced GERMINATE and our meaning is:
-                            Come into existence and develop.</p>
+                        <p>We are four Java Bootcamp classmates at Grand Circus - Detroit.
+                            It was fate that brought us together,now we call ourselves JRMN8.
+                            Our initials and 8 weeks of bootcamp. Our group name is pronounced
+                            GERMINATE and our meaning is: Come into existence and develop.</p>
                     </div> <!-- end footer-widget -->
 
 
@@ -515,43 +516,26 @@ ${message} <br>
                                 <br>Saturday, Sunday: <strong>Closed</strong>
                             </li>
                         </ul>
-                    </div> <!-- end widget-contact-info -->
 
-                    <!--         <div class="widget footer-widget follow-widget">
-                                 <h4>Follow us</h4>
-                                 <ul class="social-list">
-                                     <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                     <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                     <li><a class="rss" href="#"><i class="fa fa-rss"></i></a></li>
-                                     <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                     <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                                     <li><a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
-                                 </ul>
-                             </div> -->
-                </div> <!-- end col-md-3 -->
-            </div> <!-- end row -->
-        </div> <!-- end container -->
-    </div>
+                    </div> <!-- end col-md-3 -->
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </div>
 
-    <div class="footer-line">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>Let's Roll @2017 by <span>JRMN8</span>. All Rights Reserved</p>
-                </div>
-                <div class="col-md-6">
-                    <ul class="footer-menu text-right">
-                        <!--         <li><a href="#.html">Home</a></li>
-                                 <li><a href="#.html">About</a></li>
-                                 <li><a href="#.html">Services</a></li>
-                                 <li><a href="#.html">Portfolio</a></li>
-                                 <li><a href="#.html">Blog</a></li>
-                                 <li><a href="#.html">Contact</a></li> -->
-                    </ul>
-                </div>  <!-- end col-md-6   -->
-            </div> <!-- end row      -->
-        </div> <!-- end container -->
-    </div> <!-- end footer-line -->
+        <div class="footer-line">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Let's Roll @2017 by <span>JRMN8</span>. All Rights Reserved</p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="footer-menu text-right">
+
+                        </ul>
+                    </div>  <!-- end col-md-6   -->
+                </div> <!-- end row      -->
+            </div> <!-- end container -->
+        </div> <!-- end footer-line -->
 
 </footer>
 <!-- End footer -->
@@ -561,6 +545,8 @@ ${message} <br>
 <div class="back-to-top">
     <i class="fa fa-angle-up fa-3x"></i>
 </div> <!-- end back-to-top -->
+
+
 
 <!-- JS libraries and scripts -->
 <script src="webresources/assets/js/jquery-1.11.3.min.js"></script>

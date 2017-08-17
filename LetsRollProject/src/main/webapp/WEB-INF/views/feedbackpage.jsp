@@ -243,7 +243,7 @@
 
                             <!-- submit button -->
                             <div class="form-group">
-                                <input type="submit" name="submit" value="Submit Feedback" id="submit" class="btn btn-sm btn-primary">
+                                <input type="submit" name="submit" value="Submit Feedback" id="submit" class="btn btn-sm btn-primary center-block ">
                             </div>
 
                             <div id="alert"></div>
@@ -262,12 +262,83 @@
 </div> <!-- End wrapper -->
 
 
+<!-- Footer
+================================================== -->
+<footer>
+    <div class="up-footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 col-sm-6">
+
+                    <div class="widget footer-widget text-widget">
+                        <h4>About JRMN8</h4>
+                        <p>We are four Java Bootcamp classmates at Grand Circus - Detroit.
+                            It was fate that brought us together,now we call ourselves JRMN8.
+                            Our initials and 8 weeks of bootcamp. Our group name is pronounced
+                            GERMINATE and our meaning is: Come into existence and develop.</p>
+                    </div> <!-- end footer-widget -->
 
 
 
+                </div> <!-- end col-md-3 -->
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="widget footer-widget recent-widget">
+                        <h4>Our Team!</h4>
+
+                        <div class="team-post">
+                            <img alt="" src="webresources/assets/images/team/jrmn8teampic.JPG"style="height:300px;width:240px">
+                        </div>
 
 
+                        </ul>
+                    </div> <!-- end recent-widget -->
+                </div> <!-- end col-md-3 -->
 
+                <div class="clearfix visible-sm-block"></div>
+
+                <div class="col-md-4 col-sm-6">
+
+                    <div class="widget footer-widget widget-contact-info">
+                        <h4>Contact us</h4>
+                        <ul class="widget-contact-list">
+                            <li><i class="fa fa-map-marker"></i>
+                                <strong>Address:</strong> 1570 Woodward Avenue, Level 3
+                                <br>Detroit, MI 48226</li>
+                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (313) 888-ROLL </li>
+                            <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a href="mailto:first.last@example.com">jrmn8@gmail.com</a>
+                            </li>
+                            <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>9:00AM - 5:00PM</strong>
+                                <br>Saturday, Sunday: <strong>Closed</strong>
+                            </li>
+                        </ul>
+
+                    </div> <!-- end col-md-3 -->
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </div>
+
+        <div class="footer-line">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Let's Roll @2017 by <span>JRMN8</span>. All Rights Reserved</p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="footer-menu text-right">
+
+                        </ul>
+                    </div>  <!-- end col-md-6   -->
+                </div> <!-- end row      -->
+            </div> <!-- end container -->
+        </div> <!-- end footer-line -->
+
+</footer>
+<!-- End footer -->
+
+<!-- Back-to-top
+================================================== -->
 <div class="back-to-top">
     <i class="fa fa-angle-up fa-3x"></i>
 </div> <!-- end back-to-top -->

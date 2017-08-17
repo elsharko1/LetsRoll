@@ -566,48 +566,25 @@
 
                     <div class="widget footer-widget text-widget">
                         <h4>About JRMN8</h4>
-                        <p>We are four Java Bootcamp classmates at Grand Circus - Detroit. It was fate that brought
-                            us
-                            together,
-                            now we call ourselves JRMN8. Our initials and 8 weeks of bootcamp. Our group name is
-                            pronounced GERMINATE and our meaning is:
-                            Come into existence and develop.</p>
+                        <p>We are four Java Bootcamp classmates at Grand Circus - Detroit.
+                            It was fate that brought us together,now we call ourselves JRMN8.
+                            Our initials and 8 weeks of bootcamp. Our group name is pronounced
+                            GERMINATE and our meaning is: Come into existence and develop.</p>
                     </div> <!-- end footer-widget -->
 
-                    <div class="widget footer-widget clearfix widget-newsletter">
-                        <form id="widget-subscribe-form" method="post" class="form-inline">
-                            <p><strong>Subscribe</strong> to Our Newsletter to get Important News, Amazing Offers &
-                                Inside Scoops:</p>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                                <input type="email" aria-required="true" name="widget-subscribe-form-email"
-                                       id="subscriberemail" class="form-control required email"
-                                       placeholder="Enter your Email">
-                                <span class="input-group-btn">
-                    <a id="widget-subscribe-submit-button" class="btn btn-primary">Subscribe</a>
-                  </span>
-                            </div>
-                        </form>
-                    </div>
+
 
                 </div> <!-- end col-md-3 -->
 
                 <div class="col-md-4 col-sm-6">
                     <div class="widget footer-widget recent-widget">
-                        <h4>Recent Posts</h4>
-                        <ul>
-                            <li>
-                                <h5><a href="single-post.html">Thank you JRMN8 for helping me and my sister locate a festival we will always cherish - Ann</a></h5>
-                                <span>August 1st, 2017</span>
-                            </li>
-                            <li>
-                                <h5><a href="single-post.html">Your website was so helpful to find the right things to do this weekend. Thanks!! - Connor</a></h5>
-                                <span>July 23rd, 2017</span>
-                            </li>
-                            <li>
-                                <h5><a href="single-post.html">Wanted to let you know the recommendation for the musuems in Detroit were spot-on. What a relief!! - Shonda</a></h5>
-                                <span>July 3rd, 2017</span>
-                            </li>
+                        <h4>Our Team!</h4>
+
+                        <div class="team-post">
+                            <img alt="" src="webresources/assets/images/team/jrmn8teampic.JPG"style="height:300px;width:240px">
+                        </div>
+
+
                         </ul>
                     </div> <!-- end recent-widget -->
                 </div> <!-- end col-md-3 -->
@@ -620,54 +597,35 @@
                         <h4>Contact us</h4>
                         <ul class="widget-contact-list">
                             <li><i class="fa fa-map-marker"></i>
-                                <strong>Address:</strong> 1570 Woodward Ave, Level 3
-                                <br>Detroit, MI 48226
+                                <strong>Address:</strong> 1570 Woodward Avenue, Level 3
+                                <br>Detroit, MI 48226</li>
+                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (313) 888-ROLL </li>
+                            <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a href="mailto:first.last@example.com">jrmn8@gmail.com</a>
                             </li>
-                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (313) 888-ROLL</li>
-                            <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a
-                                    href="mailto:first.last@example.com">JRMN8@gmail.com</a>
-                            </li>
-                            <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>09:00 - 5:00</strong>
+                            <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>9:00AM - 5:00PM</strong>
                                 <br>Saturday, Sunday: <strong>Closed</strong>
                             </li>
                         </ul>
-                    </div> <!-- end widget-contact-info -->
 
-                    <div class="widget footer-widget follow-widget">
-                        <h4>Follow us</h4>
-                        <ul class="social-list">
-                            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a class="rss" href="#"><i class="fa fa-rss"></i></a></li>
-                            <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
-                        </ul>
+                    </div> <!-- end col-md-3 -->
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </div>
+
+        <div class="footer-line">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Let's Roll @2017 by <span>JRMN8</span>. All Rights Reserved</p>
                     </div>
-                </div> <!-- end col-md-3 -->
-            </div> <!-- end row -->
-        </div> <!-- end container -->
-    </div>
+                    <div class="col-md-6">
+                        <ul class="footer-menu text-right">
 
-    <div class="footer-line">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>JRMN8 @2017 by <span>Clas-design</span>. All Rights Reserved</p>
-                </div>
-                <div class="col-md-6">
-                    <ul class="footer-menu text-right">
-                        <li><a href="#.html">Home</a></li>
-                        <li><a href="#.html">About</a></li>
-                        <li><a href="#.html">Services</a></li>
-                        <li><a href="#.html">Portfolio</a></li>
-                        <li><a href="#.html">Blog</a></li>
-                        <li><a href="#.html">Contact</a></li>
-                    </ul>
-                </div>  <!-- end col-md-6   -->
-            </div> <!-- end row      -->
-        </div> <!-- end container -->
-    </div> <!-- end footer-line -->
+                        </ul>
+                    </div>  <!-- end col-md-6   -->
+                </div> <!-- end row      -->
+            </div> <!-- end container -->
+        </div> <!-- end footer-line -->
 
 </footer>
 <!-- End footer -->
@@ -677,6 +635,8 @@
 <div class="back-to-top">
     <i class="fa fa-angle-up fa-3x"></i>
 </div> <!-- end back-to-top -->
+
+
 
 <!-- JS libraries and scripts -->
 <script src="webresources/assets/js/jquery-1.11.3.min.js"></script>
