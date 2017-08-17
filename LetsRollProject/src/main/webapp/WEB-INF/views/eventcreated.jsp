@@ -205,36 +205,35 @@ ${newAccess}
     ================================================== -->
     <section>
         <div class="page section pad-sec-60">
-
             <div class="title-section">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2">
                             <h2>${newEvent.title}</h2>
-                            <h4>(${newEvent.eventID} / ${newAccess.eventID})</h4>
+                            <h4>(${newEvent.eventID})</h4>
                             <hr>
                             <h3>${newEvent.description}</h3>
                             <br>
-                            <h3><b>Date and Time: </b>${newEvent.date}}</h3>
+                            <h3><b>Date and Time: </b>${newEvent.date}</h3>
                             <h3><b>Location: </b>${newEvent.location}</h3>
                             <h3><b>Accessibility / Accommodations: </b>
                                 <c:choose>
-                                    <c:when test="${newAccess.wheelchair=='true'}">
+                                    <c:when test="${newAccess.wheelchair=='1'}">
                                         Wheelchair Accessible<br>
                                     </c:when>
                                 </c:choose>
                                 <c:choose>
-                                    <c:when test="${newAccess.blind=='true'}">
+                                    <c:when test="${newAccess.blind=='1'}">
                                         Accommodations for Visually Impaired<br>
                                     </c:when>
                                 </c:choose>
                                 <c:choose>
-                                    <c:when test="${newAccess.servicedog=='true'}">
+                                    <c:when test="${newAccess.servicedog=='1'}">
                                         Service Dogs Welcome<br>
                                     </c:when>
                                 </c:choose>
                                 <c:choose>
-                                    <c:when test="${newAccess.family=='true'}">
+                                    <c:when test="${newAccess.family=='1'}">
                                         Family Friendly<br>
                                     </c:when>
                                 </c:choose>
@@ -246,7 +245,6 @@ ${newAccess}
                     </div> <!-- End row -->
                 </div> <!-- end container -->
             </div> <!-- end title-section -->
-
         </div>
     </section>
     <!-- end Team section -->
