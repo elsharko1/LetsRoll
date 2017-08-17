@@ -1,5 +1,7 @@
 package com.jrmn8;
 
+import com.jrmn8.dao.AccessibilityDao;
+
 import javax.persistence.*;
 
 /**
@@ -15,6 +17,7 @@ public class EventsEntity {
     private String description;
     private String date;
     private String skillsneeded;
+    private String accessibility = "";
 
     public EventsEntity(String eventId, String title, String creator, String location, String description, String date, String skillsneeded) {
         this.eventID = eventId;
@@ -118,6 +121,17 @@ public class EventsEntity {
         return true;
     }
 
+    public void accessibility() {
+        if (AccessibilityDao.getExact(eventID, "eventID").size() > 0) {
+            AccessibilityEntity ae = AccessibilityDao.getExact(eventID, "eventID").get(0);
+            if (ae.getWheelchair() == 1) accessibility = accessibility + "Wheelchair Accessible\n";
+            if (ae.getFamily() == 1) accessibility = accessibility + "Family Friendly\n";
+            if (ae.getServicedog() == 1) accessibility = accessibility + "Service Dog Friendly\n";
+            if (ae.getBlind() == 1) accessibility = accessibility + "Accommodates the visually impaired\n";
+        }
+
+    }
+
     @Override
     public int hashCode() {
         int result = eventID != null ? eventID.hashCode() : 0;
@@ -130,11 +144,5 @@ public class EventsEntity {
         return result;
     }
 
-    @Override
-    public String toString(){
-        return (getTitle() + "<br>" + getCreator() + "<br> " + getLocation()
-                + "<br>" + getDescription() + "<br>" + getDate()
-                + "<br>" + getSkillsneeded());
-    }
 
 }

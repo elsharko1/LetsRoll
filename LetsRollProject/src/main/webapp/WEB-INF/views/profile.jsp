@@ -123,7 +123,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-7">
-                        <span><i class="fa fa-phone"></i> 1(313)888-ROLL</span>
+                        <span><i class="fa fa-phone"></i> 1 (313) 888-ROLL</span>
                         <span><i class="fa fa-envelope"></i> jrmn8@gmail.com</span>
                     </div>
                     <div class="col-md-6 col-sm-5">
@@ -143,47 +143,38 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoJRMN8.jpg"
-                                                               style="height:95px;width:125px"></a>
-                <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoLetsRoll.jpg"
-                                                               style="height:95px;width:150px"></a>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img alt="" src="webresources/images/LogoBanner.JPG">
+                        <%--<a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoJRMN8.jpg" style="height:95px;width:125px"></a>
+                        <a class="navbar-brand" href="index.html"><img alt="" src="webresources/images/logoLetsRoll.jpg" style="height:95px;width:150px"></a>--%>
+                    </div>
+                    <div class="col-lg-5">
+
+                        <div class="navbar-collapse collapse">
+
+                            <ul class="nav navbar-nav navbar-right">
+
+                                <li class="drop"><a href="/homepage">Homepage</a>
+                                </li>
+                                <li class="drop"><a href="/createevent">Create Event</a>
+                                </li>
+                                <li class="drop"><a href="/yourevents">Your Events</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="open-search"><i class="fa fa-search"></i></a>
+                                    <form class="form-search" action="/searchresults" method="get">
+                                        <div class="container">
+                                            <input type="text" name="keywords" required>
+                                            <input type="submit" value="Event Search By Keywords">
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div> <!-- end navbar-collapse -->
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li class="drop"><a href="/createevent">Create Event</a>
-                    </li>
-
-                    <li class="drop"><a href="/profile">Edit Profile</a>
-                    </li>
-
-                    <li class="drop"><a href="/feedbackpage">Feedback</a>
-                    </li>
-
-                    <li class="drop"><a href="/yourevents">Your Events</a>
-                    </li>
-
-                    <li class="drop"><a href="#contact-section">Contact</a>
-                    </li>
-
-                    <li>
-                        <%--<a href="#" class="open-search"><i class="fa fa-search"></i></a>
-                        <form class="form-search">
-                            <div class="container">
-                                <input type="search" placeholder="Type to Search"/>
-                                <a href="#" class="close-search">x</a>
-                            </div>
-                        </form>--%>
-                        <a href="#" class="open-search"><i class="fa fa-search"></i></a>
-                        <form class="form-search" action="/searchresults" method="get">
-                            <div class="container">
-                                <input type="text" name="keywords" required>
-                                <input type="submit" value="Event Search By Keywords">
-                            </div>
-                        </form>
-                    </li>
-                </ul>
-            </div> <!-- end navbar-collapse -->
         </div>
     </nav>
 </header>
