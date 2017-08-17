@@ -248,7 +248,7 @@ ${message} <br>
                                                             <br/>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            attend ${message}
+                                                            attend ${event.title}. ${message}
                                                             <br/>
                                                         </c:otherwise>
                                                     </c:choose>

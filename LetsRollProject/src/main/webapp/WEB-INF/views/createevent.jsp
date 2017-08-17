@@ -407,7 +407,12 @@
     <!-- Contact info
     ================================================== -->
     <section>
-        <div class="parallax-section contact-info" data-stellar-background-ratio="1">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="parallax-section contact-info" data-stellar-background-ratio="1" style="height:240px; vertical-align:bottom">
             <!-- <img alt="" src="webresources/assets/images/slides/slide-1.jpg" style="height:300px;width:300px">  -->
             <%--<li style="background-image:url('webresources/assets/images/banners/bike-72009.jpeg');">--%>
             <div class="overlay-slider"></div>
@@ -461,7 +466,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="form-group">
-                                                        Title: <br>
+                                                        Event Title: <br>
                                                         <input class="form-control" type="text" name="title" id="title"
                                                                placeholder="Title">
                                                     </div>
@@ -471,11 +476,10 @@
                                                                   id="description"
                                                                   placeholder="Description..." style="height:120px"></textarea>
                                                     </div>
-                                                    <div id="datetimepicker" class="input-append date">
+                                                    <div id="datetimepicker" class="input-append date" class="form-control">
                                                         Date: <br>
-                                                        <input type="text" name="date" class="form-control">
-                                                        <span class="add-on"><i data-time-icon="icon-time"
-                                                                                data-date-icon="icon-calendar"></i></span>
+                                                        <input type="text" name="date" class="form-control" placeholder="Event Date and Time">
+                                                        <span class="add-on"><i data-time-icon="icon-time", data-date-icon="icon-calendar"></i></span>
                                                     </div>
                                                     <div id="pac-container" class="form-group">
                                                         Location: <br>
@@ -503,6 +507,7 @@
                                                     <option value="Administrative">Adminstrative</option>
                                                     <option value="Technical">Technical</option>
                                                     <option value="Other">Mystery</option>
+                                                    <option value="Other">Other</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -707,8 +712,14 @@
         startDate: new Date(),
         pickSeconds: false,
         pick12HourFormat: true,
-        format: "MM/dd/yyyy HH:mm PP"
+        format: "MM/dd/yyyy HH:mm PP",
+        sideBySide: "true",
+        autoclose: true,
+        keepOpen: false
     }).val();
+    $('datetimepicker').on('changeDate', function(ev){
+        $(this).datepicker('hide');
+    });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvA4Qjj6E2adhJsz-WlmViKWKhs6HQ68M&libraries=places"></script>
 <script>
