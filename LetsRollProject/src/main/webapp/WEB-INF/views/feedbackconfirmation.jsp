@@ -128,7 +128,7 @@ ${feedback}
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-7">
-                        <span><i class="fa fa-phone"></i> 1(313)888-ROLL</span>
+                        <span><i class="fa fa-phone"></i> 1 (313) 888-ROLL</span>
                         <span><i class="fa fa-envelope"></i> jrmn8@gmail.com</span>
                     </div>
                     <div class="col-md-6 col-sm-5">
@@ -162,9 +162,6 @@ ${feedback}
                     <li class="drop"><a href="/profile">Edit Profile</a>
                     </li>
 
-                    <!--        <li class="drop"><a href="/feedbackpage">Feedback</a>
-                            </li> -->
-
                     <li class="drop"><a href="/yourevents">Your Events</a>
                     </li>
 
@@ -172,13 +169,7 @@ ${feedback}
                     </li>
 
                     <li>
-                        <%--<a href="#" class="open-search"><i class="fa fa-search"></i></a>
-                        <form class="form-search">
-                            <div class="container">
-                                <input type="search" placeholder="Type to Search"/>
-                                <a href="#" class="close-search">x</a>
-                            </div>
-                        </form>--%>
+
                         <a href="#" class="open-search"><i class="fa fa-search"></i></a>
                         <form class="form-search" action="/searchresults" method="get">
                             <div class="container">
@@ -216,66 +207,18 @@ ${feedback}
                             </head>
                             <body>
                             <h1> Your Feedback: </h1>
-                            <br>
                             ${feedback}
                             <br>
+                            <br>
 
-                      <!--      <h2>Feedback for: ${name}</h2>
+                           <h2>Feedback for: ${eventname}</h2>
                             <hr>
-                            <p>Give feedback - were there any issues? Any comments? Let your thoughts be heard.</p> -->
                         </div> <!-- end col-sm-8 -->
                     </div> <!-- End row -->
                 </div> <!-- end container -->
             </div> <!-- end title-section -->
 
-            <!--          <div class="location-section">
-                          <div class="row">
 
-                              <div class="col-sm-4">
-                                  <div class="location-item text-center">
-                                      <div class="icon">
-                                          <i class="fa fa-map-marker"></i>
-                                      </div>
-                                      <h5 class="text-uppercase">Location</h5>
-                                      <div class="loc-desc">
-                                          1570 Woodward Avenue, Level 3
-                                          <br>
-                                          Detroit, Michigan
-                                      </div>
-                                  </div> <!-- end location-item  -->
-            <!--               </div> <!-- end col-sm-4 -->
-
-            <!--         <div class="col-sm-4">
-                       <div class="location-item text-center">
-                           <div class="icon">
-                               <i class="fa fa-mobile"></i>
-                           </div>
-                           <h5 class="text-uppercase">Call us </h5>
-                           <div class="loc-desc">
-                               +1065289799 <br> +1065289712
-                           </div>
-                       </div> <!-- end location-item  -->
-            <!--            </div> <!-- end col-sm-4 -->
-
-            <!--          <div class="col-sm-4">
-                        <div class="location-item text-center">
-                            <div class="icon">
-                                <i class="fa fa-envelope-o"></i>
-                            </div>
-                            <h5 class="text-uppercase">Mail us</h5>
-                            <div class="loc-desc">
-                                clas-design@hot.com <br> email@hot.com
-                            </div>
-                        </div> <!-- end location-item  -->
-            <!--               </div> <!-- end col-sm-4 -->
-            <!--           </div> <!-- end row -->
-            <!--        </div> <!-- end location-section -->
-
-            <!--        <div class="form-wrapper">
-                      <div class="row">
-                          <div class="col-md-12">
-
-                              <!-- form fields -->
             <form action="webresources/assets/php/contact.php" method="post" name="contactform" id="contactform" class=" animated out" data-animation="fadeInUp" data-delay="0">
 
                 <fieldset>
@@ -284,42 +227,12 @@ ${feedback}
                             <div class="row">
 
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <textarea class="form-control" name="message" id="message" placeholder="Message..."></textarea>
-                                    </div>
-                                </div>
-                                <!--          <div class="col-sm-12">
-                                              <div class="form-group">
-                                                  <input class="form-control" type="text" name="name" id="name" placeholder="Name">
-                                              </div>
-                                          </div>
-                                 <!--         <div class="col-sm-12">
-                                              <div class="form-group">
-                                                  <input class="form-control" type="email" name="email" id="email" placeholder="Email">
-                                              </div>
-                                          </div>
-                                  <!--        <div class="col-sm-12">
-                                              <div class="form-group">
-                                                  <input class="form-control" type="text" name="subject" id="subject" placeholder="Subject">
-                                              </div>
-                                          </div> -->
+
                             </div>
                         </div>
-                        <!--          <div class="col-md-6">
-                                      <div class="form-group">
-                                          <textarea class="form-control" name="message" id="message" placeholder="Message..."></textarea>
-                                      </div>
-                                  </div> -->
+
                     </div>
                 </fieldset>
-
-                <!-- submit button -->
-                <div class="form-group">
-                    <input type="submit" name="submit" value="Submit Feedback" id="submit" class="btn btn-sm btn-primary">
-                </div>
-
-                <div id="alert"></div>
 
             </form>
 

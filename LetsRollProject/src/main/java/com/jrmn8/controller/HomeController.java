@@ -344,19 +344,23 @@ public class HomeController {
                 return new ModelAndView("welcome", "status", "Please Login First");
 
             String namer = EventDao.getExact(eventID, "eventID").get(0).getTitle();
-
-            System.out.println(userCookie(request).getValue());
             model.addAttribute("name", namer);
+
             UserattendingEntity u = UserattendingDao.getInstance(eventID, userCookie(request).getValue());
+
             model.addAttribute("feedbackID", u.getUserattendingid());
             model.addAttribute("feedback", u.getFeedback());
+
             return new ModelAndView("feedbackpage", "", "");
 
         }
 
         @RequestMapping("/feedbackconfirmation")
+
+
         public ModelAndView feedbackconfirmation (Model model, HttpServletRequest request,
-                @RequestParam("feedback") String feedback,@RequestParam("feedbackID") int feedbackID){
+                @RequestParam("feedback") String feedback,@RequestParam("feedbackID") int feedbackID,
+                                                  @RequestParam("eventname") String eventname){
             String fed = String.valueOf(feedbackID);
             ArrayList<UserattendingEntity> uaelist = UserattendingDao.getExact(userCookie(request).getValue(), "userID");
             UserattendingEntity uae = new UserattendingEntity();
@@ -365,6 +369,7 @@ public class HomeController {
                     uae = u;
                 }
             }
+            model.addAttribute("eventname", eventname);
             uae.setFeedback(feedback);
             UserattendingDao.update(uae);
             return new ModelAndView("feedbackconfirmation", "feedback", uae.getFeedback());

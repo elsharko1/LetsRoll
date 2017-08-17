@@ -108,7 +108,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-7">
-                        <span><i class="fa fa-phone"></i> 1(313)888-ROLL</span>
+                        <span><i class="fa fa-phone"></i> 1 (313) 888-ROLL</span>
                         <span><i class="fa fa-envelope"></i> jrmn8@gmail.com</span>
                     </div>
                     <div class="col-md-6 col-sm-5">

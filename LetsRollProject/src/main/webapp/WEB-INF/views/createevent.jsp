@@ -343,8 +343,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-7">
-                        <span><i class="fa fa-phone"></i> +102655874624</span>
-                        <span><i class="fa fa-envelope"></i> contact@gmail.com</span>
+                        <span><i class="fa fa-phone"></i> 1 (313) 888-ROLL</span>
+                        <span><i class="fa fa-envelope"></i> JRMN8@gmail.com</span>
                     </div>
                     <div class="col-md-6 col-sm-5">
                         <div class="right-align">
@@ -597,16 +597,16 @@
                         <h4>Recent Posts</h4>
                         <ul>
                             <li>
-                                <h5><a href="single-post.html">Aenean sed justo tincidunt, vulputate nisi</a></h5>
-                                <span>12 April 2016</span>
+                                <h5><a href="single-post.html">Thank you JRMN8 for helping me and my sister locate a festival we will always cherish - Ann</a></h5>
+                                <span>August 1st, 2017</span>
                             </li>
                             <li>
-                                <h5><a href="single-post.html">Aenean sed justo tincidunt, vulputate nisi</a></h5>
-                                <span>12 April 2016</span>
+                                <h5><a href="single-post.html">Your website was so helpful to find the right things to do this weekend. Thanks!! - Connor</a></h5>
+                                <span>July 23rd, 2017</span>
                             </li>
                             <li>
-                                <h5><a href="single-post.html">Aenean sed justo tincidunt, vulputate nisi</a></h5>
-                                <span>12 April 2016</span>
+                                <h5><a href="single-post.html">Wanted to let you know the recommendation for the musuems in Detroit were spot-on. What a relief!! - Shonda</a></h5>
+                                <span>July 3rd, 2017</span>
                             </li>
                         </ul>
                     </div> <!-- end recent-widget -->
@@ -620,14 +620,14 @@
                         <h4>Contact us</h4>
                         <ul class="widget-contact-list">
                             <li><i class="fa fa-map-marker"></i>
-                                <strong>Address:</strong> 795 Folsom Ave, Suite 600
-                                <br>San Francisco, CA 94107
+                                <strong>Address:</strong> 1570 Woodward Ave, Level 3
+                                <br>Detroit, MI 48226
                             </li>
-                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (123) 456-7890</li>
+                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (313) 888-ROLL</li>
                             <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a
-                                    href="mailto:first.last@example.com">first.last@example.com</a>
+                                    href="mailto:first.last@example.com">JRMN8@gmail.com</a>
                             </li>
-                            <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>08:00 - 22:00</strong>
+                            <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>09:00 - 5:00</strong>
                                 <br>Saturday, Sunday: <strong>Closed</strong>
                             </li>
                         </ul>

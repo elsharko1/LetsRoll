@@ -76,6 +76,7 @@ public class UserattendingDao extends Dao {
     }
 
     public static UserattendingEntity getInstance(String eventID, String userID) {
+
         Session selectAccessibility = sessionFact.openSession();
 
         selectAccessibility.beginTransaction();
