@@ -239,7 +239,8 @@
                                                 <h1 class="animated out" data-animation="rotateInDownLeft" data-delay="0.5">Let's Roll!</h1>
                                                 <p class="animated out" data-animation="rotateIn" data-delay="0">Designed to help the disabled find a precise, clear, avenue to the venue and gain access to the event. </p>
                                                 <div class="call-to-action animated out" data-animation="slideInLeft" data-delay="0.7">
-                                                    <a href="#contact-section" class="section-scroll btn btn-md btn-clean">Volunteer at your favorite event here!</a>
+                                                    <p class="section-scroll">Volunteer at your favorite event here!</p>
+                                                    <%--<a href="#contact-section" class="section-scroll btn btn-md btn-clean">Volunteer at your favorite event here!</a>--%>
                                                 </div>
                                             </div> <!-- End hero-text -->
                                         </div> <!-- end col-md-6 -->
