@@ -175,6 +175,14 @@ ${feedback}
 <!-- Contact info
 
 ================================================== -->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <section>
     <div id="contact-section" class="pad-sec-80">
 

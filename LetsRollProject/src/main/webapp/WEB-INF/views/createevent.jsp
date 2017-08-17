@@ -465,24 +465,24 @@
                                                     <div class="form-group">
                                                         Event Title: <br>
                                                         <input class="form-control" type="text" name="title" id="title"
-                                                               placeholder="Title">
+                                                               placeholder="Title" required>
                                                     </div>
                                                     <div class="form-group">
                                                         Description: <br>
                                                         <textarea class="form-control" name="description"
                                                                   id="description"
-                                                                  placeholder="Description..." style="height:120px"></textarea>
+                                                                  placeholder="Description..." style="height:120px" required></textarea>
                                                     </div>
                                                     <div id="datetimepicker" class="input-append date" class="form-control">
                                                         Date: <br>
-                                                        <input type="text" name="date" class="form-control" placeholder="Event Date and Time">
+                                                        <input type="text" name="date" class="form-control" placeholder="Event Date and Time" required>
                                                         <span class="add-on"><i data-time-icon="icon-time", data-date-icon="icon-calendar"></i></span>
                                                     </div>
                                                     <div id="pac-container" class="form-group">
                                                         Location: <br>
                                                         <input id="pac-input" type="text"
                                                                placeholder="Enter event location" name="where"
-                                                               class="form-control">
+                                                               class="form-control" required>
                                                     </div>
                                                     <div id="map"></div>
                                                     <div id="infowindow-content">
@@ -496,7 +496,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Need Skills Relevant to: <br>
-                                                <select multiple name="skillsneeded" class="form-control" style="height:120px">
+                                                <select multiple name="skillsneeded" class="form-control" style="height:120px" required>
                                                     <option value="Disabled">Disabled</option>
                                                     <option value="Children">Children</option>
                                                     <option value="People">People</option>
