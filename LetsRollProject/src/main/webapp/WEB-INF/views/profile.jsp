@@ -227,7 +227,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     Skills Relevant to: <br>
-                                    <select multiple class="form-control" name="skills">
+                                    <select multiple class="form-control" name="skills" required>
                                         <option value="Disabled">Disabled</option>
                                         <option value="Children">Children</option>
                                         <option value="People">People</option>
